@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :loan_requests
   has_many :wallets
 
+  USER_TYPES = ["Lender", "Borrower"]
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :user_type, inclusion: { in: USER_TYPES }
 end

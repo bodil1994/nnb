@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_30_044713) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_30_121416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_044713) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "payment_frequency"
     t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
@@ -65,6 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_044713) do
     t.string "user_image"
     t.string "id_image"
     t.string "id_number"
+    t.string "user_type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
