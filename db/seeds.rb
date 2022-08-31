@@ -42,6 +42,15 @@ user_type = "Borrower"
 ben = User.create!(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
 puts "new user added: #{ben.first_name} #{ben.last_name}"
 
+amount = 200
+interest_rate = 2
+loan_category = "Education"
+instant_loan = false
+status = "Active"
+payback_time = 1
+user = User.find_by(first_name: "Sam")
+education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, user: user)
+puts "new loan added: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
 
 amount = 200
 title = "Paying school fees for my children"
@@ -53,19 +62,10 @@ user = User.find_by(first_name: "Ben")
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
-amount = 200
-interest_rate = 2
-loan_category = "Education"
-instant_loan = false
-status = "Active"
-payback_time = 1
-user = User.find_by(first_name: "Sam")
-education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, user: user)
-puts "new loan added: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
 
 amount = 400
 interest_rate = 5
-loan_category "Business"
+loan_category = "Business"
 instant_loan = false
 status = "Listed"
 payback_time = 2
@@ -75,7 +75,7 @@ puts "new loan added: #{business_loan.amount}€ for #{business_loan.loan_catego
 
 amount = 100
 interest_rate = 5
-loan_category "Health"
+loan_category = "Health"
 instant_loan = true
 status = "Listed"
 payback_time = 2
