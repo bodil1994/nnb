@@ -31,6 +31,17 @@ user_type = "Lender"
 sarah = User.create!(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
 puts "new user added: #{sarah.first_name} #{sarah.last_name}"
 
+first_name = "Ben"
+last_name = "Blue"
+profession = "Gojek driver"
+email = "info@ben.com"
+phone = "08899899982"
+address = "Canggu Bali"
+password ="123123"
+user_type = "Borrower"
+ben = User.create!(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+puts "new user added: #{ben.first_name} #{ben.last_name}"
+
 
 amount = 200
 title = "Paying school fees for my children"
@@ -44,7 +55,7 @@ puts "new loan request added: #{education_loan_request.amount}€ for #{educatio
 
 amount = 200
 interest_rate = 2
-loan_category "Education"
+loan_category = "Education"
 instant_loan = false
 status = "Active"
 payback_time = 1
