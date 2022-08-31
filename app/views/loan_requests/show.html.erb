@@ -1,1 +1,11 @@
-<h1>Titre</h1>
+<div class="container">
+  <!-- Building the left arrow container which is a link that redirect towards-->
+  <div class="left-arrow">
+    <%= link_to new_loan_loan_request_path(@loan_request.loan_id) do %>
+      <%= image_tag "arrow_left.svg", id:"arrow_left" %>
+    <% end %>
+  </div>
+  <!-- Title -->
+    <div class="Title">
+    <h1>Loan Application</h1>
+    </div>
