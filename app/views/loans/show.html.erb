@@ -18,7 +18,7 @@
     You will receive <%= @loan.instant_loan ? "an instant loan" : "a manually-approved loan" %>
     of <%= @loan.amount.to_i %> FCFA, with <%= number_of_payments %> <%= @loan.payment_frequency %>
     payments of <%= @loan.amount.to_i / number_of_payments %> FCFA each, in total you will pay back
-    <%= @loan.amount.to_i * (1 + (@loan.interest_rate.to_i / 100)) %> FCFA.
+    <%= @loan.amount.to_i * (1 + (@loan.interest_rate.to_f / 100)) %> FCFA.
   </div>
   <div class="list-box">
     <div class="list-item">
