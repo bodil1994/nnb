@@ -1,12 +1,70 @@
 // Graphical variables
 @import "config/fonts";
 @import "config/colors";
-@import "config/bootstrap_variables";
+// @import "config/bootstrap_variables";
 
 // External libraries
-@import "bootstrap/scss/bootstrap";
+// @import "bootstrap/scss/bootstrap";
 @import "font-awesome";
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+// Page styling
+
+/* RESET */
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* COLORS and FONTS */
+html, body {
+  display: block;
+  min-height: 100vh;
+  width: 100%;
+  font-family: $font-family;
+  color: $black;
+  position: relative;
+}
+
+h1 {
+  font-size: 25px;
+  font-weight: $font-weight-bold;
+  padding-bottom: 20px;
+
+
+}
+
+.font-weight-light {
+  font-weight: $font-weight-light;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: $font-weight-bold;
+  padding-bottom: 12px;
+}
+
+p {
+  font-size: 16px;
+  font-weight: $font-weight-regular;
+}
+
+
+.container {
+  display: block;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  &__flex {
+    display: flex;
+    flex-flow: column;
+  }
+}
