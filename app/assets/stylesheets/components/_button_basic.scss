@@ -12,6 +12,11 @@
   font-weight: $font-weight-bold;
   max-width: 100%;
   border: none;
+  
+.btn-secondary {
+  border: 1px solid $purple;
+  background: $white;
+  color: $purple-font;
 
   &__secondary {
     border: 1px solid $purple;
