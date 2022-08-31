@@ -1,0 +1,27 @@
+<!-- Full page container coming from SCSS -->
+<div class="container">
+  <!-- Building the left arrow container which is a link that redirect towards-->
+  <div class="left-arrow">
+    <%= link_to loan_path(@loan.id) do %>
+      <%= image_tag "arrow_left.svg", id:"arrow_left" %>
+    <% end %>
+  </div>
+  <!-- Title -->
+    <div class="Title">
+    <h1>Summary</h1>
+    </div>
+  <!-- Loan Request Creation form
+)
+  -->
+    <div class="form">
+    <%= simple_form_for [@loan, @loan_request] do |f| %>
+      <div class = "input__large">
+        <%= f.input :description, :label => "What will you use the loan for?" %>
+        <%= f.button :submit, 'Next', class:"btn"  %>
+        </div>
+    <% end %>
+    </div>
+
+  <!-- Submit button - with navbar size -->
+
+</div>
