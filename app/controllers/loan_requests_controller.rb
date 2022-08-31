@@ -20,6 +20,8 @@ class LoanRequestsController < ApplicationController
   end
 
   def show
+    @loan_request = LoanRequest.find(params[:id])
+    raise
   end
 
   private
