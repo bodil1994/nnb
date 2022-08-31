@@ -1,11 +1,14 @@
 .btn-dashboard-cta {
   width: 100%;
   height: 66px;
+  padding: 17px;
+
   border-radius: 5px;
   border: solid 1px $light-gray;
+
   display: flex;
   flex-flow: row;
-  padding: 17px;
+  align-items: center;
 
   .wrapper {
     display: flex;
@@ -18,5 +21,9 @@
       color: $dark-gray;
     }
 
+  }
+
+  .icon__arrow {
+    margin-left: auto;
   }
 }
