@@ -1,4 +1,44 @@
 <div class="container">
   <h1>Loan Description</h1>
-  <p>by <%= @loan.user.first_name %></p>
+  <div class="card_basic">
+    <p>by <%= @loan.user.first_name %> <%= @loan.user.last_name %></p>
+    <p><%= @loan.user.address %></p>
+  </div>
+  <div class="notice_box_purple">
+    <% if @loan.payment_frequency = "monthly" %>
+      <% number_of_payments = @loan.payback_time %>
+    <% elsif @loan.payment_frequency = "weekly" %>
+      <% number_of_payments = @loan.payback_time * 4 %>
+    <% end %>
+    You will receive <%= @loan.instant_loan ? "an instant loan" : "a manually-approved loan" %>
+    of <%= @loan.amount %> FCFA, with <%= number_of_payments %> <%= @loan.payment_frequency %>
+    payments of <%= @loan.amount / number_of_payments %> FCFA each, in total you will pay back
+    <%= @loan.amount * (1 + (@loan.interest_rate / 100)) %>
+  </div>
+  <div class="list-box">
+    <div class="list-item">
+      <div>Amount</div>
+      <div><%= @loan.amount %> FCFA</div>
+    </div>
+    <div class="list-item">
+      <div>Payment Duration</div>
+      <div><%= @loan.payback_time %> months</div>
+    </div>
+    <div class="list-item">
+      <div>Payment Frequency</div>
+      <div><%= @loan.payment_frequency %></div>
+    </div>
+    <div class="list-item">
+      <div>Interest Rate</div>
+      <div><%= @loan.interest_rate %>%</div>
+    </div>
+    <div class="list-item">
+      <div>Category</div>
+      <div><%= @loan.loan_category %></div>
+    </div>
+    <div class="list-item">
+      <div>Approval</div>
+      <div><%= @loan.instant_loan ? "Auto" : "Manual" %></div>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,18 @@
+<h1>Payment Details</h1>
+<p>Not sure what you're looking for? See recommendations!</p>
 <div class="container">
-  <% @loans.each do |loan| %>
-    Loan for <%= loan.loan_category %>
-  <% end %>
+  <div class="cards">
+    <% @loans.each do |loan| %>
+      <%= link_to(loan_path(loan)) do %>
+        <div class = "card_loan">
+          <p>1000 FCFA Loan for <%= loan.loan_category %></p>
+          <div>
+            <div><strong>Duration</strong><br /><%= loan.payback_time %> months</div>
+            <div><strong>Payback</strong><br /><%= loan.payment_frequency %></div>
+            <div><strong>Interest</strong><br /><%= loan.interest_rate %>%</div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
