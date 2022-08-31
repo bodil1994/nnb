@@ -1,0 +1,23 @@
+<!-- Full page container coming from SCSS -->
+<div class="container">
+  <!-- Building the left arrow container which is a link that redirect towards-->
+  <div class="left-arrow">
+    <%= link_to loan_path(@loan.id) do %>
+      <%= image_tag "arrow_left.svg", id:"arrow_left" %>
+    <% end %>
+  </div>
+  <!-- Title -->
+    <div class="Title">
+    <h2>Loan Application</h2>
+    </div>
+  <!-- Loan Request Creation form -->
+    <div class="loan-description-form">
+
+    </div>
+
+  <!-- Submit button - with navbar size -->
+      <div class="btn">
+
+    </div>
+
+</div>
