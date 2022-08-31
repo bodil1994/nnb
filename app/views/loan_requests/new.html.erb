@@ -8,16 +8,21 @@
   </div>
   <!-- Title -->
     <div class="Title">
-    <h2>Loan Application</h2>
+    <h1>Loan Application</h1>
     </div>
-  <!-- Loan Request Creation form -->
-    <div class="loan-description-form">
-
+  <!-- Loan Request Creation form
+  that need to be sent to loan_loan_request // GET    /loans/:loan_id/loan_requests/:id(.:format)
+  link_to("Next", loan_loan_request_path(@loan_request.id))
+  -->
+    <div class="form">
+    <%= simple_form_for [@loan, @loan_request] do |f| %>
+      <div class = "input__large">
+        <%= f.input :description, :label => "What will you use the loan for?" %>
+        <%= f.button :submit, 'Next', class:"btn"  %>
+        </div>
+    <% end %>
     </div>
 
   <!-- Submit button - with navbar size -->
-      <div class="btn">
-
-    </div>
 
 </div>
