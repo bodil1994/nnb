@@ -62,10 +62,14 @@ p {
   display: block;
   margin-left: 20px;
   margin-right: 20px;
+  margin-bottom: 20px;
 
   &__flex {
     display: flex;
     flex-flow: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
   }
 }
 
