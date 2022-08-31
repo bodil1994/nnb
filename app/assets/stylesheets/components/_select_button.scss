@@ -1,0 +1,27 @@
+.select-button {
+  width: 108px;
+  height: 44px;
+  border-radius: 20px;
+
+  background: $light-gray;
+  color: $purple-font;
+
+  text-transform: capitalize;
+  font-weight: $font-weight-regular;
+  max-width: 100%;
+  border: none;
+}
+
+.select-input {
+  width: 242px;
+  height: 44px;
+  border-radius: 20px;
+
+  background: $light-gray;
+  color: $purple-font;
+
+  text-transform: capitalize;
+  font-weight: $font-weight-regular;
+  max-width: 100%;
+  border: none;
+}
