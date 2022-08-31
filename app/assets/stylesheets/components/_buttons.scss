@@ -1,9 +1,7 @@
-.btn {
-
+button {
   width: 100%;
-  padding: 14px 0;
+  height: 50px;
   border-radius: 5px;
-  display: block;
 
   background: $purple;
   color: white;
@@ -12,20 +10,24 @@
   font-weight: $font-weight-bold;
   max-width: 100%;
   border: none;
+}
 
 .btn-secondary {
   border: 1px solid $purple;
   background: $white;
   color: $purple-font;
-
-  &__secondary {
-    border: 1px solid $purple;
-    background: $white;
-    color: $purple-font;
-  }
-
-  text-decoration: none;
-  text-align: center;
-
 }
+
+.select-button {
+  width: 108px;
+  height: 44px;
+  border-radius: 20px;
+
+  background: $light-gray;
+  color: $purple-font;
+
+  text-transform: capitalize;
+  font-weight: $font-weight-regular;
+  max-width: 100%;
+  border: none;
 }

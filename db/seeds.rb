@@ -1,9 +1,9 @@
-LoanPayment.destroy_all
 LoanRequest.destroy_all
+LoanPayment.destroy_all
 Loan.destroy_all
+WithdrawalRequest.destroy_all
 WalletTransaction.destroy_all
 Wallet.destroy_all
-WithdrawalRequest.destroy_all
 User.destroy_all
 
 puts "everything destroyed"
@@ -48,8 +48,9 @@ loan_category = "Education"
 instant_loan = false
 status = "Active"
 payback_time = 1
+payment_frequency = "monthly"
 user = User.find_by(first_name: "Sam")
-education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, user: user)
+education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
 
 amount = 200
@@ -70,7 +71,8 @@ instant_loan = false
 status = "Listed"
 payback_time = 2
 user = User.find_by(first_name: "Sarah")
-business_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, user: user)
+payment_frequency = "monthly"
+business_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added: #{business_loan.amount}€ for #{business_loan.loan_category} with interest rate of #{business_loan.interest_rate}%"
 
 amount = 100
@@ -80,7 +82,8 @@ instant_loan = true
 status = "Listed"
 payback_time = 2
 user = User.find_by(first_name: "Sarah")
-health_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, user: user)
+payment_frequency = "monthly"
+health_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added: #{health_loan.amount}€ for #{health_loan.loan_category} with interest rate of #{health_loan.interest_rate}%"
 
 user = User.find_by(first_name: "Sam")
