@@ -1,23 +1,21 @@
 <div class="container">
   <!-- Building the left arrow container which is a link that redirect towards-->
   <%= render "shared/back_navigation", path: new_loan_loan_request_path(@loan_request.loan_id)  %>
-  <!-- Title -->
-    <div class="Title">
-      <h1>Summary</h1>
-      <h2>Loan request resume</h2>
-    </div>
-     <!-- Display alert message -->
-    <div class="notice_box_purple">
-      <% if @loan.payment_frequency = "monthly" %>
-        <% number_of_payments = @loan.payback_time %>
-      <% elsif @loan.payment_frequency = "weekly" %>
-        <% number_of_payments = @loan.payback_time * 4 %>
-      <% end %>
-      You will receive <%= @loan.instant_loan ? "an instant loan" : "a manually-approved loan" %>
-      of <%= @loan.amount.to_i %> FCFA, with <%= number_of_payments %> <%= @loan.payment_frequency %>
-      payments of <%= @loan.amount.to_i / number_of_payments %> FCFA each, in total you will pay back
-      <%= @loan.amount.to_i * (1 + (@loan.interest_rate.to_f / 100)) %> FCFA.
-    </div>
+    <!-- Title -->
+        <h1>Summary</h1>
+        <h2>Loan request resume</h2>
+      <!-- Display alert message -->
+      <div class="notice_box_purple">
+        <% if @loan.payment_frequency = "monthly" %>
+          <% number_of_payments = @loan.payback_time %>
+        <% elsif @loan.payment_frequency = "weekly" %>
+          <% number_of_payments = @loan.payback_time * 4 %>
+        <% end %>
+        You will receive <%= @loan.instant_loan ? "an instant loan" : "a manually-approved loan" %>
+        of <%= @loan.amount.to_i %> FCFA, with <%= number_of_payments %> <%= @loan.payment_frequency %>
+        payments of <%= @loan.amount.to_i / number_of_payments %> FCFA each, in total you will pay back
+        <%= @loan.amount.to_i * (1 + (@loan.interest_rate.to_f / 100)) %> FCFA.
+      </div>
     <!-- Add a wrapper div to encapsulate the list and the button and apply a display css
     to push the button at the end dof the page -->
     <div class="wrapper form-display ">
@@ -56,7 +54,7 @@
     </div>
     <!-- Button-->
     <div class="next-button">
-    <%= link_to "CONFIRM", new_loan_loan_request_path(@loan), class: "btn button-text-center" %>
+    <%= link_to "CONFIRM", dashboard_lender_path(current_user), class: "btn button-text-center" %>
     </div>
   </div>
 </div>
