@@ -38,13 +38,14 @@ h1 {
   font-size: 25px;
   font-weight: $font-weight-bold;
   padding-bottom: 20px;
-
-
 }
 
-.font-weight-light {
+h1.light {
   font-weight: $font-weight-light;
+  color: $dark-gray;
+  font-size: 30px;
 }
+
 
 h2 {
   font-size: 18px;
@@ -55,6 +56,10 @@ h2 {
 p {
   font-size: 16px;
   font-weight: $font-weight-regular;
+}
+
+p.gray {
+  color: $dark-gray;
 }
 
 

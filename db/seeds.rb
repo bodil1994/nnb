@@ -83,15 +83,16 @@ user = User.find_by(first_name: "Sarah")
 health_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, user: user)
 puts "new loan added: #{health_loan.amount}€ for #{health_loan.loan_category} with interest rate of #{health_loan.interest_rate}%"
 
-user = User.find_by(first_name: "Sam")
-wallet_sam = Wallet.create!(user: user)
-amount = 1000
-puts "new wallet added for User #{wallet_sam.user}"
+user_sam = User.find_by(first_name: "Sam")
+amount_sam = 1000
+wallet_sam = Wallet.create!(user: user_sam, amount: amount_sam)
+
+puts "new wallet added for User #{wallet_sam.user.email}"
 
 user = User.find_by(first_name: "Ben")
 wallet_ben = Wallet.create!(user: user)
-puts "new wallet added for User #{wallet_ben.user}"
+puts "new wallet added for User #{wallet_ben.user.email}"
 
 user = User.find_by(first_name: "Sarah")
 wallet_sarah = Wallet.create!(user: user)
-puts "new wallet added for User #{wallet_sarah.user}"
+puts "new wallet added for User #{wallet_sarah.user.email}"

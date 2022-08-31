@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # devise_for :users
+  devise_for :users,
+           :controllers => { :registrations => 'registrations' },
+           :path => 'user',
+           :path_names => { :sign_in => 'login',
+                            :sign_up => 'sign-up',
+                            :sign_out => 'logout',
+                            :password => 'password',
+                            :confirmation => 'confirmation' }
   root to: "pages#home"
   get "/dashboard-lender", to: "pages#lender_dashboard"
   get "/dashboard-borrower", to: "pages#borrower_dashboard"
