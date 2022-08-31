@@ -1,5 +1,6 @@
 <div class="container">
   <h1>Loan Description</h1>
+  <%= render "shared/back_navigation", path: loans_path %>
   <div class="card-basic">
     <div>
       <%= image_tag("avatar-icon.png") %>
@@ -46,5 +47,5 @@
       <div><%= @loan.instant_loan ? "Auto" : "Manual" %></div>
     </div>
   </div>
-  <%= link_to "APPLY", new_loan_loan_request_path(@loan), class: "btn" %>
+  <%= link_to "APPLY", new_loan_loan_request_path(@loan), class: "btn button-text-center" %>
 </div>
