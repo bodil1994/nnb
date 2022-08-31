@@ -10,7 +10,9 @@ class LoanRequestsController < ApplicationController
     @loan_request.loan_category = @loan.loan_category
     @loan_request.status = "Pending"
     @loan_request.user_id = current_user.id
-    @loan_request.save
+    if @loan_request.save
+      redirect_to loan_request_path(@loan_request.id)
+    end
   end
 
   def create
