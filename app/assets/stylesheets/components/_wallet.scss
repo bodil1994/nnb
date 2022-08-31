@@ -1,0 +1,47 @@
+.wallet {
+  height: 180px;
+  width: 100%;
+
+  background: $gradient-background;
+
+  padding: 30px;
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+    h1 {g
+      padding: 0;
+      color: white;
+      font-weight: $font-weight-regular;
+      font-size: 27px;
+
+    }
+
+    h2 {
+      padding: 0;
+      color: white;
+      font-size: 15px;
+    }
+}
+
+
+.wallet-pages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 38px;
+
+  .circle {
+    border-radius: 50%;
+    background: $purple-background;
+    height: 6px;
+    width: 6px;
+  }
+
+  .active {
+    background: $white;
+  }
+}
