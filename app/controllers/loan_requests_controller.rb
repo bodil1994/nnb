@@ -21,7 +21,7 @@ class LoanRequestsController < ApplicationController
 
   def show
     @loan_request = LoanRequest.find(params[:id])
-    raise
+    @loan = Loan.find(@loan_request.loan_id )
   end
 
   private
