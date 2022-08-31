@@ -1,0 +1,51 @@
+.card-loan {
+  height: 96px;
+  border-radius: 5px;
+  padding: 20px;
+  border: 0.5px solid $light-gray;
+  margin-bottom: 20px;
+
+  .purple-text {
+    color: $purple
+  }
+
+  .gray-text {
+    color: $dark-gray
+  }
+
+  .wrapper-content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  img {
+    height: 60px;
+    width: 60px;
+  }
+
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text {
+  text-decoration: none;
+  color: $black;
+}
+
+.card-basic {
+  height: 96px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  img {
+    height: 60px;
+    width: 60px;
+    margin-right: 20px;
+  }
+}
