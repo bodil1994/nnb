@@ -1,0 +1,29 @@
+.new-loan {
+  height: 100vh;
+  h1 {
+    color: $dark-gray;
+    font-weight: $font-weight-light !important;
+  }
+
+  .flex {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+
+    .flex-selectors {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 10px;
+      justify-content: space-between;
+
+      .selector {
+        width: fit-content;
+      }
+    }
+
+    .select {
+      display: flex;
+      flex-flow: column;
+    }
+  }
+}
