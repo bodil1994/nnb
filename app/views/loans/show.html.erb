@@ -46,5 +46,5 @@
       <div><%= @loan.instant_loan ? "Auto" : "Manual" %></div>
     </div>
   </div>
+  <%= link_to "APPLY", new_loan_loan_request_path(@loan), class: "btn" %>
 </div>
-<button>APPLY</button>
