@@ -1,0 +1,21 @@
+<div class="cards">
+      <% loans.each do |loan| %>
+        <%= link_to loan_path(loan), class: "text" do %>
+          <div class = "card-loan">
+            <div class="card-content">
+            <div class="card-texts">
+              <h3><span class="purple-text"><%= loan.amount.to_i %> FCFA Loan</span> for <%= loan.loan_category %></h3>
+                <div class= "wrapper-content">
+                  <div><strong>Duration</strong><br /><span class="gray-text"><%= loan.payback_time %> months</span></div>
+                  <div><strong>Payback</strong><br /><span class="gray-text"><%= loan.payment_frequency %></span></div>
+                  <div><strong>Interest</strong><br /><span class="gray-text"><%= loan.interest_rate %>%</span></div>
+                </div>
+            </div>
+                <div>
+                  <%= image_tag("avatar-icon.png") %>
+                </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
