@@ -1,3 +1,37 @@
+
+.card-loan-lender {
+  width: 100%;
+  padding: 17px;
+  flex-flow: column;
+  border-top: solid 1px $light-gray;
+  border-bottom: solid 1px $light-gray;
+  margin-bottom: 12px;
+
+  h1 {
+    font-size: 16px;
+    // font-weight: $font-weight-regular;
+    padding-bottom: 10px;
+
+    .purple-text {
+      color: $purple-font
+    }
+  }
+
+  .wrapper {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+
+    p {
+      font-size: 14px;
+
+      &.description {
+        color: $dark-gray;
+      }
+    }
+    }
+  }
+
 .card-loan {
   border-radius: 5px;
   padding: 20px 10px;
@@ -22,7 +56,9 @@
     width: 60px;
   }
 
+
 }
+
 
 .card-content {
   display: flex;

@@ -1,0 +1,24 @@
+<div class="container dashboard">
+   <div class="wrapper-head">
+    <div class="row">
+      <h1>Hello <%= current_user.first_name %></h1>
+      <%= image_tag "avatar-icon.png", class: "avatar" %>
+    </div>
+    <p>Already have the funding for your needs?</p>
+  </div>
+  <div class="wallet">
+    <h2>Your Wallet</h2>
+    <h1><%= @amount.to_i %> €</h1>
+    <%= render "shared/wallet_pages" %>
+  </div>
+  <div class="wrapper-main">
+    <h2>Find your perfekt loan</h2>
+    <%= render "shared/button_dashboard_cta_search" %>
+  </div>
+  <div class="wrapper-main">
+    <h2>Your Loans</h2>
+    <p class="gray">No Loans yet</p>
+  </div>
+</div>
+
+<%= render "shared/navbar" %>
