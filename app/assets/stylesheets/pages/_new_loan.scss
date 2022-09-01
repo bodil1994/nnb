@@ -25,7 +25,7 @@
         text-align: center;
         background: $light-gray;
         color: $purple-font;
-        padding-bottom: 10px;
+        padding-bottom: 10px !important;
         text-transform: capitalize;
         font-weight: $font-weight-regular;
         max-width: 100%;
@@ -104,6 +104,7 @@
 
       .form-control {
         min-width: 100%;
+        margin-top: 10px;
       }
 
       .form-select, .form-control {
@@ -130,6 +131,12 @@
       .form-label {
         color: $dark-gray;
         margin: 10px 0px;
+      }
+    }
+
+    .margin-bottom {
+      .form-select {
+        margin-bottom: 10px;
       }
     }
   }
