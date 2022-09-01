@@ -2,9 +2,9 @@
   <h1 class="light">Payment Details</h1>
   <p>Not sure what you're looking for? See recommendations!</p>
   <div data-controller="search-loans">
-    <%= form_with(url:loans_path, method: "get",
-    data: {search_loans_target: "form"}) do |f| %>
-      <p><label><strong>How Much?</strong></label></p>
+    <%= simple_form_for :loan, url:loans_path, method: "get",
+    data: {search_loans_target: "form"} do |f| %>
+      <p><label><strong>How much?</strong></label></p>
       <input type="range"
               min="0"
               max="1000"
@@ -15,6 +15,25 @@
               data-target="search-loans.amountSlider"
               name="amount">
       <div data-target="search-loans.amountShow"></div>
+      <p><label><strong>How long?</strong></label></p>
+      <input type="range"
+              min="0"
+              max="6"
+              step="1"
+              value="<%= params ? params[:length] : 500 %>"
+              class="slider"
+              data-action="input->search-loans#updateLength"
+              data-target="search-loans.lengthSlider"
+              name="length">
+      <div data-target="search-loans.lengthShow"></div>
+      <%# <input type="checkbox" id="education" name="education">
+      <label for="education">Education</label>
+      <input type="checkbox" id="healthcare" name="healthcare">
+      <label for="education">Health Care</label>
+      <input type="checkbox" id="business" name="business">
+      <label for="education">Business</label> %>
+      <%= f.input :loan_category, as: :check_boxes, collection: Loan::LOAN_CATEGORIES,
+      input_html: {data: {action: "click->search-loans#updateCategory", search_loans_target: "categories"}} %>
       <p><%= f.submit %></p>
     <% end %>
     <div data-search-loans-target="list">
@@ -22,3 +41,5 @@
     </div>
   </div>
 </div>
+
+<%= console %>
