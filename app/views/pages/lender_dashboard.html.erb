@@ -6,14 +6,22 @@
     </div>
     <p>Already invested in other people’s future today?</p>
   </div>
-  <div class="wrapper-buttons">
-    link
-  </div>
+
   <div class="wallet">
-    <h2>Your Wallet</h2>
-    <h1><%= @amount.to_i %> €</h1>
-    <%= render "shared/wallet_pages" %>
+
+    <div class="wallet-card">
+      <h2>Your Wallet</h2>
+      <h1><%= @amount.to_i %> €</h1>
+      <%= render "shared/wallet_pages" %>
+    </div>
+
+    <div class="wallet-buttons">
+      <%= button_to "Cash out", "#" , class:"btn" %>
+      <%= button_to "Cash in",  "#" , class: "btn" %>
+    </div>
+
   </div>
+
   <div class="wrapper-main">
     <h2>Get your money working for you</h2>
     <%= render "shared/button_dashboard_cta_create" %>

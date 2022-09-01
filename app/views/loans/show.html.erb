@@ -10,7 +10,7 @@
       <p><%= @loan.user.address %></p>
     </div>
   </div>
-  <div class="notice-box__purple">
+  <div class="notice_box notice_box__purple">
     <% if @loan.payment_frequency = "monthly" %>
       <% number_of_payments = @loan.payback_time %>
     <% elsif @loan.payment_frequency = "weekly" %>
