@@ -18,9 +18,71 @@
       justify-content: space-between;
       margin: 20px 0px;
 
+      .numeric {
+        width: 242px;
+        height: 44px;
+        border-radius: 20px;
+        text-align: center;
+        background: $light-gray;
+        color: $purple-font;
+        padding-bottom: 10px;
+        text-transform: capitalize;
+        font-weight: $font-weight-regular;
+        max-width: 100%;
+        border: none;
+      }
+
+      .purple-background {
+        background: $purple-background !important;
+      }
+
+      .radio-botton {
+        float: left;
+        margin: 0 5px 0 0;
+        width: 100px;
+        height: 40px;
+        position: relative;
+      }
+
+      .radio-botton label,
+      .radio-botton input {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        padding-top: 7px;
+      }
+
+      .radio-botton input[type="radio"] {
+        opacity: 0.011;
+        z-index: 100;
+      }
+
+      .radio-botton input[type="radio"]:checked + label {
+        background: $purple;
+        border-radius: inherit;
+        color: $white;
+      }
+
+      .radio-botton label {
+        cursor: pointer;
+        z-index: 90;
+        line-height: 1.8em;
+        background: $purple-background;
+        border-radius: inherit;
+      }
+
       .selector {
         width: fit-content;
         margin-top: 10px;
+
+        .simple_form, .loan_amount {
+          width: 242px !important;
+          height: 44px;
+        }
       }
     }
 
@@ -37,6 +99,7 @@
       .select {
         display: flex;
         flex-flow: column;
+        color: $dark-gray;
       }
 
       .form-control {
@@ -47,6 +110,9 @@
         border: 1px solid $light-gray;
         height: 40px;
         align-content: center;
+        padding-top: 10px;
+        padding-left: 10px;
+        background-color: transparent !important;
         &:focus-within {
           outline: none;
       }
@@ -58,6 +124,13 @@
 
     .button{
       margin-top: 20px;
+    }
+
+    .input {
+      .form-label {
+        color: $dark-gray;
+        margin: 10px 0px;
+      }
     }
   }
 }

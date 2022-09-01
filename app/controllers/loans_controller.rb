@@ -34,7 +34,7 @@ class LoansController < ApplicationController
     @loan = Loan.new(loan_params)
     @loan.user = @user
     if @loan.save
-      redirect_to dashboard_path
+      redirect_to lender_loan_summary_path
     else
       render :new
     end
