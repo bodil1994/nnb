@@ -6,6 +6,9 @@
     </div>
     <p>Already invested in other people’s future today?</p>
   </div>
+  <div class="wrapper-buttons">
+    link
+  </div>
   <div class="wallet">
     <h2>Your Wallet</h2>
     <h1><%= @amount.to_i %> €</h1>
@@ -17,7 +20,9 @@
   </div>
   <div class="wrapper-main">
     <h2>Your Loans</h2>
-    <p class="gray">No Loans yet</p>
+    <%# <p class="gray">No Loans yet</p> %>
+    <%= render "shared/card_loan_lender" %>
+
   </div>
 </div>
 
