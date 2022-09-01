@@ -4,9 +4,10 @@
           <div class = "card-loan">
             <div class="card-content">
             <div class="card-texts">
-              <h3><span class="purple-text"><%= loan.amount.to_i %> FCFA Loan</span> for <%= loan.loan_category %></h3>
+              <h3><span class="purple-text"><%= loan.amount.to_i %> € Loan</span> for <%= loan.loan_category %></h3>
                 <div class= "wrapper-content">
-                  <div><strong>Duration</strong><br /><span class="gray-text"><%= loan.payback_time %> months</span></div>
+                  <% payback_months = (loan.payback_time / 30).to_i %>
+                  <div><strong>Duration</strong><br /><span class="gray-text"><%= payback_months %> months</span></div>
                   <div><strong>Payback</strong><br /><span class="gray-text"><%= loan.payment_frequency %></span></div>
                   <div><strong>Interest</strong><br /><span class="gray-text"><%= loan.interest_rate %>%</span></div>
                 </div>

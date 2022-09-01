@@ -1,0 +1,146 @@
+.slider_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input[type=range].slider {
+  height: 21px;
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 75%;
+}
+
+/* Styling for Chrome, etc. (webkit) */
+
+input[type=range].slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 7px;
+  cursor: pointer;
+  background: $light-gray;
+  border-radius: 10px;
+}
+input[type=range].slider:hover::-webkit-slider-runnable-track {
+  background: #e1ddea;
+}
+input[type=range].slider:active::-webkit-slider-runnable-track {
+  background: #ece8f5;
+}
+
+input[type=range].slider::-webkit-slider-thumb {
+  height: 15px;
+  width: 15px;
+  border-radius: 15px;
+  background: $purple;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -4px;
+}
+input[type=range].slider::-webkit-slider-thumb:hover {
+  background: #712ace;
+}
+input[type=range].slider::-webkit-slider-thumb:active {
+  background: #9a53f6;
+}
+
+input[type=range].slider.slider-progress::-webkit-slider-runnable-track {
+  background: $purple, $light-gray;
+}
+input[type=range].slider.slider-progress:hover::-webkit-slider-runnable-track {
+  background: #712ace, #e1ddea;
+}
+input[type=range].slider.slider-progress:active::-webkit-slider-runnable-track {
+  background: #9a53f6, #ece8f5;
+}
+
+
+/* Styling for Mozilla Firefox */
+
+input[type=range].slider::-moz-range-track {
+  width: 100%;
+  height: 7px;
+  cursor: pointer;
+  background: $light-gray;
+  border-radius: 10px;
+}
+input[type=range].slider:hover::-moz-range-track {
+  background: #ceccd4;
+}
+input[type=range].slider:active::-moz-range-track {
+  background: #ebe9f0;
+}
+
+input[type=range].slider::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  border-radius: 15px;
+  background: $purple;
+  cursor: pointer;
+}
+input[type=range].slider::-moz-range-thumb:hover {
+  background: #712ace;
+}
+input[type=range].slider::-moz-range-thumb:active {
+  background: #9a53f6;
+}
+
+input[type=range].slider.slider-progress::-moz-range-track {
+  background: $purple, $light-gray;
+}
+input[type=range].slider.slider-progress:hover::-moz-range-track {
+  background: #712ace, #e1ddea;
+}
+input[type=range].slider.slider-progress:active::-moz-range-track {
+  background: #9a53f6, #ece8f5;
+}
+
+
+/* Styling for ms browsers */
+
+input[type=range].slider::-ms-track {
+  width: 100%;
+  height: 7px;
+  cursor: pointer;
+  animate: 0.2s;
+}
+input[type=range].slider::-ms-fill-lower {
+  background: $light-gray;
+  border-radius: 20px;
+}
+input[type=range].slider::-ms-fill-upper {
+  background: $light-gray;
+  border-radius: 20px;
+}
+input[type=range].slider:hover::-ms-track {
+  background: #ceccd4;
+}
+input[type=range].slider:active::-ms-track {
+  background: #ebe9f0;
+}
+
+input[type=range].slider::-ms-thumb {
+  margin-top: 1px;
+  height: 15px;
+  width: 15px;
+  border-radius: 15px;
+  background: $purple;
+  cursor: pointer;
+}
+input[type=range].slider::-ms-thumb:hover {
+  background: #712ace;
+}
+input[type=range].slider::-ms-thumb:active {
+  background: #9a53f6;
+}
+
+input[type=range].slider.slider-progress::-ms-fill-lower {
+  height: 8px;
+  border-radius: 8px 0 0 8px;
+  background: $purple;
+}
+input[type=range].slider.slider-progress:hover::-ms-fill-lower {
+  background: #712ace;
+}
+input[type=range].slider.slider-progress:active::-ms-fill-lower {
+  background: #9a53f6;
+}
