@@ -1,10 +1,10 @@
 <!-- Full page container coming from SCSS -->
-<div class="container">
+<div class="container loan-request-new summary-pages">
   <!-- Building the left arrow container which is a link that redirect towards-->
    <%= render "shared/back_navigation", path: loan_path(@loan.id) %>
   <!-- Title -->
     <div class="Title">
-    <h1>Loan Application</h1>
+    <h1 class= "light">Loan Application</h1>
     </div>
   <!-- Loan Request Creation form
   that need to be sent to loan_loan_request // GET    /loans/:loan_id/loan_requests/:id(.:format)
@@ -14,7 +14,7 @@
     <%= simple_form_for [@loan, @loan_request] do |f| %>
       <div class = "input__large">
         <%= f.input :description, :label => "What will you use the loan for?" %>
-        <%= f.button :submit, 'NEXT', class:"btn"  %>
+        <%= f.button :submit, 'NEXT'%>
         </div>
     <% end %>
     </div>

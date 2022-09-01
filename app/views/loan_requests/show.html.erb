@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container summary-pages">
   <!-- Building the left arrow container which is a link that redirect towards-->
   <%= render "shared/back_navigation", path: new_loan_loan_request_path(@loan_request.loan_id)  %>
     <!-- Title -->
-        <h1>Summary</h1>
+        <h1 class = "light" >Summary</h1>
         <h2>Loan request resume</h2>
       <!-- Display alert message -->
-      <div class="notice_box_purple">
+      <div class="notice-box notice_box_purple">
         <% if @loan.payment_frequency = "monthly" %>
           <% number_of_payments = @loan.payback_time %>
         <% elsif @loan.payment_frequency = "weekly" %>
@@ -18,7 +18,7 @@
       </div>
     <!-- Add a wrapper div to encapsulate the list and the button and apply a display css
     to push the button at the end dof the page -->
-    <div class="wrapper form-display ">
+    <div class="wrapper ">
       <!-- Display the loan request resume-->
       <div class="loan-resume">
           <div class="list-box">
