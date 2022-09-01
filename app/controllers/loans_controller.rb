@@ -15,9 +15,9 @@ class LoansController < ApplicationController
       @loans = Loan.all
     end
 
-    if params[:loan][:loan_category].present? && params[:loan][:loan_category].length > 1
-      @loans = @loans.where(loan_category: params[:loan][:loan_category])
-    end
+    # if params[:loan][:loan_category].present? && params[:loan][:loan_category].length > 1
+    #   @loans = @loans.where(loan_category: params[:loan][:loan_category])
+    # end
 
     respond_to do |format|
       format.html
