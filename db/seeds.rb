@@ -2,7 +2,7 @@ LoanRequest.destroy_all
 LoanPayment.destroy_all
 Loan.destroy_all
 WithdrawalRequest.destroy_all
-WalletTransaction.destroy_all
+Deposit.destroy_all
 Wallet.destroy_all
 User.destroy_all
 
