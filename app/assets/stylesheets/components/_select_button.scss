@@ -3,7 +3,7 @@
   height: 44px;
   border-radius: 20px;
 
-  background: $light-gray;
+  background: $purple-background;
   color: $purple-font;
 
   text-transform: capitalize;
@@ -12,16 +12,22 @@
   border: none;
 }
 
-.select-input {
+.numeric {
   width: 242px;
   height: 44px;
   border-radius: 20px;
 
-  background: $light-gray;
+  background: transparent;
   color: $purple-font;
 
   text-transform: capitalize;
   font-weight: $font-weight-regular;
   max-width: 100%;
   border: none;
+  text-align: center;
+  padding-bottom: 7px;
+
+  ::placeholder {
+    color: $dark-gray;
+  }
 }
