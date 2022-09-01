@@ -7,15 +7,17 @@ export default class extends Controller {
   connect() {
   }
   updateAmount(event) {
-    this.amountShowTarget.innerHTML = event.target.value
-    this.updateList()
+    this.amountShowTarget.innerHTML = `${event.target.value} €`
+    const checked_categories = "&"
+    this.updateList(checked_categories)
   }
   updateLength(event) {
-    this.lengthShowTarget.innerHTML = event.target.value
-    this.updateList()
+    this.lengthShowTarget.innerHTML = `${event.target.value} months`
+    const checked_categories = "&"
+    this.updateList(checked_categories)
   }
   updateCategory(event) {
-    console.log(this.categoriesTargets)
+    // console.log(this.categoriesTargets)
     const categories = this.categoriesTargets
     let checked_categories = ""
     categories.forEach((category) => {
@@ -24,11 +26,12 @@ export default class extends Controller {
       }
     })
     // console.log(checked_categories)
-    // this.updateList(checked_categories)
+    this.updateList(checked_categories)
   }
   updateList(checked_categories){
-    const checked_categories = checked_categories || ""
-    const url = `${this.formTarget.action}?length=${this.lengthShowTarget.innerHTML}&amount=${this.amountShowTarget.innerHTML}${checked_categories}`
+    const url = `${this.formTarget.action}?length=${this.lengthSliderTarget.value}&amount=${this.amountSliderTarget.value}${checked_categories}`
+    // console.log(this.amountSliderTarget.value)
+
     fetch(url, {
       headers: { "Accept": "application/json" },
     })

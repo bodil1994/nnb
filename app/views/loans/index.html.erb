@@ -1,45 +1,54 @@
-<div class="container">
+<div class="container loan-index" data-controller="search-loans">
   <h1 class="light">Payment Details</h1>
-  <p>Not sure what you're looking for? See recommendations!</p>
-  <div data-controller="search-loans">
-    <%= simple_form_for :loan, url:loans_path, method: "get",
-    data: {search_loans_target: "form"} do |f| %>
-      <p><label><strong>How much?</strong></label></p>
+  <p class="padding-bottom">Not sure what you're looking for? See recommendations!</p>
+  <%= simple_form_for :loan, url:loans_path, method: "get",
+  data: {search_loans_target: "form"} do |f| %>
+    <p><label><strong>How much?</strong></label></p>
+    <div class="slider_wrapper">
       <input type="range"
               min="0"
               max="1000"
               step="10"
-              value="<%= params ? params[:amount] : 500 %>"
-              class="slider"
+              value="0"
+              class="slider slider-progress"
               data-action="input->search-loans#updateAmount"
               data-target="search-loans.amountSlider"
               name="amount">
-      <div data-target="search-loans.amountShow"></div>
-      <p><label><strong>How long?</strong></label></p>
+      <div data-target="search-loans.amountShow">0 €</div>
+    </div>
+    <p><label><strong>How long?</strong></label></p>
+    <div class="slider_wrapper">
       <input type="range"
               min="0"
-              max="6"
+              max="24"
               step="1"
-              value="<%= params ? params[:length] : 500 %>"
-              class="slider"
+              value="24"
+              class="slider slider-progress"
               data-action="input->search-loans#updateLength"
               data-target="search-loans.lengthSlider"
               name="length">
-      <div data-target="search-loans.lengthShow"></div>
-      <%# <input type="checkbox" id="education" name="education">
-      <label for="education">Education</label>
-      <input type="checkbox" id="healthcare" name="healthcare">
-      <label for="education">Health Care</label>
-      <input type="checkbox" id="business" name="business">
-      <label for="education">Business</label> %>
-      <%= f.input :loan_category, as: :check_boxes, collection: Loan::LOAN_CATEGORIES,
-      input_html: {data: {action: "click->search-loans#updateCategory", search_loans_target: "categories"}} %>
-      <p><%= f.submit %></p>
-    <% end %>
-    <div data-search-loans-target="list">
-      <%= render "loans", loans: @loans %>
+      <div data-target="search-loans.lengthShow">24 months</div>
     </div>
+    <%# <input type="range" min="0" max="100" oninput="rangevalue.value=value"/>
+    <output id="rangevalue">50</output> %>
+    <%= f.input :loan_category, as: :check_boxes, collection: Loan::LOAN_CATEGORIES, item_wrapper_class: 'tag-item',
+    input_html: {class: "tag-selector", data: {action: "click->search-loans#updateCategory",search_loans_target: "categories"}} %>
+    <p>
+      <%# <%= f.submit %>
+    </p>
+  <% end %>
+  <div data-search-loans-target="list">
+    <%= render "loans", loans: @loans %>
   </div>
 </div>
 
-<%= console %>
+<%# <%= console %>
+
+<script>
+  for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
+    e.style.setProperty('--value', e.value);
+    e.style.setProperty('--min', e.min == '' ? '0' : e.min);
+    e.style.setProperty('--max', e.max == '' ? '100' : e.max);
+    e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+  }
+</script>
