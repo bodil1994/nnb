@@ -6,7 +6,9 @@ class User < ApplicationRecord
 
   has_many :loans
   has_many :loan_requests
-  has_many :wallets
+  has_one :wallet
+  has_many :wallet_transactions, through: :wallet
+
 
   USER_TYPES = ["Lender", "Borrower"]
   validates :first_name, presence: true
