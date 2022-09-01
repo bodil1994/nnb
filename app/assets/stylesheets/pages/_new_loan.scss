@@ -9,21 +9,56 @@
     display: flex;
     flex-flow: column;
     justify-content: space-between;
+    flex-grow: 1;
 
     .flex-selectors {
       display: flex;
       flex-wrap: wrap;
       row-gap: 10px;
       justify-content: space-between;
+      margin: 20px 0px;
 
       .selector {
         width: fit-content;
+        margin-top: 10px;
       }
     }
 
-    .select {
+    .simple_form {
       display: flex;
-      flex-flow: column;
+      flex-grow: 1;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .form-label, .title {
+        margin: 10px 0px;
+      }
+
+      .select {
+        display: flex;
+        flex-flow: column;
+      }
+
+      .form-control {
+        min-width: 100%;
+      }
+
+      .form-select, .form-control {
+        border: 1px solid $light-gray;
+        height: 40px;
+        align-content: center;
+        &:focus-within {
+          outline: none;
+      }
+    }
+
+    option {
+      color: $dark-gray;
+    }
+
+    .button{
+      margin-top: 20px;
     }
   }
+}
 }
