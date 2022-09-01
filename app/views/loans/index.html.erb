@@ -1,26 +1,24 @@
 <div class="container">
-  <h1>Payment Details</h1>
+  <h1 class="light">Payment Details</h1>
   <p>Not sure what you're looking for? See recommendations!</p>
-
-  <div class="cards">
-    <% @loans.each do |loan| %>
-      <%= link_to loan_path(loan), class: "text" do %>
-        <div class = "card-loan">
-          <div class="card-content">
-          <div class="card-texts">
-            <h3><span class="purple-text">1000 FCFA Loan</span> for <%= loan.loan_category %></h3>
-              <div class= "wrapper-content">
-                <div><strong>Duration</strong><br /><span class="gray-text"><%= loan.payback_time %> months</span></div>
-                <div><strong>Payback</strong><br /><span class="gray-text"><%= loan.payment_frequency %></span></div>
-                <div><strong>Interest</strong><br /><span class="gray-text"><%= loan.interest_rate %>%</span></div>
-              </div>
-           </div>
-              <div>
-                <%= image_tag("avatar-icon.png") %>
-              </div>
-          </div>
-        </div>
-      <% end %>
+  <div data-controller="search-loans">
+    <%= form_with(url:loans_path, method: "get",
+    data: {search_loans_target: "form"}) do |f| %>
+      <p><label><strong>How Much?</strong></label></p>
+      <input type="range"
+              min="0"
+              max="1000"
+              step="10"
+              value="<%= params ? params[:amount] : 500 %>"
+              class="slider"
+              data-action="input->search-loans#updateAmount"
+              data-target="search-loans.amountSlider"
+              name="amount">
+      <div data-target="search-loans.amountShow"></div>
+      <p><%= f.submit %></p>
     <% end %>
+    <div data-search-loans-target="list">
+      <%= render "loans", loans: @loans %>
+    </div>
   </div>
 </div>
