@@ -1,0 +1,37 @@
+<div class="container dashboard">
+   <div class="wrapper-head">
+    <div class="row">
+      <h1>Hello <%= current_user.first_name %></h1>
+      <%= image_tag "avatar-icon.png", class: "avatar" %>
+    </div>
+    <p>Already invested in other people’s future today?</p>
+  </div>
+
+  <div class="wallet">
+
+    <div class="wallet-card">
+      <h2>Your Wallet</h2>
+      <h1><%= @amount.to_i %> €</h1>
+      <%= render "shared/wallet_pages" %>
+    </div>
+
+    <div class="wallet-buttons">
+      <%= button_to "Cash out", "#" , class:"btn" %>
+      <%= button_to "Cash in",  "#" , class: "btn" %>
+    </div>
+
+  </div>
+
+  <div class="wrapper-main">
+    <h2>Get your money working for you</h2>
+    <%= render "shared/button_dashboard_cta_create" %>
+  </div>
+  <div class="wrapper-main">
+    <h2>Your Loans</h2>
+    <%# <p class="gray">No Loans yet</p> %>
+    <%= render "shared/card_loan_lender" %>
+
+  </div>
+</div>
+
+<%= render "shared/navbar" %>

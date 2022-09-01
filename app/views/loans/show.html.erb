@@ -1,0 +1,51 @@
+<div class="container summary-pages">
+  <%= render "shared/back_navigation", path: loans_path %>
+  <h1 class="light"> Loan Description</h1>
+  <div class="card-basic">
+    <div>
+      <%= image_tag("avatar-icon.png") %>
+    </div>
+    <div>
+      <p>by <%= @loan.user.first_name %> <%= @loan.user.last_name %></p>
+      <p><%= @loan.user.address %></p>
+    </div>
+  </div>
+  <div class="notice_box notice_box__purple">
+    <% if @loan.payment_frequency = "monthly" %>
+      <% number_of_payments = @loan.payback_time %>
+    <% elsif @loan.payment_frequency = "weekly" %>
+      <% number_of_payments = @loan.payback_time * 4 %>
+    <% end %>
+    You will receive <%= @loan.instant_loan ? "an instant loan" : "a manually-approved loan" %>
+    of <%= @loan.amount.to_i %> FCFA, with <%= number_of_payments %> <%= @loan.payment_frequency %>
+    payments of <%= @loan.amount.to_i / number_of_payments %> FCFA each, in total you will pay back
+    <%= @loan.amount.to_i * (1 + (@loan.interest_rate.to_f / 100)) %> FCFA.
+  </div>
+  <div class="list-box">
+    <div class="list-item">
+      <div>Amount</div>
+      <div><%= @loan.amount.to_i %> FCFA</div>
+    </div>
+    <div class="list-item">
+      <div>Payment Duration</div>
+      <div><%= @loan.payback_time %> months</div>
+    </div>
+    <div class="list-item">
+      <div>Payment Frequency</div>
+      <div><%= @loan.payment_frequency %></div>
+    </div>
+    <div class="list-item">
+      <div>Interest Rate</div>
+      <div><%= @loan.interest_rate.to_i %>%</div>
+    </div>
+    <div class="list-item">
+      <div>Category</div>
+      <div><%= @loan.loan_category %></div>
+    </div>
+    <div class="list-item">
+      <div>Approval</div>
+      <div><%= @loan.instant_loan ? "Auto" : "Manual" %></div>
+    </div>
+  </div>
+  <%= link_to "APPLY", new_loan_loan_request_path(@loan), class: "btn button-text-center" %>
+</div>

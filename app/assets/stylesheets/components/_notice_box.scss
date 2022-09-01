@@ -1,0 +1,11 @@
+.notice-box {
+  border-radius: 20px;
+  padding: 15px;
+
+  &__purple {
+
+  background-color: $purple-background;
+  color: $purple-font;
+
+  }
+}
