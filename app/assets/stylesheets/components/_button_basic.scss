@@ -6,16 +6,21 @@
   display: block;
 
   background: $purple;
-  color: white;
+  color: $white;
 
   text-transform: capitalize;
   font-weight: $font-weight-bold;
   max-width: 100%;
   border: none;
-  
+
   &__secondary {
     border: 1px solid $purple;
     background: $white;
     color: $purple-font;
   }
+
+}
+
+a.btn {
+  color: $white !important;
 }
