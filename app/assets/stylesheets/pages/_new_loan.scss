@@ -18,6 +18,20 @@
       justify-content: space-between;
       margin: 20px 0px;
 
+      .numeric {
+        width: 242px;
+        height: 44px;
+        border-radius: 20px;
+        text-align: center;
+        background: $light-gray;
+        color: $purple-font;
+        padding-bottom: 10px;
+        text-transform: capitalize;
+        font-weight: $font-weight-regular;
+        max-width: 100%;
+        border: none;
+      }
+
       .purple-background {
         background: $purple-background !important;
       }
@@ -98,6 +112,7 @@
         align-content: center;
         padding-top: 10px;
         padding-left: 10px;
+        background-color: transparent !important;
         &:focus-within {
           outline: none;
       }
@@ -109,6 +124,13 @@
 
     .button{
       margin-top: 20px;
+    }
+
+    .input {
+      .form-label {
+        color: $dark-gray;
+        margin: 10px 0px;
+      }
     }
   }
 }

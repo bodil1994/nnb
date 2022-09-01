@@ -4,12 +4,11 @@
     <h1 class = "light" >Create a loan</h1>
   </div>
   <div class="flex">
-    <div class="selector-field">
       <div class="title">
         <p>How much money do you want to lend?</p>
       </div>
-      <div class="flex-selectors">
         <%= simple_form_for @loan do |f| %>
+        <div class="flex-selectors">
           <div class="radio-botton select-button">
             <%= f.radio_button(:amount, "1000") %>
             <%= f.label(:amount, "1000 NFCP") %>
@@ -26,13 +25,10 @@
             <%= f.radio_button(:amount, "4000") %>
             <%= f.label(:amount, "4000 NFCP") %>
           </div>
-          <div class="radio-botton select-button">
-            <%= f.radio_button(:amount, "5000") %>
-            <%= f.label(:amount, "5000 NFCP") %>
+          <div class="select-input purple-background">
+            <%= f.input :amount, placeholder: 'Enter amount', label: false%>
           </div>
-          <div class="selector select-input numeric purple-background">
-            <%= f.input :amount, placeholder: 'Enter amount', label: false %>
-          </div>
+        </div>
         <div class="dropdown">
           <%= f.input :payback_time, label: 'Payment Duration', as: :select, :collection => %w[Month Quater Year], prompt: 'Week' %>
         </div>
