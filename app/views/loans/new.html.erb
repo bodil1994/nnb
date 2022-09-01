@@ -1,8 +1,7 @@
-<div class="container__flex new-loan">
+<div class="container new-loan">
   <%= render 'shared/back_navigation' %>
-  <%# , path: lender_dashboard_path %>
   <div class="header">
-    <h1 $font-weight-light>Create a loan</h1>
+    <h1 class = "light" >Create a loan</h1>
   </div>
   <div class="flex">
     <div class="selector-field">
@@ -44,8 +43,9 @@
       <%= f.input :instant_loan, label: 'How do you want to approve the loan?', as: :select, :collection => %w[Manual], placeholder: 'Select', prompt: 'Auto' %>
     </div>
     <div class="button">
-      <%= f.button :submit, 'Next'%>
+      <%= f.button :submit %>
     </div>
     <% end %>
+    <button class="button">NEXT</button>
   </div>
 </div>
