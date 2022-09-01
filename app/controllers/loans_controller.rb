@@ -5,9 +5,18 @@ class LoansController < ApplicationController
   end
 
   def index
-    @loans = Loan.all
+    if params
+      @loans = Loan.where("amount >= #{params[:amount].to_f}")
+    else
+      @loans = Loan.all
+    end
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
-  
+
   def new
     @loan = Loan.new
   end
