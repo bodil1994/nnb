@@ -1,3 +1,18 @@
+
+.card {
+  width: 100%;
+  padding: 17px;
+
+  border-radius: 5px;
+  border: solid 1px $light-gray;
+
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+
+
+}
+
 .card-loan {
   border-radius: 5px;
   padding: 20px 10px;
@@ -21,6 +36,11 @@
     height: 60px;
     width: 60px;
   }
+
+
+}
+
+.card-loan-borrower {
 
 }
 
