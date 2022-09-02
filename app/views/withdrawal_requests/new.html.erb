@@ -1,0 +1,10 @@
+<div class="container">
+  <%= simple_form_for @withdrawal_request do |f| %>
+  <%= f.input :amount %>
+  <%= f.collection_radio_buttons :bank_account, @bank_accounts, :first, :last %>
+  <%= f.submit %>
+  <% end %>
+  <% @bank_accounts.each do |bank_account| %>
+
+  <% end %>
+</div>
