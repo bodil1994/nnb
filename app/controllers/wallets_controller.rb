@@ -3,7 +3,6 @@ class WalletsController < ApplicationController
   def show
     @user = current_user
     @wallet = @user.wallet
-
     # Create an empyt array called all_transactions
     @all_transactions = []
     #  deposts + with + transfers
@@ -25,6 +24,8 @@ class WalletsController < ApplicationController
 
     #   Display thhe Filter the array by date desc with amount, date, status, "description = bank, mobil money, No Name Bank"
     @all_transactions = @all_transactions.sort_by { |transaction| transaction.created_at }
-    @all_transactions = @all_transactions.last(5)
+    # Display the last 5 which should be the most recent transactionss
+    @all_transactions = @all_transactions.first(5)
+
   end
 end
