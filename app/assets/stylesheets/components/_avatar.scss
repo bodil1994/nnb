@@ -2,4 +2,9 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-}
+
+  &__large {
+      height: 60px;
+      width: 60px;
+    }
+ }

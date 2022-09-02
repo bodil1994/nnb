@@ -4,7 +4,7 @@
 
   .btn {
     position: absolute;
-    bottom: 20px ;
+    bottom: 0px ;
   }
 
   .margin-t-b {
@@ -12,13 +12,6 @@
     margin-bottom: 40px;
   }
 
-  .bold {
-    font-weight: $font-weight-bold;
-  }
-
-  .light {
-    font-weight: $font-weight-light;
-  }
 
   .wrapper-test {
     min-height: 100%;
