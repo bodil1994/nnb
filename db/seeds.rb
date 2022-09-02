@@ -2,6 +2,7 @@ LoanRequest.destroy_all
 LoanPayment.destroy_all
 Loan.destroy_all
 WithdrawalRequest.destroy_all
+BankAccount.destroy_all
 Deposit.destroy_all
 Wallet.destroy_all
 User.destroy_all
@@ -110,3 +111,8 @@ puts "new wallet added for User #{wallet_ben.user.email}"
 user = User.find_by(first_name: "Sarah")
 wallet_sarah = Wallet.create!(user: user)
 puts "new wallet added for User #{wallet_sarah.user.email}"
+
+# all_users = User.all
+# all_users.each do |user|
+
+# end
