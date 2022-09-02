@@ -32,12 +32,25 @@ class LoansController < ApplicationController
   end
 
   def create
-    @user = current_user
     @loan = Loan.new(loan_params)
-    @loan.user = @user
+    @loan.user = current_user
+    params[:loan][:instant_loan] == "Auto" ? @loan.instant_loan = true : @loan.instant_loan = false
+
+    if params[:loan][:payback_time] == "Month"
+      @loan.payback_time = 30
+    elsif params[:loan][:payback_time] == "Week"
+      @loan.payback_time = 7
+    elsif params[:loan][:payback_time] == "Quarter"
+      @loan.payback_time = 90
+    else
+      @loan.payback_time = 365
+    end
     @loan.status = "Pending"
-    if @loan.save
-      redirect_to loan_summary_lender_path(@user)
+    @user = current_user
+
+    if @loan.save!
+
+      redirect_to loan_summary_lender_path(@loan)
     else
       render :new
     end

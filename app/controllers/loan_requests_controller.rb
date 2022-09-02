@@ -35,10 +35,10 @@ class LoanRequestsController < ApplicationController
       @loan_request.status = "Approved"
     # Else set loan_request.status to On process
     else
-    @loan_request.status = "On process"
+     @loan_request.status = "Pending"
     end
 
-    @loan_request.user_id = current_user.id
+    @loan_request.user = current_user
     if @loan_request.save
       redirect_to loan_request_path(@loan_request.id)
     else
