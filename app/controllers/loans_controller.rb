@@ -21,6 +21,7 @@ class LoansController < ApplicationController
       redirect_to loan_summary_lender_path(@user)
     else
       render :new
+      raise
     end
   end
 
