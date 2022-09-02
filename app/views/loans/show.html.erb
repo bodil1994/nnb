@@ -1,23 +1,6 @@
 <div class="container summary-pages loan-show">
   <%= render "shared/back_navigation", path: loans_path %>
   <h1 class="light"> Loan Description</h1>
-
-  <% if current_user.user_type = "Lender" && current_user = @loan.user && @loan.status = "Active" %>
-    <div class="wrapper-avatar">
-      <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
-      <p>Accepted by <%= @loan_request.user.first_name %> <%= @loan_request.user.last_name %> - <%= @loan_request.user.profession %><br>
-      <%= @loan_request.user.address %><br>
-      Email: <%= @loan_request.user.email %>, Tel.: <%= @loan_request.user.phone %></p>
-    </div>
-    <div class="notice-box notice-box__purple">
-      <p> <strong><%= @loan_request.title %></strong>: <%= @loan_request.description %> </p>
-      <%= image_tag "icon-info.svg", class: "icon icon__info" %>
-    </div>
-
-  <% elsif current_user.user_type = "Lender" && current_user = @loan.user && @loan.status != "Active" %>
-    <div>
-    </div>
-  <% else %>
     <div class="wrapper-avatar">
       <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
       <p>by <%= @loan.user.first_name %><%= @loan.user.last_name %><br>
@@ -35,7 +18,6 @@
       <%= @loan.amount.to_i * (1 + (@loan.interest_rate.to_f / 100)) %> €.</p>
       <%= image_tag "icon-info.svg", class: "icon icon__info" %>
     </div>
-  <% end %>
   <div class="list-box">
     <div class="list-item">
       <div>Amount</div>
