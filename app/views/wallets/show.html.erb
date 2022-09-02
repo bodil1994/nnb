@@ -19,9 +19,9 @@
       <%= button_to "Cash in",  "#" , class: "btn" %>
     </div>
   </div>
-  <div class="title-container">
-    <h2>Get your money working for you</h2>
-    <h2>All transactions</h2>
+  <div class="title-container align-title">
+    <h2>Your transactions</h2>
+    <p>All transactions</p>
   </div>
   <% @all_transactions.each do |transactions| %>
     <% if transactions.class.name == "WithdrawalRequest" %>
@@ -29,11 +29,15 @@
     <% else %>
       <% amount = transactions.amount %>
     <% end %>
-  <div>
-     <p><%=amount%></p>
-     <p><%=transactions.created_at.strftime("%d %B %Y")%></p>
-     <p><%=transactions.status%></p>
-     <%# <p><%=transactions.bank_account_id if transactions.bank_account_id.present?%>
+  <div class = "transaction-container col align-element card-loan">
+    <div class="row1 display-card-item">
+      <p><%=amount%></p>
+      <p><%=transactions.created_at.strftime("%d %B %Y")%></p>
+     </div>
+    <div class="row2 display-card-item">
+      <p><%=transactions.status%></p>
+      <%# <p><%=transactions.bank_account_id if transactions.bank_account_id.present?%>
+    </div>
   </div>
   <% end %>
 
