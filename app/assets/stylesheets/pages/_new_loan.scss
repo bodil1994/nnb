@@ -18,6 +18,11 @@
       justify-content: space-between;
       margin: 20px 0px;
 
+      .select-input {
+        border-radius: 20px;
+        background: $purple-background !important;
+      }
+
       .numeric {
         width: 242px;
         height: 44px;
@@ -32,9 +37,7 @@
         border: none;
       }
 
-      .purple-background {
-        background: $purple-background !important;
-      }
+
 
       .radio-botton {
         float: left;
@@ -84,6 +87,13 @@
           height: 44px;
         }
       }
+      form {
+        .input, .dropdown {
+          color: $black;
+          margin-top: 10px;
+
+        }
+      }
     }
 
     .simple_form {
@@ -92,8 +102,14 @@
       flex-direction: column;
       justify-content: space-between;
 
+      #loan_interest_rate {
+        border-radius: 0px !important;
+        color: $black;
+      }
+
       .form-label, .title {
         margin: 10px 0px;
+        color: $black !important;
       }
 
       .select {
@@ -131,7 +147,7 @@
         color: $dark-gray;
         margin: 10px 0px;
       }
-      
+
       .form-control {
         margin-top: 10px;
       }
