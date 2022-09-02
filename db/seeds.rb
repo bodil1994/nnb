@@ -69,7 +69,7 @@ amount = 200
 title = "Paying school fees for my children"
 description = "I need the money to pay for my two children's tuition fees, as well as for their books, their school uniform and their food."
 loan_category = "Education"
-status = "Pending"
+status = "Active"
 loan = Loan.find_by(loan_category: "Education")
 user = User.find_by(first_name: "Ben")
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
@@ -122,4 +122,40 @@ all_users.each do |user|
     ba = BankAccount.create!(bank_name: bank_name, account_number: account_number, bank_type: bank_type, swift_number: swift_number, user: user)
     puts "bank account added for #{user.first_name} #{user.last_name}"
   end
-end
+  end
+
+  # all_deposits = Deposit.all
+  all_account = BankAccount.all
+
+  # Seeds for deposit
+
+    all_account.each do |account|
+     3.times do
+      deposit_status = ["Unapproved", "Pending", "Approved", "Declined"]
+      reference = ["AA111", "BB2222", "CC3333", "DD4444", "EE5555", "FF666", "GG7777", "HH8888"]
+      amount_transaction = [100, 200, 300, 500, 800, 1000]
+      amount = amount_transaction.sample
+      wallet_id = account.user.wallet.id
+      status = deposit_status.sample
+      deposit_reference = reference.sample
+      depo = Deposit.create!(amount: amount, wallet_id: wallet_id, status: status, deposit_reference: deposit_reference)
+      puts "deposit added for wallet : #{wallet_id}, amount: #{amount}"
+    end
+  end
+
+  all_account = BankAccount.all
+
+  all_account.each do |account|
+    3.times do
+     withdrawal_status = ["Pending", "Approved", "Declined"]
+     reference = ["ZZ111", "WW2222", "XX3333", "YY4444", "MM5555", "NN666", "OO7777", "PP8888"]
+     amount_withdrawal = [50, 75, 100, 150, 250, 300]
+
+     amount = amount_withdrawal.sample
+     wallet_id = account.user.wallet.id
+     bank_account = account.id
+     status = withdrawal_status.sample
+     withdraw = WithdrawalRequest.create!(amount: amount, wallet_id: wallet_id, status: status, bank_account_id: bank_account)
+     puts "withdrawal added for wallet : #{wallet_id}, amount: #{amount}"
+   end
+ end

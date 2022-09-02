@@ -1,28 +1,23 @@
 <div class="container summary-pages loan-show">
   <%= render "shared/back_navigation", path: loans_path %>
   <h1 class="light"> Loan Description</h1>
-
-
-  <div class="wrapper-avatar">
-    <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
-    <p>by <%= @loan.user.first_name %><%= @loan.user.last_name %><br>
-    <%= @loan.user.address %></p>
-  </div>
-
-
-  <div class="notice-box notice-box__purple">
-    <% if @loan.payment_frequency = "monthly" %>
-      <% number_of_payments = @loan.payback_time %>
-    <% elsif @loan.payment_frequency = "weekly" %>
-      <% number_of_payments = @loan.payback_time * 4 %>
-    <% end %>
-    <p>You will receive <%= @loan.instant_loan ? "an instant loan" : "a manually-approved loan" %>
-    of <%= @loan.amount.to_i %> €, with <%= number_of_payments %> <%= @loan.payment_frequency %>
-    payments of <%= @loan.amount.to_i / number_of_payments %> € each, in total you will pay back
-    <%= @loan.amount.to_i * (1 + (@loan.interest_rate.to_f / 100)) %> €.</p>
-    <%= image_tag "icon-info.svg", class: "icon icon__info" %>
-  </div>
-
+    <div class="wrapper-avatar">
+      <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+      <p>by <%= @loan.user.first_name %><%= @loan.user.last_name %><br>
+      <%= @loan.user.address %></p>
+    </div>
+    <div class="notice-box notice-box__purple">
+      <% if @loan.payment_frequency = "monthly" %>
+        <% number_of_payments = @loan.payback_time %>
+      <% elsif @loan.payment_frequency = "weekly" %>
+        <% number_of_payments = @loan.payback_time * 4 %>
+      <% end %>
+      <p>You will receive <%= @loan.instant_loan ? "an instant loan" : "a manually-approved loan" %>
+      of <%= @loan.amount.to_i %> €, with <%= number_of_payments %> <%= @loan.payment_frequency %>
+      payments of <%= @loan.amount.to_i / number_of_payments %> € each, in total you will pay back
+      <%= @loan.amount.to_i * (1 + (@loan.interest_rate.to_f / 100)) %> €.</p>
+      <%= image_tag "icon-info.svg", class: "icon icon__info" %>
+    </div>
   <div class="list-box">
     <div class="list-item">
       <div>Amount</div>
