@@ -1,1 +1,35 @@
-<h1>Test</h1>
+<div class="container dashboard">
+   <div class="wrapper-head">
+    <div class="row">
+      <h1>Hello <%= current_user.first_name %></h1>
+      <%= image_tag "avatar-icon.png", class: "avatar" %>
+    </div>
+  </div>
+
+  <div class="wallet">
+
+    <div class="wallet-card">
+      <h2>Your Wallet</h2>
+      <h1><%= @amount.to_i %> €</h1>
+      <%= render "shared/wallet_pages" %>
+    </div>
+
+    <div class="wallet-buttons">
+      <%= button_to "Cash out", "#" , class:"btn" %>
+      <%= button_to "Cash in",  "#" , class: "btn" %>
+    </div>
+  </div>
+   <%# Create an empyt array called all_transactions
+   deposts + with + transfers
+    Add to all_transactions << all  deposit transaction related to the current user
+    Add to all_transactions << all  withdrawal transaction related to the current user
+    Add to all_transactions << all  transfers transaction related to the current user
+
+    Display thhe Filter the array by date desc with amount, date, status, "description = bank, mobil money, No Name Bank"
+  %>
+
+
+
+</div>
+
+<%= render "shared/navbar" %>
