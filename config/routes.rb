@@ -20,4 +20,7 @@ Rails.application.routes.draw do
     resources :loan_requests, only: [:new, :create]
   end
   resources :loan_requests, only: [:show]
+  resources :wallets, only: [:show]
+  resources :withdrawal_requests, only: [:new, :create, :show]
+  resources :deposits, only: [:new, :create, :show]
 end
