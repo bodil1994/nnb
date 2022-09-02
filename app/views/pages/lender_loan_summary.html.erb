@@ -1,0 +1,43 @@
+<div class="container summary-pages">
+  <%= render "shared/back_navigation", path: new_loan_path %>
+  <h1 class="light">Summary</h1>
+  <div class="margin-t-b">
+    <p>Please review and confirm</p>
+  </div>
+  <div class="list-box">
+    <div class="list-item">
+      <div>Amount</div>
+      <div><%= current_user.loans.last.amount.to_i %> €</div>
+    </div>
+    <div class="list-item">
+      <div>Payment Duration</div>
+      <div><%= current_user.loans.last.payback_time %> months</div>
+    </div>
+    <div class="list-item">
+      <div>Payment Frequency</div>
+      <div><%= current_user.loans.last.payment_frequency %></div>
+    </div>
+    <div class="list-item">
+      <div>Interest Rate</div>
+      <div><%= current_user.loans.last.interest_rate.to_i %>%</div>
+    </div>
+    <div class="list-item">
+      <div>Category</div>
+      <div><%= current_user.loans.last.loan_category %></div>
+    </div>
+    <div class="list-item">
+      <div>Approval</div>
+      <div><%= current_user.loans.last.instant_loan ? "Auto" : "Manual" %></div>
+    </div>
+    <div class="list-item">
+    </div>
+    <div class="list-item">
+      <div class="bold">Earned Interest</div>
+      <div>+ <%= current_user.loans.last.amount.to_i * current_user.loans.last.interest_rate.to_i / 100 %> €</div>
+    </div>
+  </div>
+  <div class="padding">
+    <p class="light">Please note this investment can only be claimed after the expect yield date is due. The interest rates are fixed and has no collateral attached.</p>
+    <%= link_to "CONFIRM", dashboard_lender_path, class: "btn button-text-center" %>
+  </div>
+</div>

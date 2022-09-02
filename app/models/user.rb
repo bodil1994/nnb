@@ -7,7 +7,8 @@ class User < ApplicationRecord
   has_many :loans
   has_many :loan_requests
   has_one :wallet
-  has_many :wallet_transactions, through: :wallet
+  has_many :deposits, through: :wallet
+  has_many :withdrawal_requests, through: :wallet
 
 
   USER_TYPES = ["Lender", "Borrower"]

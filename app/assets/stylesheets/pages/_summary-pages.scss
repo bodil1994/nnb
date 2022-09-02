@@ -1,0 +1,25 @@
+.summary-pages {
+  position: relative;
+
+  .btn {
+    position: absolute;
+    bottom: 0px ;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .margin-t-b {
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+
+  .wrapper-test {
+    min-height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  .padding {
+    padding-top: 128px;
+  }
+}

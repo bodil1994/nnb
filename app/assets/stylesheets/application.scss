@@ -28,6 +28,7 @@
 html, body {
   display: block;
   min-height: 100vh;
+  height:100%;
   width: 100%;
   font-family: $font-family;
   color: $black;
@@ -67,7 +68,8 @@ p.gray {
   display: block;
   margin-left: 20px;
   margin-right: 20px;
-  margin-bottom: 20px;
+  padding-bottom: 20px !important;
+  height: 100%;
 
   &__flex {
     display: flex;
@@ -82,3 +84,20 @@ a:link, a:visited, a:active {
   color: $black;
   text-decoration: none;
   }
+
+
+.purple-text {
+  color: $purple-font
+}
+
+.gray-text {
+  color: $dark-gray
+}
+
+.bold {
+  font-weight: $font-weight-bold;
+}
+
+.light {
+  font-weight: $font-weight-light;
+}

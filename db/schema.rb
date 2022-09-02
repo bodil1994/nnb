@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_31_025500) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_01_105849) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bank_accounts", force: :cascade do |t|
+    t.string "account_number"
+    t.string "bank_name"
+    t.string "swift_number"
+    t.string "bank_type"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bank_accounts_on_user_id"
+  end
+
+  create_table "deposits", force: :cascade do |t|
+    t.float "amount"
+    t.string "status"
+    t.string "deposit_reference"
+    t.bigint "wallet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wallet_id"], name: "index_deposits_on_wallet_id"
+  end
 
   create_table "loan_payments", force: :cascade do |t|
     t.bigint "loan_id", null: false
@@ -92,13 +113,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_025500) do
   create_table "withdrawal_requests", force: :cascade do |t|
     t.bigint "wallet_id", null: false
     t.float "amount"
-    t.string "withdrawal_method"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "bank_account_id", null: false
+    t.index ["bank_account_id"], name: "index_withdrawal_requests_on_bank_account_id"
     t.index ["wallet_id"], name: "index_withdrawal_requests_on_wallet_id"
   end
 
+  add_foreign_key "bank_accounts", "users"
+  add_foreign_key "deposits", "wallets"
   add_foreign_key "loan_payments", "loans"
   add_foreign_key "loan_requests", "loans"
   add_foreign_key "loan_requests", "users"
@@ -106,5 +130,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_025500) do
   add_foreign_key "wallet_transactions", "wallets"
   add_foreign_key "wallet_transactions", "withdrawal_requests"
   add_foreign_key "wallets", "users"
+  add_foreign_key "withdrawal_requests", "bank_accounts"
   add_foreign_key "withdrawal_requests", "wallets"
 end

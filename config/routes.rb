@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get "/dashboard-lender", to: "pages#lender_dashboard"
   get "/dashboard-borrower", to: "pages#borrower_dashboard"
+  get "/loan-summary-lender", to: "pages#lender_loan_summary"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

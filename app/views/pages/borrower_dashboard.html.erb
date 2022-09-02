@@ -4,7 +4,7 @@
       <h1>Hello <%= current_user.first_name %></h1>
       <%= image_tag "avatar-icon.png", class: "avatar" %>
     </div>
-    <p>Already invested in other people’s future today?</p>
+    <p>Already have the funding for your needs?</p>
   </div>
 
   <div class="wallet">
@@ -23,14 +23,12 @@
   </div>
 
   <div class="wrapper-main">
-    <h2>Get your money working for you</h2>
-    <%= render "shared/button_dashboard_cta_create" %>
+    <h2>Find your perfekt loan</h2>
+    <%= render "shared/button_dashboard_cta_search" %>
   </div>
   <div class="wrapper-main">
     <h2>Your Loans</h2>
-    <%# <p class="gray">No Loans yet</p> %>
-    <%= render "shared/card_loan_lender" %>
-
+    <p class="gray">No Loans yet</p>
   </div>
 </div>
 

@@ -1,0 +1,15 @@
+.loan-status {
+  height: 33px;
+  border-radius: 25px;
+  width: 97px;
+  background: $purple-background;
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+
+  p {
+  color: $purple-font;
+  font-size: 14px;
+  font-weight: $font-weight-bold;
+  }
+}

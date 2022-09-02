@@ -1,21 +1,66 @@
-.card-loan {
-  height: 96px;
-  border-radius: 5px;
-  padding: 20px;
-  border: 0.5px solid $light-gray;
+.cards-container {
+  margin-top: 20px;
   margin-bottom: 20px;
+}
+.card-loan-lender {
+  width: 100%;
+  padding: 17px;
+  flex-flow: column;
+  border-top: solid 1px $light-gray;
+  border-bottom: solid 1px $light-gray;
+  margin-bottom: 12px;
 
-  .purple-text {
-    color: $purple
+  h1 {
+    font-size: 16px;
+    // font-weight: $font-weight-regular;
+    padding-bottom: 10px;
   }
 
-  .gray-text {
-    color: $dark-gray
-  }
-
-  .wrapper-content {
+  .wrapper {
     display: flex;
+    flex-flow: row;
     justify-content: space-between;
+
+    p {
+      font-size: 14px;
+    }
+    }
+  }
+
+.card-loan-search {
+  border-radius: 5px;
+  width: 100%;
+  padding: 17px;
+  display: flex;
+  flex-flow: row;
+  margin-bottom: 12px;
+  border: solid 1px $light-gray;
+  gap: 12px;
+
+  h1 {
+    font-size: 16px;
+    // font-weight: $font-weight-regular;
+    padding-bottom: 10px;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 0px;
+    // justify-content: space-between;
+
+    .wrapper-content {
+
+      display: flex;
+      justify-content: space-between;
+
+      p {
+        font-size: 14px;
+      }
+
+    }
+
+
   }
 
   img {
@@ -25,27 +70,19 @@
 
 }
 
-.card-content {
-  display: flex;
-  justify-content: space-between;
-}
 
-.text {
-  text-decoration: none;
-  color: $black;
-}
 
-.card-basic {
-  height: 96px;
-  padding: 20px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+// .card-basic {
+//   height: 96px;
+//   padding: 20px;
+//   margin-bottom: 20px;
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: center;
 
-  img {
-    height: 60px;
-    width: 60px;
-    margin-right: 20px;
-  }
-}
+//   img {
+//     height: 60px;
+//     width: 60px;
+//     margin-right: 20px;
+//   }
+// }
