@@ -1,5 +1,22 @@
 .loan-index {
-  p.padding-bottom {
+
+
+  .padding-bottom {
     padding-bottom: 20px;
+  }
+
+  .filter-title {
+    padding-bottom: 15px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  fieldset {
+    border: none;
+    legend {
+      padding-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
   }
 }
