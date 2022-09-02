@@ -27,8 +27,10 @@ class LoanRequestsController < ApplicationController
     if @loan.instant_loan?
     # Increase the borrower wallet
       @loan.user.wallet.amount -= @loan.amount
+      @loan.user.wallet.save
     # decrease the lender wallet
       current_user.wallet.amount += @loan.amount
+      current_user.wallet.save
     # and change the loan_request.status to Approved
       @loan_request.status = "Approved"
     # Else set loan_request.status to On process
@@ -40,7 +42,7 @@ class LoanRequestsController < ApplicationController
     if @loan_request.save
       redirect_to loan_request_path(@loan_request.id)
     else
-      render new
+      render :new
     end
   end
 
