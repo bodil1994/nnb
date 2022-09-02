@@ -1,9 +1,10 @@
 <div class="container loan-index" data-controller="search-loans">
+  <%= render "shared/back_navigation", path: dashboard_borrower_path %>
   <h1 class="light">Payment Details</h1>
   <p class="padding-bottom">Not sure what you're looking for? See recommendations!</p>
   <%= simple_form_for :loan, url:loans_path, method: "get",
   data: {search_loans_target: "form"} do |f| %>
-    <p><label><strong>How much?</strong></label></p>
+    <p><label class = "filter-title">How much?</label></p>
     <div class="slider_wrapper">
       <input type="range"
               min="0"
@@ -16,7 +17,7 @@
               name="amount">
       <div data-target="search-loans.amountShow">0 €</div>
     </div>
-    <p><label><strong>How long?</strong></label></p>
+    <p><label class = "filter-title">How long?</label></p>
     <div class="slider_wrapper">
       <input type="range"
               min="0"

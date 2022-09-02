@@ -11,11 +11,13 @@
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
+  width: 85px;
+  text-align: center;
   border-radius: 5px;
-  padding: 5px 10px;
-  background-color: $purple-background;
-  color: $purple;
-  border: 1px solid $purple;
+  padding: 8px 8px;
+  background-color: $light-gray;
+  // color: $purple-font;
+  // border: 1px solid $purple;
   margin-right: 8px;
   margin-bottom: 6px;
 }

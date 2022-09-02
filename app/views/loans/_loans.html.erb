@@ -1,21 +1,36 @@
-<div class="cards">
+
+<div class="cards-container">
       <% loans.each do |loan| %>
-        <%= link_to loan_path(loan), class: "text" do %>
-          <div class = "card-loan">
-            <div class="card-content">
-            <div class="card-texts">
-              <h3><span class="purple-text"><%= loan.amount.to_i %> € Loan</span> for <%= loan.loan_category %></h3>
-                <div class= "wrapper-content">
-                  <% payback_months = (loan.payback_time / 30).to_i %>
-                  <div><strong>Duration</strong><br /><span class="gray-text"><%= payback_months %> months</span></div>
-                  <div><strong>Payback</strong><br /><span class="gray-text"><%= loan.payment_frequency %></span></div>
-                  <div><strong>Interest</strong><br /><span class="gray-text"><%= loan.interest_rate %>%</span></div>
+        <%= link_to loan_path(loan) do %>
+          <div class = "card-loan-search">
+            <div class= "wrapper">
+              <h1><span class="purple-text"><%= loan.amount.to_i %> € Loan</span> for <%= loan.loan_category %></h1>
+
+              <div class= "wrapper-content">
+                <% payback_months = (loan.payback_time / 30).to_i %>
+
+                <div class="wrapper-info">
+                  <p>Interest rate<p>
+                  <p class="gray-text"><%= loan.interest_rate %> %</p>
                 </div>
-            </div>
-                <div>
-                  <%= image_tag("avatar-icon.png") %>
+
+                <div class="wrapper-info">
+                  <p>Duration<p>
+                  <p class="gray-text"><%= loan.payback_time %> days</p>
                 </div>
+
+                <div class="wrapper-info">
+                  <p>Payback<p>
+                  <p class="gray-text"><%= loan.payment_frequency %></p>
+                </div>
+              </div>
+
             </div>
+
+            <div>
+              <%= image_tag("avatar-icon.png") %>
+            </div>
+
           </div>
         <% end %>
       <% end %>
