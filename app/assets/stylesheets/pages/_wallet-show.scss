@@ -1,0 +1,40 @@
+.align-title {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.align-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.display-card-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+.display-card-item-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p.s{
+  font-size: 14px;
+}
+
+.transaction-status {
+  height: 33px
+px
+;
+  border-radius: 25px;
+  width: 97px;
+  background: #e5dcff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

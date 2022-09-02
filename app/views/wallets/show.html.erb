@@ -1,1 +1,46 @@
-<h1>Test</h1>
+<div class="container dashboard">
+   <div class="wrapper-head">
+    <div class="row">
+      <h1>Hello <%= current_user.first_name %></h1>
+      <%= image_tag "avatar-icon.png", class: "avatar" %>
+    </div>
+  </div>
+
+  <div class="wallet">
+
+    <div class="wallet-card">
+      <h2>Your Wallet</h2>
+      <h1><%= @amount.to_i %> €</h1>
+      <%= render "shared/wallet_pages" %>
+    </div>
+
+    <div class="wallet-buttons">
+      <%= button_to "Cash out", "#" , class:"btn" %>
+      <%= button_to "Cash in",  "#" , class: "btn" %>
+    </div>
+  </div>
+  <div class="title-container align-title">
+    <h2>Your transactions</h2>
+    <p>All transactions</p>
+  </div>
+  <% @all_transactions.each do |transactions| %>
+    <% if transactions.class.name == "WithdrawalRequest" %>
+      <% amount = transactions.amount*-1 %>
+    <% else %>
+      <% amount = transactions.amount %>
+    <% end %>
+  <div class = "transaction-container col align-element card-loan">
+    <div class="row1 display-card-item">
+      <p><%=amount%></p>
+      <p><%=transactions.created_at%></p>
+     </div>
+    <div class="row2 display-card-item-right">
+      <p><%=transactions.bank_account_id if transactions.bank_account_id.present?%></p>
+      <p class = "transaction-status"><%=transactions.status%></p>
+    </div>
+  </div>
+  <% end %>
+
+</div>
+
+<%= render "shared/navbar" %>
