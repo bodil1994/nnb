@@ -91,3 +91,11 @@ a:link, a:visited, a:active {
 .gray-text {
   color: $dark-gray
 }
+
+.bold {
+  font-weight: $font-weight-bold;
+}
+
+.light {
+  font-weight: $font-weight-light;
+}
