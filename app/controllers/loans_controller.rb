@@ -16,16 +16,17 @@ class LoansController < ApplicationController
     @user = current_user
     @loan = Loan.new(loan_params)
     @loan.user = @user
+    @loan.status = "Pending"
     if @loan.save
-      redirect_to dashboard_path
+      redirect_to loan_summary_lender_path(@user)
     else
-      render :new, status: 422
+      render :new
     end
   end
 
   private
 
   def loan_params
-    params.require(:loan).permit(:payback_time, :payment_frequency, :interest_rate, :loan_category, :instant_loan)
+    params.require(:loan).permit(:amount, :payback_time, :payment_frequency, :interest_rate, :loan_category, :instant_loan)
   end
 end
