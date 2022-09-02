@@ -37,6 +37,7 @@ class LoanRequestsController < ApplicationController
     else
     @loan_request.status = "On process"
     end
+    ###-----NEED TO SAVE THE TRANSACTION AS A TRANSFER ------###
 
     @loan_request.user_id = current_user.id
     if @loan_request.save
