@@ -37,45 +37,42 @@
         border: none;
       }
 
-
-
       .radio-botton {
         float: left;
         margin: 0 5px 0 0;
         width: 100px;
         height: 40px;
         position: relative;
-      }
 
-      .radio-botton label,
-      .radio-botton input {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        text-align: center;
-        padding-top: 7px;
-      }
+        label, input {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          text-align: center;
+          padding-top: 7px;
+        }
 
-      .radio-botton input[type="radio"] {
-        opacity: 0.011;
-        z-index: 100;
-      }
+        input[type="radio"] {
+          opacity: 0.011;
+          z-index: 100;
+        }
 
-      .radio-botton input[type="radio"]:checked + label {
-        background: $purple;
-        border-radius: inherit;
-        color: $white;
-      }
+        input[type="radio"]:checked + label {
+          background: $purple;
+          border-radius: inherit;
+          color: $white;
+        }
 
-      .radio-botton label {
-        cursor: pointer;
-        z-index: 90;
-        line-height: 1.8em;
-        background: $purple-background;
-        border-radius: inherit;
+        label {
+          cursor: pointer;
+          z-index: 90;
+          line-height: 1.8em;
+          background: $purple-background;
+          border-radius: inherit;
+        }
       }
 
       .selector {
@@ -105,6 +102,7 @@
       #loan_interest_rate {
         border-radius: 0px !important;
         color: $black;
+        text-align: left;
       }
 
       .form-label, .title {
