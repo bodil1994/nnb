@@ -35,7 +35,7 @@
       <p><%=transactions.created_at.strftime("%d %B %Y")%></p>
      </div>
     <div class="row2 display-card-item">
-      <p><%=transactions.status%></p>
+      <p class = "transaction-status"><%=transactions.status%></p>
       <%# <p><%=transactions.bank_account_id if transactions.bank_account_id.present?%>
     </div>
   </div>
