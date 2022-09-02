@@ -26,7 +26,7 @@
             <%= f.label(:amount, "4000 NFCP") %>
           </div>
           <div class="select-input purple-background">
-            <%= f.input :amount, placeholder: 'Enter amount', label: false%>
+            <%= f.input :amount, placeholder: 'Enter amount', label: false %>
           </div>
         </div>
         <div class="dropdown">
@@ -37,7 +37,7 @@
         </div>
         <div class="input">
           <%= f.input :interest_rate, label: 'What is the Interest rate that you expect ?', error: 'Interest rate is mandatory, please specify one' %>
-        </div>@
+        </div>
         <div class="dropdown">
           <%= f.input :loan_category, label: 'For which project do you want to loan your money for ?', as: :select, :collection => %w[Education Health Insurance Business], prompt: 'Select' %>
         </div>
