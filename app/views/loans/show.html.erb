@@ -9,12 +9,14 @@
     <div class="notice-box notice-box__purple">
       <% if @loan.payment_frequency = "monthly" %>
         <% number_of_payments = @loan.payback_time / 30 %>
+        <% length = "#{@loan.payback_time / 30} months" %>
       <% elsif @loan.payment_frequency = "weekly" %>
         <% number_of_payments = @loan.payback_time / 7 %>
+        <% length = "#{@loan.payback_time / 7} weeks" %>
       <% end %>
       <p>You will receive <%= @loan.instant_loan ? "an instant loan" : "a manually-approved loan" %>
       of <%= @loan.amount.to_i %> €, with 1 <%= @loan.payment_frequency %>
-      payment of <%= @loan.amount.to_i / number_of_payments %> € each, in total you will pay back
+      payment of <%= @loan.amount.to_i / number_of_payments %> € each for <%= length %> , in total you will pay back
       <%= @loan.amount.to_i * (1 + (@loan.interest_rate.to_f / 100)) %> €.</p>
       <%= image_tag "icon-info.svg", class: "icon icon__info" %>
     </div>
