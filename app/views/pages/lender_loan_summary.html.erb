@@ -7,7 +7,7 @@
   <div class="list-box">
     <div class="list-item">
       <div>Amount</div>
-      <div><%= current_user.loans.last.amount.to_i %> FCFA</div>
+      <div><%= current_user.loans.last.amount.to_i %> €</div>
     </div>
     <div class="list-item">
       <div>Payment Duration</div>
@@ -33,7 +33,7 @@
     </div>
     <div class="list-item">
       <div class="bold">Earned Interest</div>
-      <div>+ <%= current_user.loans.last.amount.to_i * current_user.loans.last.interest_rate.to_i / 100 %> FCFA</div>
+      <div>+ <%= current_user.loans.last.amount.to_i * current_user.loans.last.interest_rate.to_i / 100 %> €</div>
     </div>
   </div>
   <div class="padding">

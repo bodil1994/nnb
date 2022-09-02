@@ -1,6 +1,5 @@
 .loan-request-new {
 
-
   .loan_request_description {
     display: flex;
     flex-flow: column;
@@ -24,6 +23,6 @@
       &:focus-visible {
         outline: none;
       }
-      }
+    }
   }
 }
