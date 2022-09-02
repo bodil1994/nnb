@@ -28,7 +28,10 @@
   </div>
   <div class="wrapper-main">
     <h2>Your Loans</h2>
-    <p class="gray">No Loans yet</p>
+    <% if current_user.loan_requests.nil? %>
+      <p class="gray"><%="No Loans yet"%></p>
+    <% end %>
+    <%= render "shared/cards_loan_borrower" %>
   </div>
 </div>
 
