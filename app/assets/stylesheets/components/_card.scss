@@ -2,7 +2,8 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.card-loan-lender {
+
+.card-loan {
   width: 100%;
   padding: 17px;
   flex-flow: column;
@@ -24,6 +25,19 @@
     p {
       font-size: 14px;
     }
+    }
+
+    .wrapper-title {
+
+      display: flex;
+
+      h1 {
+        flex: 1 1 0px;
+      }
+      p {
+        margin-top: 1px;
+        font-size: 14px;
+      }
     }
   }
 

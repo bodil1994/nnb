@@ -1,0 +1,26 @@
+
+<% current_user.loan_requests.each do |request| %>
+  <%= link_to loan_path(request) do %>
+    <div class="card-loan">
+      <div class="wrapper-title">
+        <h1><span class="purple-text"><%= request.loan.amount.to_i %> €</span> Loan for <%= request.loan.loan_category %></h1>
+        <% if request.status == "Active"%>
+          <p>next due: 30.09.2022</p>
+        <% end %>
+      </div>
+      <div class="wrapper">
+        <div class="wrapper-info">
+          <p>Interest rate<p>
+          <p class="gray-text"><%= request.loan.interest_rate %> %</p>
+        </div>
+        <div class="wrapper-info">
+          <p>Duration<p>
+          <p class="gray-text"><%= request.loan.payback_time %> days</p>
+        </div>
+        <div class="loan-status" >
+          <p><%= request.status %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
