@@ -2,7 +2,9 @@
    <div class="wrapper-head">
     <div class="row">
       <h1>Hello <%= current_user.first_name %></h1>
-      <%= image_tag "avatar-icon.png", class: "avatar" %>
+      <%= button_to destroy_user_session_path, class: "transparent", method: :delete do %>
+       <%= image_tag "avatar-icon.png", class: "avatar" %>
+      <%end%>
     </div>
     <p>Already have the funding for your needs?</p>
   </div>
@@ -34,5 +36,3 @@
     <%= render "shared/cards_loan_borrower" %>
   </div>
 </div>
-
-<%= render "shared/navbar" %>
