@@ -32,7 +32,7 @@ class LoanRequestsController < ApplicationController
       current_user.wallet.amount += @loan.amount
       current_user.wallet.save
     # and change the loan_request.status to Approved
-      @loan_request.status = "Approved"
+      @loan_request.status = "Active"
     # Else set loan_request.status to On process
     else
      @loan_request.status = "Pending"
@@ -44,6 +44,7 @@ class LoanRequestsController < ApplicationController
     else
       render :new
     end
+
   end
 
   def show
