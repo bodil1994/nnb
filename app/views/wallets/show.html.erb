@@ -32,11 +32,11 @@
   <div class = "transaction-container col align-element card-loan">
     <div class="row1 display-card-item">
       <p><%=amount%></p>
-      <p><%=transactions.created_at.strftime("%d %B %Y")%></p>
+      <p><%=transactions.created_at%></p>
      </div>
-    <div class="row2 display-card-item">
+    <div class="row2 display-card-item-right">
+      <p><%=transactions.bank_account_id if transactions.bank_account_id.present?%></p>
       <p class = "transaction-status"><%=transactions.status%></p>
-      <%# <p><%=transactions.bank_account_id if transactions.bank_account_id.present?%>
     </div>
   </div>
   <% end %>

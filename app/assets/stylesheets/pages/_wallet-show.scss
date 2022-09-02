@@ -16,6 +16,13 @@
   justify-content: space-between
 }
 
+.display-card-item-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 p.s{
   font-size: 14px;
 }

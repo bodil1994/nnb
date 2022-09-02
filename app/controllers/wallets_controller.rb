@@ -25,7 +25,7 @@ class WalletsController < ApplicationController
     #   Display thhe Filter the array by date desc with amount, date, status, "description = bank, mobil money, No Name Bank"
     @all_transactions = @all_transactions.sort_by { |transaction| transaction.created_at }
     # Display the last 5 which should be the most recent transactionss
-    @all_transactions = @all_transactions.first(5)
+    @all_transactions = @all_transactions.last(5)
 
   end
 end
