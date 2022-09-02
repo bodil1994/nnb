@@ -18,11 +18,25 @@
       justify-content: space-between;
       margin: 20px 0px;
 
+      .numeric {
+        width: 242px;
+        height: 44px;
+        border-radius: 20px;
+        text-align: center;
+        background: $light-gray;
+        color: $purple-font;
+        padding-bottom: 10px;
+        text-transform: capitalize;
+        font-weight: $font-weight-regular;
+        max-width: 100%;
+        border: none;
+      }
+
       .purple-background {
         background: $purple-background !important;
       }
 
-      .banana {
+      .radio-botton {
         float: left;
         margin: 0 5px 0 0;
         width: 100px;
@@ -30,8 +44,8 @@
         position: relative;
       }
 
-      .banana label,
-      .banana input {
+      .radio-botton label,
+      .radio-botton input {
         display: block;
         position: absolute;
         top: 0;
@@ -42,18 +56,18 @@
         padding-top: 7px;
       }
 
-      .banana input[type="radio"] {
+      .radio-botton input[type="radio"] {
         opacity: 0.011;
         z-index: 100;
       }
 
-      .banana input[type="radio"]:checked + label {
+      .radio-botton input[type="radio"]:checked + label {
         background: $purple;
         border-radius: inherit;
         color: $white;
       }
 
-      .banana label {
+      .radio-botton label {
         cursor: pointer;
         z-index: 90;
         line-height: 1.8em;
@@ -98,6 +112,7 @@
         align-content: center;
         padding-top: 10px;
         padding-left: 10px;
+        background-color: transparent !important;
         &:focus-within {
           outline: none;
       }

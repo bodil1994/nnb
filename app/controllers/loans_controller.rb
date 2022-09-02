@@ -7,7 +7,7 @@ class LoansController < ApplicationController
   def index
     @loans = Loan.all
   end
-  
+
   def new
     @loan = Loan.new
   end
@@ -19,7 +19,7 @@ class LoansController < ApplicationController
     if @loan.save
       redirect_to dashboard_path
     else
-      render :new
+      render :new, status: 422
     end
   end
 
