@@ -19,15 +19,10 @@
       <%= button_to "Cash in",  "#" , class: "btn" %>
     </div>
   </div>
-   <%# Create an empyt array called all_transactions
-   deposts + with + transfers
-    Add to all_transactions << all  deposit transaction related to the current user
-    Add to all_transactions << all  withdrawal transaction related to the current user
-    Add to all_transactions << all  transfers transaction related to the current user
+  <% @all_transactions.each do |transactions| %>
+  <%= @all_transactions.first.class.name = "WithdrawalRequest"? -transactions.amount : transactions.amount %>
 
-    Display thhe Filter the array by date desc with amount, date, status, "description = bank, mobil money, No Name Bank"
-  %>
-
+  <% end %>
 
 
 </div>
