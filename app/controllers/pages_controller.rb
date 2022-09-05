@@ -10,4 +10,8 @@ class PagesController < ApplicationController
   def transactions
       @user = current_user
   end
+
+  def portfolio
+    @loans = Loan.where(user: current_user, status: "Active")
+  end
 end
