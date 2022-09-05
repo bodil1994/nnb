@@ -8,7 +8,6 @@ class PagesController < ApplicationController
   end
 
   def transactions
-
-
+      @user = current_user
   end
 end

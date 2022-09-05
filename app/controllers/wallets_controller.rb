@@ -14,10 +14,10 @@ class WalletsController < ApplicationController
     all_deposits = []
     all_deposits = Deposit.where(wallet_id: @user.wallet)
     #   Add to all_transactions << all  transfers transaction related to the current user
-      # all_transfers = []
-      # all_transfers = Transfer.where(wallet_id: @user.wallet)
+      all_transfers = []
+      all_transfers = Transfer.where(wallet_id: @user.wallet)
     # Add all transactioin to the all_transactions array
-    @all_transactions << (all_withdrawals + all_deposits)
+    @all_transactions << (all_withdrawals + all_deposits + all_transfers)
 
     #use flatten in order to create a single array
     @all_transactions = @all_transactions.flatten
@@ -28,6 +28,5 @@ class WalletsController < ApplicationController
     @all_transactions = @all_transactions.reverse
     # Display the last 5 which should be the most recent transactionss
     @all_transactions = @all_transactions.first(5)
-
   end
 end

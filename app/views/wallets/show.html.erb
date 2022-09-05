@@ -47,8 +47,8 @@
       <p class ="small"><%=transactions.created_at.strftime('%a, %d %b %Y %H:%M:%S')%></p>
      </div>
     <div class="row2 display-card-item-right">
-      <% bank_account = BankAccount.find(transactions.bank_account_id) %>
-      <% bank_account_type = transactions.bank_account_id.present? ? bank_account.bank_type : "" %>
+      <% bank_account = transactions.class != Transfer ? BankAccount.find(transactions.bank_account_id) : "No Name Bank"  %>
+      <% bank_account_type = transactions.class != Transfer ? bank_account.bank_type : "" %>
       <h2><%= bank_account_type %></h2>
       <p class = "transaction-status"><%=transactions.status%></p>
     </div>
