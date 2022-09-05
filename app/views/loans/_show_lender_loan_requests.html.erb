@@ -1,0 +1,31 @@
+
+<h2>Loan Requests</h2>
+<%# IF NOT LOAN REQUESTS %>
+<% if loan.loan_requests.count.nil?%>
+  <p class="gray"><%="No requests"%></p>
+
+<%# IF LOAN REQUESTS EXIST %>
+<% else %>
+ <% loan.loan_requests.each do |loan_request| %>
+  <div class="card-request-approval" data-controller="loan-approval" data-loan-approval-update-url= "<%= loan_request_path(loan_request)  %>">
+    <div class="wrapper-content">
+      <div class="wrapper-user">
+        <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+          <div class="wrapper-user-info">
+            <p>by <%= loan_request.user.first_name %><%= loan_request.user.last_name %><br>
+              <%= loan.user.address %>
+            </p>
+          </div>
+        <div class="loan-status" >
+          <p data-loan-approval-target="status" ><%= loan_request.status %></p>
+        </div>
+      </div>
+      <p class= "gray-text">"<%= loan_request.description %>"</p>
+    </div>
+    <div class="wrapper-buttons" data-loan-approval-target="buttons">
+      <button data-action="click->loan-approval#accept"><i class="fas fa-check"></i></button>
+      <button data-action="click->loan-approval#decline"><i class="fa-regular fa-x"></i></button>
+    </div>
+  </div>
+ <% end %>
+<% end %>
