@@ -8,7 +8,6 @@ class LoanRequestsController < ApplicationController
   end
 
   def create
-    @transfer = Transfer.new
     @loan_request = LoanRequest.new(loan_request_params)
     @loan_request.loan_id = @loan.id
     @loan_request.amount = @loan.amount
@@ -26,12 +25,22 @@ class LoanRequestsController < ApplicationController
     end
     # if loan.approval = auto
     if @loan.instant_loan?
-    # Increase the borrower wallet
-      @loan.user.wallet.amount -= @loan.amount
-      @loan.user.wallet.save
-    # decrease the lender wallet
-      current_user.wallet.amount += @loan.amount
-      current_user.wallet.save
+    # Add the borrower transaction as a transfer
+      borrower_amount = @loan.amount
+      borrower_wallet = current_user.wallet
+      loan_id = @loan.id
+      transfer_status = "Approved"
+      transfer_type = "Deposit"
+      @borrower_transfer = Transfer.create(amount: borrower_amount, status: transfer_status, transfert_type: transfer_type, wallet: borrower_wallet, loan_id: loan_id)
+
+     # Add the lender transaction as a transfer
+      lender_amount = @loan.amount
+      lender_wallet = @loan.user.wallet
+      loan_id = @loan.id
+      transfer_status = "Approved"
+      transfer_type = "Withdrawal"
+      @lender_transfer = Transfer.create(amount: lender_amount, status: transfer_status, transfert_type: transfer_type, wallet: lender_wallet, loan_id: loan_id)
+
     # and change the loan_request.status to Approved
       @loan_request.status = "Active"
     # Else set loan_request.status to On process
@@ -45,7 +54,6 @@ class LoanRequestsController < ApplicationController
     else
       render :new
     end
-    raise
   end
 
   def show
