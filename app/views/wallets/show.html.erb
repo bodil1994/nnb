@@ -21,7 +21,7 @@
   </div>
   <div class="title-container align-title">
     <h2>Your transactions</h2>
-    <p> <% link_to  image_tag('arrow-right.svg'), "" %> </p>
+    <p><%= link_to "All Transactions", transactions_path %></p>
   </div>
   <% @all_transactions.each do |transactions| %>
     <% if transactions.class.name == "WithdrawalRequest"%>
