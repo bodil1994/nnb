@@ -15,27 +15,41 @@
     </div>
 
     <div class="wallet-buttons">
-      <%= button_to "Cash out", "#" , class:"btn" %>
-      <%= button_to "Cash in",  "#" , class: "btn" %>
+      <%= button_to "Cash out", new_withdrawal_request_path , class:"btn" %>
+      <%= button_to "Cash in",  new_deposit_path , class: "btn" %>
     </div>
   </div>
   <div class="title-container align-title">
     <h2>Your transactions</h2>
-    <p>All transactions</p>
+    <p><%= link_to "All Transactions", transactions_path %></p>
   </div>
   <% @all_transactions.each do |transactions| %>
-    <% if transactions.class.name == "WithdrawalRequest" %>
-      <% amount = transactions.amount*-1 %>
+    <% if transactions.class.name == "WithdrawalRequest"%>
+      <p > <% amount = transactions.amount*-1 %></p>
     <% else %>
-      <% amount = transactions.amount %>
+      <p ><% amount = transactions.amount %></p>
     <% end %>
+
+
   <div class = "transaction-container col align-element card-loan">
     <div class="row1 display-card-item">
-      <p><%=amount%></p>
-      <p><%=transactions.created_at%></p>
+  <%# if transactions.status = "Pending" then color should be grey.
+  if transactions.class.name = "WithdrawalRequest" then color should be red.
+  if transactions.class.name = "Deposit" then color should be green. %>
+    <%if transactions.status == "Approved" && transactions.class.name == "WithdrawalRequest" %>
+      <h2 class = "red-transaction" ><%= "#{amount} €"%></h2>
+    <% elsif transactions.status == "Approved" && transactions.class.name == "Deposit" %>
+      <h2 class = "green-transaction" ><%= "#{amount} €"%></h2>
+    <% elsif %>
+      <h2 class = "pending-transaction" ><%= "#{amount} €"%></h2>
+    <% end %>
+
+      <p class ="small"><%=transactions.created_at.strftime('%a, %d %b %Y %H:%M:%S')%></p>
      </div>
     <div class="row2 display-card-item-right">
-      <p><%=transactions.bank_account_id if transactions.bank_account_id.present?%></p>
+      <% bank_account = BankAccount.find(transactions.bank_account_id) %>
+      <% bank_account_type = transactions.bank_account_id.present? ? bank_account.bank_type : "" %>
+      <h2><%= bank_account_type %></h2>
       <p class = "transaction-status"><%=transactions.status%></p>
     </div>
   </div>
