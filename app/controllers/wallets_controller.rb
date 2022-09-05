@@ -85,6 +85,9 @@ class WalletsController < ApplicationController
         total_all_withdrawal = sum_withdrawal + sum_withdrawal_transfer
 
     # Calculate the amount
+    total_amount = total_all_deposit  - total_all_withdrawal
+    # Set the wallet amount to the total amount calculated
+    @wallet.amount = total_amount
 
   end
 
