@@ -99,3 +99,11 @@ a:link, a:visited, a:active {
 .light {
   font-weight: $font-weight-light;
 }
+
+.d-none {
+  display: none;
+}
+
+.background-darken {
+  background-color: $light-gray;
+}
