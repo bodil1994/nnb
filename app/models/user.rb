@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_one :wallet
   has_many :deposits, through: :wallet
   has_many :withdrawal_requests, through: :wallet
+  has_one_attached :photo
 
 
   USER_TYPES = ["Lender", "Borrower"]
