@@ -13,8 +13,11 @@
 
 @import "loan_show";
 
+@import "new_forms";
+
 @import "wallet-show";
 
-@import "_lender_loan_summary";
+@import "lender_loan_summary";
 
-@import "_sessions_new";
+@import "sessions_new";
+

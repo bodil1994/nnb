@@ -1,0 +1,13 @@
+.new-forms {
+
+  .wrapper {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin-bottom: 10px;
+    .wallet-amount {
+      font-size: 50px;
+    }
+  }
+
+}

@@ -1,0 +1,36 @@
+<div class="container summary-pages">
+  <%= render "shared/back_navigation", path: loans_path %>
+  <h1 class="light">Summary</h1>
+  <p class="padding-bottom">Withdrawal Transaction</p>
+  <div class="notice-box notice-box__purple">
+    <p>Your withdrawal request is pending approval, and will be credited into your account within 3 working days</p>
+    <%= image_tag "icon-info.svg", class: "icon icon__info" %>
+  </div>
+  <div class="list-box">
+    <div class="list-item">
+      <div>Amount</div>
+      <div><%= @deposit.amount.round %> €</div>
+    </div>
+    <div class="list-item">
+      <div>Bank Account Holder</div>
+      <div><%= @deposit.wallet.user.first_name %> <%= @deposit.wallet.user.last_name %></div>
+    </div>
+    <div class="list-item">
+      <div>Bank Name</div>
+      <div><%= @deposit.bank_account.bank_name %></div>
+    </div>
+    <div class="list-item">
+      <div>Account Number</div>
+      <% account_number = @deposit.bank_account.account_number %>
+      <% last_four = account_number[(account_number.length - 4), account_number.length] %>
+      <% partial_account_number = "********#{last_four}" %>
+      <div><%= partial_account_number %></div>
+    </div>
+    <div class="list-item">
+      <div>SWIFT</div>
+      <div><%= @deposit.bank_account.swift_number %></div>
+    </div>
+  </div>
+
+  <%= link_to "CONFIRM", deposit_path(@deposit), class: "btn", data: { turbo_method: :patch } %>
+</div>
