@@ -175,7 +175,7 @@ all_users.each do |user|
     amount_transfer = [50, 75, 25, 15, 20, 35]
     amount = amount_transfer.sample
     transfer_status = ["Pending", "Approved", "Declined"]
-    status = transfer_status
+    status = transfer_status.sample
     type = ["Withdrawal", "Deposit"]
     transfert_type = type.sample
     loan_id = loan.sample.id
