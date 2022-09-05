@@ -75,7 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_054140) do
     t.float "amount"
     t.string "status"
     t.string "transfert_type"
-    t.bigint "loan_id", null: false
+    t.bigint "loan_id"
     t.bigint "wallet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

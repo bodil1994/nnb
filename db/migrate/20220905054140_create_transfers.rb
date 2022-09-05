@@ -4,7 +4,7 @@ class CreateTransfers < ActiveRecord::Migration[7.0]
       t.float :amount
       t.string :status
       t.string :transfert_type
-      t.references :loan, null: false, foreign_key: true
+      t.references :loan, null: true, foreign_key: true
       t.references :wallet, null: false, foreign_key: true
 
       t.timestamps

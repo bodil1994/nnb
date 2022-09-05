@@ -1,3 +1,4 @@
+Transfer.destroy_all
 LoanRequest.destroy_all
 LoanPayment.destroy_all
 Loan.destroy_all
@@ -6,6 +7,7 @@ BankAccount.destroy_all
 Deposit.destroy_all
 Wallet.destroy_all
 User.destroy_all
+
 
 puts "everything destroyed"
 
@@ -159,3 +161,27 @@ all_users.each do |user|
      puts "withdrawal added for wallet : #{wallet_id}, amount: #{amount}"
    end
  end
+
+ puts all_wallet = Wallet.all
+ loan = Loan.all
+
+ all_wallet.each do |wallet|
+  puts "--------------"
+  puts wallet
+  3.times do
+    puts "-----xxxxxxxxx---------"
+    puts wallet
+    # puts all_wallet.ids
+    amount_transfer = [50, 75, 25, 15, 20, 35]
+    amount = amount_transfer.sample
+    transfer_status = ["Pending", "Approved", "Declined"]
+    status = transfer_status
+    type = ["Withdrawal", "Deposit"]
+    transfert_type = type.sample
+    loan_id = loan.sample.id
+    transfer = Transfer.create!(amount: amount, status: status, transfert_type: transfert_type, wallet: wallet, loan_id: loan_id)
+    puts "Transfer to the wallet : #{wallet}, amount: #{amount}"
+    transfer = Transfer.create!(amount: 100, status: status, transfert_type: transfert_type, wallet: wallet)
+    puts "Transfer to the wallet : #{wallet}, amount: #{amount}"
+  end
+end
