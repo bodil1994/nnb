@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # devise_for :users
   devise_for :users,
-           :controllers => { :registrations => 'registrations' },
+           :controllers => { :registrations => 'users/registrations' },
            :path => 'user',
            :path_names => { :sign_in => 'login',
                             :sign_up => 'sign-up',
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "/dashboard-borrower", to: "pages#borrower_dashboard"
   get "/loan-summary-lender", to: "pages#lender_loan_summary"
   get "/transactions", to: "pages#transactions"
+  get "/portfolio", to: "pages#portfolio"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

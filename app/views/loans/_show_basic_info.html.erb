@@ -1,0 +1,32 @@
+<div class="list-box">
+  <div class="list-item">
+    <p>Amount</p>
+    <p><%= loan.amount.to_i %> €</p>
+  </div>
+  <div class="list-item">
+    <p>Payment Duration</p>
+    <p><%= loan.payback_time %> days</p>
+  </div>
+  <div class="list-item">
+    <p>Payment Frequency</p>
+    <p><%= loan.payment_frequency %></p>
+  </div>
+  <div class="list-item">
+    <p>Interest Rate</p>
+    <p><%= loan.interest_rate.to_i %>%</p>
+  </div>
+  <div class="list-item">
+    <p>Category</p>
+    <p><%= loan.loan_category %></p>
+  </div>
+  <div class="list-item">
+    <p>Approval</p>
+    <p><%= loan.instant_loan ? "Auto" : "Manual" %></p>
+  </div>
+  <% if current_user.user_type == "Lender" %>
+    <div class="list-item">
+      <p class="bold">Earned Interest</p>
+      <p>+<%= loan.amount.to_i * loan.interest_rate.to_i / 100 %> €</p>
+    </div>
+  <% end %>
+</div>

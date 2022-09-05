@@ -32,4 +32,8 @@ class PagesController < ApplicationController
     @all_transactions = @all_transactions.reverse
     # Display the last 5 which should be the most recent transactionss
   end
+
+  def portfolio
+    @loans = Loan.where(user: current_user, status: "Active")
+  end
 end

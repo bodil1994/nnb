@@ -3,7 +3,7 @@
     <div class="row">
       <h1>Hello <%= current_user.first_name %></h1>
       <%= button_to destroy_user_session_path, class: "transparent", method: :delete do %>
-       <%= image_tag "avatar-icon.png", class: "avatar" %>
+       <%= cl_image_tag current_user.photo.key, class: "avatar" %>
       <%end%>
     </div>
     <p>Already invested in other people’s future today?</p>
