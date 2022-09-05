@@ -3,7 +3,7 @@
   <h1 class="light"> Loan Description</h1>
     <div class="wrapper-avatar">
       <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
-      <p>by <%= @loan.user.first_name %><%= @loan.user.last_name %><br>
+      <p>by <%= @loan.user.first_name %> <%= @loan.user.last_name %><br>
       <%= @loan.user.address %></p>
     </div>
     <div class="notice-box notice-box__purple">
@@ -25,7 +25,7 @@
     </div>
     <div class="list-item">
       <div>Payment Duration</div>
-      <div><%= @loan.payback_time %>days</div>
+      <div><%= @loan.payback_time %> days</div>
     </div>
     <div class="list-item">
       <div>Payment Frequency</div>

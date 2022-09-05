@@ -37,6 +37,11 @@
         border: none;
       }
 
+      .colors {
+        background-color: $light-gray !important;
+        color: $purple-font !important;
+      }
+
       .radio-botton {
         float: left;
         margin: 0 5px 0 0;
