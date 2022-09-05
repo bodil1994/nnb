@@ -23,8 +23,9 @@
   align-items: center;
 }
 
-p {
-  font-size: 14px;
+p.small {
+  font-size: 12px;
+  font-style: italic;
 }
 
 .transaction-status {

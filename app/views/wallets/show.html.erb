@@ -38,19 +38,19 @@
   if transactions.class.name = "Deposit" then color should be green. %>
 
     <%if transactions.status == "Approved" && transactions.class.name == "WithdrawalRequest" %>
-      <p class = "red-transaction" ><%= "#{amount} €"%></p>
+      <h2 class = "red-transaction" ><%= "#{amount} €"%></h2>
     <% elsif transactions.status == "Approved" && transactions.class.name == "Deposit" %>
-      <p class = "green-transaction" ><%= "#{amount} €"%></p>
+      <h2 class = "green-transaction" ><%= "#{amount} €"%></h2>
     <% elsif %>
-      <p class = "pending-transaction" ><%= "#{amount} €"%></p>
+      <h2 class = "pending-transaction" ><%= "#{amount} €"%></h2>
     <% end %>
 
-      <p><%=transactions.created_at.strftime('%a, %d %b %Y %H:%M:%S')%></p>
+      <p class ="small"><%=transactions.created_at.strftime('%a, %d %b %Y %H:%M:%S')%></p>
      </div>
     <div class="row2 display-card-item-right">
       <% bank_account = BankAccount.find(transactions.bank_account_id) %>
       <% bank_account_type = transactions.bank_account_id.present? ? bank_account.bank_type : "" %>
-      <p><%= bank_account_type %></p>
+      <h2><%= bank_account_type %></h2>
       <p class = "transaction-status"><%=transactions.status%></p>
     </div>
   </div>
