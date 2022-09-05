@@ -38,11 +38,11 @@ p {
 }
 
 .red-transaction {
-  color:red;
+  color:$red;
 }
 
 .green-transaction {
-  color: green;
+  color: $green;
 }
 
 .pending-transaction {

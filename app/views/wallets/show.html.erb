@@ -24,29 +24,32 @@
     <p>All transactions</p>
   </div>
   <% @all_transactions.each do |transactions| %>
-    <%# If transaction status is pending and transaction.status is WithdrawalRequest
-    then amount should be negatif and in grey color else should be positif and grey %>
-    <% if transactions.class.name == "WithdrawalRequest" && transactions.status = "pending" %>
-      <p class = "pending-transaction"> <% amount = transactions.amount*-1  %></p>
-    <% end %>
-      <% if transactions.class.name == "Deposit" && transactions.status = "pending" %>
-      <p class = "pending-transaction"> <% amount = transactions.amount*-1  %></p>
-    <% end %>
-      <%# If class = WithdrawalRequest then red else green  %>
-    <% if transactions.class.name == "WithdrawalRequest" && transactions.status != "pending"%>
-      <p  class= "red-transaction"> <% amount = transactions.amount*-1 %></p>
+    <% if transactions.class.name == "WithdrawalRequest"%>
+      <p > <% amount = transactions.amount*-1 %></p>
     <% else %>
-      <p class = "green-transaction"><% amount = transactions.amount %></p>
+      <p ><% amount = transactions.amount %></p>
     <% end %>
 
 
   <div class = "transaction-container col align-element card-loan">
     <div class="row1 display-card-item">
-      <p><%=amount%></p>
+  <%# if transactions.status = "Pending" then color should be grey.
+  if transactions.class.name = "WithdrawalRequest" then color should be red.
+  if transactions.class.name = "Deposit" then color should be green. %>
+
+    <%if transactions.status == "Approved" && transactions.class.name == "WithdrawalRequest" %>
+      <p class = "red-transaction" ><%= "#{amount} €"%></p>
+    <% elsif transactions.status == "Approved" && transactions.class.name == "Deposit" %>
+      <p class = "green-transaction" ><%= "#{amount} €"%></p>
+    <% elsif %>
+      <p class = "pending-transaction" ><%= "#{amount} €"%></p>
+    <% end %>
+
       <p><%=transactions.created_at.strftime('%a, %d %b %Y %H:%M:%S')%></p>
      </div>
     <div class="row2 display-card-item-right">
-      <p><%=transactions.bank_account_id if transactions.bank_account_id.present?%></p>
+      <%# <p><%=transactions.bank_account_id if transactions.bank_account_id.present?%>
+      <%# </p> %>
       <p class = "transaction-status"><%=transactions.status%></p>
     </div>
   </div>
