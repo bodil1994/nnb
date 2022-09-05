@@ -5,7 +5,7 @@
 
 // External libraries
 // @import "bootstrap/scss/bootstrap";
-@import "font-awesome";
+// @import "font-awesome";
 
 // Your CSS partials
 @import "components/index";
@@ -27,8 +27,7 @@
 /* COLORS and FONTS */
 html, body {
   display: block;
-  min-height: 100vh;
-  height:100%;
+  min-height: 100%;
   width: 100%;
   font-family: $font-family;
   color: $black;
@@ -47,9 +46,8 @@ h1.light {
   font-size: 30px;
 }
 
-
 h2 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: $font-weight-bold;
   padding-bottom: 12px;
 }

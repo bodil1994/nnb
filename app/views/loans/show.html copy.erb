@@ -1,0 +1,80 @@
+<div class="container summary-pages loan-show">
+  <%= render "shared/back_navigation", path: loans_path %>
+  <h1 class="light"> Loan Description</h1>
+  <div class="wrapper-avatar">
+    <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+    <p>by <%= @loan.user.first_name %> <%= @loan.user.last_name %><br>
+    <%= @loan.user.address %></p>
+  </div>
+
+  <div class="notice-box notice-box__purple">
+    <% if @loan.payment_frequency = "monthly" %>
+      <% number_of_payments = @loan.payback_time / 30 %>
+    <% elsif @loan.payment_frequency = "weekly" %>
+      <% number_of_payments = @loan.payback_time / 7 %>
+    <% end %>
+    <p>You will receive <%= @loan.instant_loan ? "an instant loan" : "a manually-approved loan" %>
+    of <%= @loan.amount.to_i %> €, with 1 <%= @loan.payment_frequency %>
+    payment of <%= @loan.amount.to_i / number_of_payments %> € each, in total you will pay back
+    <%= @loan.amount.to_i * (1 + (@loan.interest_rate.to_f / 100)) %> €.</p>
+    <%= image_tag "icon-info.svg", class: "icon icon__info" %>
+  </div>
+
+  <div class="list-box">
+    <div class="list-item">
+      <div>Amount</div>
+      <div><%= @loan.amount.to_i %> €</div>
+    </div>
+    <div class="list-item">
+      <div>Payment Duration</div>
+      <div><%= @loan.payback_time %> days</div>
+    </div>
+    <div class="list-item">
+      <div>Payment Frequency</div>
+      <div><%= @loan.payment_frequency %></div>
+    </div>
+    <div class="list-item">
+      <div>Interest Rate</div>
+      <div><%= @loan.interest_rate.to_i %>%</div>
+    </div>
+    <div class="list-item">
+      <div>Category</div>
+      <div><%= @loan.loan_category %></div>
+    </div>
+    <div class="list-item">
+      <div>Approval</div>
+      <div><%= @loan.instant_loan ? "Auto" : "Manual" %></div>
+    </div>
+  </div>
+
+  <%# Loan Requests %>
+  <h2>Loan Requests</h2>
+   <% if current_user == @loan.user && @loan_requests.count.nil? == false %>
+    <% @loan_requests.each do |loan_request| %>
+      <div class="card-request-approval" data-controller="loan-approval" data-loan-approval-update-url= "<%= loan_request_path(loan_request)  %>">
+        <div class="wrapper-user">
+          <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+            <div class="wrapper-user-info">
+              <p>by <%= loan_request.user.first_name %><%= loan_request.user.last_name %><br>
+                <%= @loan.user.address %>
+              </p>
+            </div>
+          <div class="loan-status" >
+            <p data-loan-approval-target="status" ><%= loan_request.status %></p>
+          </div>
+        </div>
+        <p class= "gray-text">"<%= loan_request.description %>"</p>
+        <div class="wrapper-buttons" data-loan-approval-target="buttons">
+          <button class="btn" data-action="click->loan-approval#accept"> Accept</button>
+          <button class="btn" data-action="click->loan-approval#decline" >Decline</button>
+        </div>
+      </div>
+      <% end %>
+    <% elsif current_user == @loan.user && @loan_requests.count.nil? == false %>
+      <p class="gray"><%="No requests"%></p>
+    <% end %>
+
+  <%# Button %>
+ <%#= link_to "APPLY", new_loan_loan_request_path(@loan), class: "btn" %>
+
+</div>
