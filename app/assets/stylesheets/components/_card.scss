@@ -4,41 +4,50 @@
 }
 
 .card-request-approval {
-  border-top: solid 1px $light-gray;
-  border-bottom: solid 1px $light-gray;
-
-  width: 100%;
-  padding: 17px;
-  margin-bottom: 12px;
-  gap: 12px;
-
-
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
 
+  .wrapper-content {
+    border-top: solid 1px $light-gray;
+    border-bottom: solid 1px $light-gray;
 
-  h1 {
-    font-size: 16px;
-    // font-weight: $font-weight-regular;
-    padding-bottom: 10px;
-  }
+    width: 100%;
+    padding: 17px;
+    margin-bottom: 12px;
+    gap: 12px;
 
-  .wrapper-user {
     display: flex;
-    flex-flow: row;
-    gap: 10px;
-    align-items: center;
+    flex-flow: column;
+    flex: 1 1 0px;
 
-    .wrapper-user-info {
-      flex-grow: 1;
+
+    h1 {
+      font-size: 16px;
+      // font-weight: $font-weight-regular;
+      padding-bottom: 10px;
+    }
+
+    .wrapper-user {
+      display: flex;
+      flex-flow: row;
+      gap: 10px;
+      align-items: center;
+
+      .wrapper-user-info {
+        flex-grow: 1;
+      }
     }
   }
   .wrapper-buttons {
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     gap: 15px;
-    .btn {
-      position:unset;
+
+    button {
+      border-radius: 50%;
+      background: $light-gray;
+      color: $black;
+      padding: 15px;
     }
   }
 
