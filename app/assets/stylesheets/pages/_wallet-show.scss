@@ -23,7 +23,7 @@
   align-items: center;
 }
 
-p{
+p {
   font-size: 14px;
 }
 
@@ -35,4 +35,16 @@ p{
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.red-transaction {
+  color:red;
+}
+
+.green-transaction {
+  color: green;
+}
+
+.pending-transaction {
+  color: $dark-gray;
 }
