@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_01_105849) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_05_054140) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_105849) do
     t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
+  create_table "transfers", force: :cascade do |t|
+    t.float "amount"
+    t.string "status"
+    t.string "transfert_type"
+    t.bigint "loan_id", null: false
+    t.bigint "wallet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loan_id"], name: "index_transfers_on_loan_id"
+    t.index ["wallet_id"], name: "index_transfers_on_wallet_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -90,16 +102,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_105849) do
     t.string "user_type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "wallet_transactions", force: :cascade do |t|
-    t.bigint "wallet_id", null: false
-    t.float "amount"
-    t.bigint "withdrawal_request_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["wallet_id"], name: "index_wallet_transactions_on_wallet_id"
-    t.index ["withdrawal_request_id"], name: "index_wallet_transactions_on_withdrawal_request_id"
   end
 
   create_table "wallets", force: :cascade do |t|
@@ -127,8 +129,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_105849) do
   add_foreign_key "loan_requests", "loans"
   add_foreign_key "loan_requests", "users"
   add_foreign_key "loans", "users"
-  add_foreign_key "wallet_transactions", "wallets"
-  add_foreign_key "wallet_transactions", "withdrawal_requests"
+  add_foreign_key "transfers", "loans"
+  add_foreign_key "transfers", "wallets"
   add_foreign_key "wallets", "users"
   add_foreign_key "withdrawal_requests", "bank_accounts"
   add_foreign_key "withdrawal_requests", "wallets"
