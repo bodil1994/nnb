@@ -3,7 +3,11 @@
     <div class="row">
       <h1>Hello <%= current_user.first_name %></h1>
       <%= button_to destroy_user_session_path, class: "transparent", method: :delete do %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+        <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar avatar__large" %>
+        <% else %>
+          <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+        <% end %>
       <%end%>
     </div>
     <p>Already have the funding for your needs?</p>
