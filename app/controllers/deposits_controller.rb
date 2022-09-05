@@ -22,7 +22,6 @@ class DepositsController < ApplicationController
   def update
     @deposit = Deposit.find(params[:id])
     @deposit.status = "Pending"
-    raise
     if @deposit.save
       redirect_to wallet_path(current_user.wallet), status: :see_other
     end
