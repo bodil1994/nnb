@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  add_flash_types :success, :messages
   def after_sign_in_path_for(resource)
     if current_user.user_type == "Borrower"
       path = dashboard_borrower_path

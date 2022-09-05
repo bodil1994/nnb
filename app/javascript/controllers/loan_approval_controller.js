@@ -29,10 +29,18 @@ export default class extends Controller {
       if (response.status === 200) {
         console.log("Active Response 200")
           this.statusTarget.innerText = "Active"
-      } else {
+          const a = '<div class="alert alert__success" data-alert-target="alert"><p>🎉 Congratulations, your loan has been matched. The loan has been deducted from your wallet and transferred to the borrower.</p><button data-action="click->alert#close"><i class="fa-regular fa-x"></i></button></div>';
+          const flash = document.getElementById("flash")
+          flash.insertAdjacentHTML("afterbegin", a)
+
+       } else {
         "x" //* ADD ALERT HERE *//;
       }
     })
+  }
+
+  remove() {
+    rem
   }
 
   decline() {
