@@ -15,13 +15,13 @@
     </div>
 
     <div class="wallet-buttons">
-      <%= button_to "Cash out", "#" , class:"btn" %>
-      <%= button_to "Cash in",  "#" , class: "btn" %>
+      <%= button_to "Cash out", new_withdrawal_request_path , class:"btn" %>
+      <%= button_to "Cash in",  new_deposit_path , class: "btn" %>
     </div>
   </div>
   <div class="title-container align-title">
     <h2>Your transactions</h2>
-    <p>All transactions</p>
+    <p> <% link_to  image_tag('arrow-right.svg'), "" %> </p>
   </div>
   <% @all_transactions.each do |transactions| %>
     <% if transactions.class.name == "WithdrawalRequest"%>
@@ -36,7 +36,6 @@
   <%# if transactions.status = "Pending" then color should be grey.
   if transactions.class.name = "WithdrawalRequest" then color should be red.
   if transactions.class.name = "Deposit" then color should be green. %>
-
     <%if transactions.status == "Approved" && transactions.class.name == "WithdrawalRequest" %>
       <h2 class = "red-transaction" ><%= "#{amount} €"%></h2>
     <% elsif transactions.status == "Approved" && transactions.class.name == "Deposit" %>
