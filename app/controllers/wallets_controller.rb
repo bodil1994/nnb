@@ -28,5 +28,64 @@ class WalletsController < ApplicationController
     @all_transactions = @all_transactions.reverse
     # Display the last 5 which should be the most recent transactionss
     @all_transactions = @all_transactions.first(5)
+    raise
   end
+
+  def update
+    @user = current_user
+    @wallet = @user.wallet
+    @transfer = Transfer.all
+    @withrawal = WithdrawalRequest.all
+    @deposit = Deposit.all
+
+    # Create an empyt array called total_amount
+    @total_amount = []
+
+    raise
+
+    # Deposit
+        # In the deposit table, grab all the deposit related to the wallet_id
+        # Sum all deposit and store the sum in a variable
+        total_deposit = @deposit.where(wallet_id: @user, status: "Approved")
+        total_deposit.each do |deposit|
+            sum_deposit = 0
+            sum_deposit += deposit.amount
+        end
+
+        # In the transfer table, grab all the deposit related to the wallet_id
+        # Sum all deposit and store the sum in a variable
+        total_deposit_transfer = @transfer.where(wallet_id: @user,transfert_type: "Deposit", status:"Approved" )
+        total_deposit_transfer.each do |transfer|
+            sum_deposit_transfer = 0
+            sum_deposit_transfer += transfer.amount
+        end
+
+        # sum the deposit from the deposit table and the transfer table
+      total_all_deposit = sum_deposit + sum_deposit_transfer
+
+    # Withdrawal
+        # In the withdrawal table, grab all the withdrawal related to the wallet_id
+        # Sum all withdrawal and store the sum in a variable
+        total_withdrawal = @withrawal.where(wallet_id: @user, status: "Approved")
+        total_withdrawal.each do |withdrawal|
+            sum_withdrawal = 0
+            sum_withdrawal += withdrawal.amount
+        end
+
+        # In the transfer table, grab all the withdrawal related to the wallet_id
+        # Sum all withdrawal and store the sum in a variable
+        total_withdrawal_transfer = @deposit.where(wallet_id: @user,transfert_type: "Withdrawal", status:"Approved" )
+        total_withdrawal_transfer.each do |transfer|
+            sum_withdrawal_transfer = 0
+            sum_withdrawal_transfer += transfer.amount
+        end
+
+        # sum the withdrawal from the deposit table and the transfer table
+
+        total_all_withdrawal = sum_withdrawal + sum_withdrawal_transfer
+
+    # Calculate the amount
+
+  end
+
 end
