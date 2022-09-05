@@ -53,15 +53,6 @@ class LoanRequestsController < ApplicationController
   end
 
   def update
-    # @loan_request = LoanRequest.find(params[:id])
-    # respond_to do |format|
-    #   if @loan_request.update(item_params)
-    #     format.html { redirect_to @loan_request, notice: "Item was successfully updated." }
-    #     format.json { render :show, status: :ok, location: @loan_request }
-    #   else
-    #     format.html { render :edit, status: :unprocessable_entity }
-    #     format.json { render json: @loan_request.errors, status: :unprocessable_entity }
-    #   end
     @loan_request = LoanRequest.find(params[:id])
     @loan_request.status = params[:status]
     @loan = @loan_request.loan
@@ -69,12 +60,10 @@ class LoanRequestsController < ApplicationController
     if @loan_request.save
       if params[:status] == "Active"
         @loan.status = "Active"
-        flash[:notice] = "🎉 Congratulations, your loan has been matched to #{@loan_request.user.first_name} #{@loan_request.user.last_name}.
-        The loan has been deducted from your wallet and transferred to the borrower."
       end
       respond_to do |format|
         format.json { render :show, status: :ok, location: @loan_request }
-        format.html { redirect_to @loan_request, notice: 'Post was successfully updated.' }
+        format.html { redirect_to request.referer }
       end
     end
   end

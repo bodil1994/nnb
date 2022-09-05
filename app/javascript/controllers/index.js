@@ -15,3 +15,6 @@ application.register("search-loans", SearchLoansController)
 
 import LoanApprovalController from "./loan_approval_controller"
 application.register("loan-approval", LoanApprovalController)
+
+import AlertController from "./alert_controller"
+application.register("alert", AlertController)
