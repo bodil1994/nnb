@@ -3,7 +3,7 @@
     <div class="row">
       <h1>Hello <%= current_user.first_name %></h1>
       <%= button_to destroy_user_session_path, class: "transparent", method: :delete do %>
-       <%= image_tag "avatar-icon.png", class: "avatar" %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar" %>
       <%end%>
     </div>
     <p>Already have the funding for your needs?</p>
@@ -18,8 +18,8 @@
     </div>
 
     <div class="wallet-buttons">
-      <%= button_to "Cash out", "#" , class:"btn" %>
-      <%= button_to "Cash in",  "#" , class: "btn" %>
+      <%= button_to "Cash out", "new_withdrawal_request_path" , class:"btn" %>
+      <%= button_to "Cash in",  "new_deposit_path" , class: "btn" %>
     </div>
 
   </div>

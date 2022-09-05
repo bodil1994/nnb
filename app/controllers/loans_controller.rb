@@ -2,7 +2,7 @@ class LoansController < ApplicationController
 
   def show
     @loan = Loan.find(params[:id])
-    @loan_request = @loan.loan_requests.where(status: "Active").first
+    # @loan_request = @loan.loan_requests.where(status: "Active").first
     @loan_requests = @loan.loan_requests
   end
 

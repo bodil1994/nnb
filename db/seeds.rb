@@ -3,8 +3,8 @@ LoanRequest.destroy_all
 LoanPayment.destroy_all
 Loan.destroy_all
 WithdrawalRequest.destroy_all
-BankAccount.destroy_all
 Deposit.destroy_all
+BankAccount.destroy_all
 Wallet.destroy_all
 User.destroy_all
 
@@ -66,6 +66,29 @@ payment_frequency = "monthly"
 user = User.find_by(first_name: "Sam")
 education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
+
+amount = 600
+interest_rate = 5
+loan_category = "Business"
+instant_loan = false
+status = "Pending"
+payback_time = 180
+payment_frequency = "monthly"
+user = User.find_by(first_name: "Sam")
+education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
+puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
+
+amount = 50
+interest_rate = 10
+loan_category = "Health"
+instant_loan = false
+status = "Closed"
+payback_time = 30
+payment_frequency = "monthly"
+user = User.find_by(first_name: "Sam")
+education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
+puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
+
 
 amount = 200
 title = "Paying school fees for my children"
@@ -133,7 +156,7 @@ all_users.each do |user|
 
     all_account.each do |account|
      3.times do
-      deposit_status = ["Unapproved", "Pending", "Approved", "Declined"]
+      deposit_status = ["Submitted", "Pending", "Approved", "Declined"]
       reference = ["AA111", "BB2222", "CC3333", "DD4444", "EE5555", "FF666", "GG7777", "HH8888"]
       amount_transaction = [100, 200, 300, 500, 800, 1000]
       amount = amount_transaction.sample
@@ -150,7 +173,7 @@ all_users.each do |user|
 
   all_account.each do |account|
     3.times do
-     withdrawal_status = ["Pending", "Approved", "Declined"]
+     withdrawal_status = ["Submitted", "Pending", "Approved", "Declined"]
      reference = ["ZZ111", "WW2222", "XX3333", "YY4444", "MM5555", "NN666", "OO7777", "PP8888"]
      amount_withdrawal = [50, 75, 100, 150, 250, 300]
 

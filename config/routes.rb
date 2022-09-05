@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # devise_for :users
   devise_for :users,
-           :controllers => { :registrations => 'registrations' },
+           :controllers => { :registrations => 'users/registrations' },
            :path => 'user',
            :path_names => { :sign_in => 'login',
                             :sign_up => 'sign-up',
