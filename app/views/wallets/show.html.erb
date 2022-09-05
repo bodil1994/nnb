@@ -52,7 +52,7 @@
      </div>
     <div class="row2 display-card-item-right">
       <% bank_account = transactions.class != Transfer ? BankAccount.find(transactions.bank_account_id) : "No Name Bank"  %>
-      <% bank_account_type = transactions.class != Transfer ? bank_account.bank_type : "" %>
+      <% bank_account_type = transactions.class != Transfer ? bank_account.bank_type : "No Name Bank" %>
       <h2><%= bank_account_type %></h2>
       <p class = "transaction-status"><%=transactions.status%></p>
     </div>
