@@ -2,7 +2,11 @@
   <%= render "shared/back_navigation", path: loans_path %>
   <h1 class="light"> Loan Description</h1>
     <div class="wrapper-avatar">
+    <% if @loan.user.photo.attached? %>
+      <%= cl_image_tag @loan.user.photo.key, class: "avatar avatar__large" %>
+    <% else %>
       <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+    <% end %>
       <p>by <%= @loan.user.first_name %> <%= @loan.user.last_name %><br>
       <%= @loan.user.address %></p>
     </div>
