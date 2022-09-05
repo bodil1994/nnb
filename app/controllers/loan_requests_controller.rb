@@ -55,7 +55,7 @@ class LoanRequestsController < ApplicationController
   private
 
   def set_loan
-  @loan = Loan.find(params[:loan_id])
+    @loan = Loan.find(params[:loan_id])
   end
 
   def loan_request_params

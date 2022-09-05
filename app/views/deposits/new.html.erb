@@ -6,8 +6,8 @@
     <p>Current balance: </p>
     <p class="wallet-amount">&nbsp;&nbsp;<%= current_user.wallet.amount.round %> €</p>
   </div>
-  <h2>How much would you like to withdraw?</h2>
-  <%= simple_form_for @withdrawal_request do |f| %>
+  <h2>How much would you like to deposit?</h2>
+  <%= simple_form_for @deposit do |f| %>
   <%= f.input :amount %>
   <%= f.collection_radio_buttons :bank_account_id, @bank_accounts, :id, :bank_name,
             collection_wrapper_tag: 'div',

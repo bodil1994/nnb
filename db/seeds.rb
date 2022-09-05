@@ -138,7 +138,8 @@ all_users.each do |user|
       wallet_id = account.user.wallet.id
       status = deposit_status.sample
       deposit_reference = reference.sample
-      depo = Deposit.create!(amount: amount, wallet_id: wallet_id, status: status, deposit_reference: deposit_reference)
+      bank_account_id = account.id
+      depo = Deposit.create!(amount: amount, wallet_id: wallet_id, status: status, deposit_reference: deposit_reference, bank_account_id: bank_account_id)
       puts "deposit added for wallet : #{wallet_id}, amount: #{amount}"
     end
   end
@@ -153,9 +154,9 @@ all_users.each do |user|
 
      amount = amount_withdrawal.sample
      wallet_id = account.user.wallet.id
-     bank_account = account.id
+     bank_account_id = account.id
      status = withdrawal_status.sample
-     withdraw = WithdrawalRequest.create!(amount: amount, wallet_id: wallet_id, status: status, bank_account_id: bank_account)
+     withdraw = WithdrawalRequest.create!(amount: amount, wallet_id: wallet_id, status: status, bank_account_id: bank_account_id)
      puts "withdrawal added for wallet : #{wallet_id}, amount: #{amount}"
    end
  end
