@@ -4,25 +4,32 @@
     <h1 class = "light">Let's transfer money!</h1>
   </div>
   <div class="wrapper">
-    <p>Current balance: </p>
+    <p><strong>Current balance:</strong></p>
     <p class="wallet-amount">&nbsp;&nbsp;<%= current_user.wallet.amount.round %> €</p>
   </div>
   <h2>How much would you like to withdraw?</h2>
   <%= simple_form_for @withdrawal_request do |f| %>
-  <%= f.input :amount %>
-  <%= f.collection_radio_buttons :bank_account_id, @bank_accounts, :id, :bank_name,
-            collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'category-wrapper',
-            item_wrapper_class: 'category-item',
-            input_html: {class: 'category-selector'} %>
+  <div class="text-input-wrapper">
+    <%= f.text_field :amount, class: "amount-input", placeholder: "enter the amount" %>
+  </div>
+  <% @bank_accounts.each do |bank_account| %>
+    <div class="category-item">
+      <input class="form-check-input radio_buttons required category-selector" type="radio" value="<%= bank_account.id %>" name="withdrawal_request[bank_account_id]" id=<%= bank_account.id %> >
+      <label class="form-check-label collection_radio_buttons wrapper" for="<%= bank_account.id %>">
+        <% if bank_account.bank_type == "Bank" %>
+          <%= image_tag("icon-bank.svg", :alt => "rss feed") %>
+        <% else %>
+          <%= image_tag("icon-orange-money.svg", :alt => "rss feed") %>
+        <% end %>
+        <div class="bank_details">
+          <p class="light"><strong><%= bank_account.bank_name %></strong></p>
+          <p class="gray-text"><%= bank_account.account_number %></p>
+        </div>
+      </label>
+    </div>
+  <% end %>
 
-  <%# <%= f.input :bank_account_id,
-            as: :radio_buttons,
-            collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'category-wrapper',
-            item_wrapper_class: 'category-item',
-            input_html: {class: 'category-selector'},
-            collection: @banks %>
+
   <div class="button">
     <%= f.button :submit, 'Next'%>
   </div>
