@@ -3,8 +3,8 @@ LoanRequest.destroy_all
 LoanPayment.destroy_all
 Loan.destroy_all
 WithdrawalRequest.destroy_all
-BankAccount.destroy_all
 Deposit.destroy_all
+BankAccount.destroy_all
 Wallet.destroy_all
 User.destroy_all
 
@@ -156,7 +156,7 @@ all_users.each do |user|
 
     all_account.each do |account|
      3.times do
-      deposit_status = ["Unapproved", "Pending", "Approved", "Declined"]
+      deposit_status = ["Submitted", "Pending", "Approved", "Declined"]
       reference = ["AA111", "BB2222", "CC3333", "DD4444", "EE5555", "FF666", "GG7777", "HH8888"]
       amount_transaction = [100, 200, 300, 500, 800, 1000]
       amount = amount_transaction.sample
@@ -173,7 +173,7 @@ all_users.each do |user|
 
   all_account.each do |account|
     3.times do
-     withdrawal_status = ["Pending", "Approved", "Declined"]
+     withdrawal_status = ["Submitted", "Pending", "Approved", "Declined"]
      reference = ["ZZ111", "WW2222", "XX3333", "YY4444", "MM5555", "NN666", "OO7777", "PP8888"]
      amount_withdrawal = [50, 75, 100, 150, 250, 300]
 

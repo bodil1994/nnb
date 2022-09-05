@@ -3,11 +3,57 @@
     <!-- Page Container -->
 <div class="container summary-pages">
     <!-- Adding the left arrow -->
-<%= render "shared/back_navigation", path: ""  %>
-
+  <%= render "shared/back_navigation", path: "wallets/#{@user.id}"  %>
     <!-- Ending the left arrow -->
 
+    <!-- Add the user image -->
 
+  <div class="wrapper-head">
+    <div class="row user-card-display">
+      <h1>Hello <%= current_user.first_name %></h1>
+      <%= image_tag "avatar-icon.png", class: "avatar" %>
+    </div>
+  </div>
+  <!-- End the user image -->
 
+   <!-- Title - All Transaction -->
+  <div class="title-container align-title">
+    <h2>Your transactions</h2>
+  </div>
+     <!-- Titre - End Transaction -->
+
+      <% @all_transactions.each do |transactions| %>
+    <% if transactions.class.name == "WithdrawalRequest"%>
+      <p > <% amount = transactions.amount*-1 %></p>
+    <% else %>
+      <p ><% amount = transactions.amount %></p>
+    <% end %>
+
+   <!-- Display all the transactions -->
+  <div class = "transaction-container col align-element card-loan">
+    <div class="row1 display-card-item">
+  <%# if transactions.status = "Pending" then color should be grey.
+  if transactions.class.name = "WithdrawalRequest" then color should be red.
+  if transactions.class.name = "Deposit" then color should be green. %>
+    <%if transactions.status == "Approved" && transactions.class.name == "WithdrawalRequest" %>
+      <h2 class = "red-transaction" ><%= "#{amount} €"%></h2>
+    <% elsif transactions.status == "Approved" && transactions.class.name == "Deposit" %>
+      <h2 class = "green-transaction" ><%= "#{amount} €"%></h2>
+    <% elsif %>
+      <h2 class = "pending-transaction" ><%= "#{amount} €"%></h2>
+    <% end %>
+
+      <p class ="small"><%=transactions.created_at.strftime('%a, %d %b %Y %H:%M:%S')%></p>
+     </div>
+    <div class="row2 display-card-item-right">
+      <% bank_account = transactions.class != Transfer ? BankAccount.find(transactions.bank_account_id) : "No Name Bank"  %>
+      <% bank_account_type = transactions.class != Transfer ? bank_account.bank_type : "No Name Bank"  %>
+      <h2><%= bank_account_type %></h2>
+      <p class = "transaction-status"><%=transactions.status%></p>
+    </div>
+  </div>
+  <% end %>
+
+</div>
       <!-- End Page Container -->
   </div>
