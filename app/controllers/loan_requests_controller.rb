@@ -1,5 +1,5 @@
 class LoanRequestsController < ApplicationController
-  before_action :set_loan, except: :show
+  before_action :set_loan, except: [:show, :update]
   def new
     # To create a new loan request
     # I need to find the loan id which comes from the url /loans/:loan_id/loan_requests/new(.:format
@@ -52,14 +52,41 @@ class LoanRequestsController < ApplicationController
     @loan = Loan.find(@loan_request.loan_id)
   end
 
+  def update
+    # @loan_request = LoanRequest.find(params[:id])
+    # respond_to do |format|
+    #   if @loan_request.update(item_params)
+    #     format.html { redirect_to @loan_request, notice: "Item was successfully updated." }
+    #     format.json { render :show, status: :ok, location: @loan_request }
+    #   else
+    #     format.html { render :edit, status: :unprocessable_entity }
+    #     format.json { render json: @loan_request.errors, status: :unprocessable_entity }
+    #   end
+    @loan_request = LoanRequest.find(params[:id])
+    @loan_request.status = params[:status]
+    @loan = @loan_request.loan
+
+    if @loan_request.save
+      if params[:status] == "Active"
+        @loan.status = "Active"
+        flash[:notice] = "🎉 Congratulations, your loan has been matched to #{@loan_request.user.first_name} #{@loan_request.user.last_name}.
+        The loan has been deducted from your wallet and transferred to the borrower."
+      end
+      respond_to do |format|
+        format.json { render :show, status: :ok, location: @loan_request }
+        format.html { redirect_to @loan_request, notice: 'Post was successfully updated.' }
+      end
+    end
+  end
+
   private
 
   def set_loan
-  @loan = Loan.find(params[:loan_id])
+    @loan = Loan.find(params[:loan_id])
   end
 
   def loan_request_params
-    params.require(:loan_request).permit(:description)
+    params.require(:loan_request).permit(:description, :status)
   end
 
 end

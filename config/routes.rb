@@ -17,9 +17,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :loans, only: [:new, :create, :index, :show] do
-    resources :loan_requests, only: [:new, :create]
+    resources :loan_requests, only: [:new, :create, :update]
   end
-  resources :loan_requests, only: [:show]
+
+  resources :loan_requests, only: [:show, :update]
   resources :wallets, only: [:show]
   resources :withdrawal_requests, only: [:new, :create, :show]
   resources :deposits, only: [:new, :create, :show]
