@@ -8,6 +8,7 @@ class LoanRequestsController < ApplicationController
   end
 
   def create
+    @transfer = Transfer.new
     @loan_request = LoanRequest.new(loan_request_params)
     @loan_request.loan_id = @loan.id
     @loan_request.amount = @loan.amount
@@ -44,7 +45,7 @@ class LoanRequestsController < ApplicationController
     else
       render :new
     end
-
+    raise
   end
 
   def show
