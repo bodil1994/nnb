@@ -44,5 +44,35 @@
       <div><%= @loan.instant_loan ? "Auto" : "Manual" %></div>
     </div>
   </div>
-  <%= link_to "APPLY", new_loan_loan_request_path(@loan), class: "btn" %>
+
+  <%# Loan Requests %>
+  <h2>Loan Requests</h2>
+   <% if current_user == @loan.user && @loan_requests.count.nil? == false %>
+    <% @loan_requests.each do |loan_request| %>
+      <div class="card-request-approval" data-controller="loan-approval" data-loan-approval-update-url= "<%= loan_request_path(loan_request)  %>">
+        <div class="wrapper-user">
+          <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+            <div class="wrapper-user-info">
+              <p>by <%= loan_request.user.first_name %><%= loan_request.user.last_name %><br>
+                <%= @loan.user.address %>
+              </p>
+            </div>
+          <div class="loan-status" >
+            <p data-loan-approval-target="status" ><%= loan_request.status %></p>
+          </div>
+        </div>
+        <p class= "gray-text">"<%= loan_request.description %>"</p>
+        <div class="wrapper-buttons" data-loan-approval-target="buttons">
+          <button class="btn" data-action="click->loan-approval#accept"> Accept</button>
+          <button class="btn" data-action="click->loan-approval#decline" >Decline</button>
+        </div>
+      </div>
+      <% end %>
+    <% elsif current_user == @loan.user && @loan_requests.count.nil? == false %>
+      <p class="gray"><%="No requests"%></p>
+    <% end %>
+
+  <%# Button %>
+ <%#= link_to "APPLY", new_loan_loan_request_path(@loan), class: "btn" %>
+
 </div>

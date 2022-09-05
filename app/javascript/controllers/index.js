@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import SearchLoansController from "./search_loans_controller"
 application.register("search-loans", SearchLoansController)
+
+import LoanApprovalController from "./loan_approval_controller"
+application.register("loan-approval", LoanApprovalController)
