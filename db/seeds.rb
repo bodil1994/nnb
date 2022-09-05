@@ -138,11 +138,12 @@ wallet_sarah = Wallet.create!(user: user)
 puts "new wallet added for User #{wallet_sarah.user.email}"
 
 all_users = User.all
+bank_types = ["Bank", "Mobile money"]
 all_users.each do |user|
   3.times do
     bank_name = Faker::Bank.name
     account_number = Faker::Bank.account_number
-    bank_type = "Bank"
+    bank_type = bank_types.sample
     swift_number = Faker::Bank.swift_bic
     ba = BankAccount.create!(bank_name: bank_name, account_number: account_number, bank_type: bank_type, swift_number: swift_number, user: user)
     puts "bank account added for #{user.first_name} #{user.last_name}"
