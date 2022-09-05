@@ -6,4 +6,9 @@ class PagesController < ApplicationController
   def borrower_dashboard
     @amount = current_user.wallet.amount.nil? ? 0 : current_user.wallet.amount
   end
+
+  def transactions
+
+
+  end
 end

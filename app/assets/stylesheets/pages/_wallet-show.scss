@@ -1,0 +1,51 @@
+.align-title {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.align-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.display-card-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+.display-card-item-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p.small {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.transaction-status {
+  height: 33px;
+  border-radius: 25px;
+  width: 97px;
+  background: #e5dcff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.red-transaction {
+  color:$red;
+}
+
+.green-transaction {
+  color: $green;
+}
+
+.pending-transaction {
+  color: $dark-gray;
+}
