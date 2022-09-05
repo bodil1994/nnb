@@ -3,6 +3,6 @@
 <% if loan.user.photo.attached? %>
   <%= cl_image_tag loan.user.photo.key, class: "avatar avatar__large" %>
 <% else %>
-  <%= image_to "avatar-icon.png", class: "avatar, avatar__large" %>
+  <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
 <% end %>
 </div>
