@@ -1,3 +1,4 @@
+require_relative '../services/update_wallet_service'
 class LoanRequestsController < ApplicationController
   before_action :set_loan, except: [:show, :update]
   def new
@@ -25,15 +26,32 @@ class LoanRequestsController < ApplicationController
     end
     # if loan.approval = auto
     if @loan.instant_loan?
-    # Increase the borrower wallet
-      @loan.user.wallet.amount -= @loan.amount
-      @loan.user.wallet.save
-    # decrease the lender wallet
-      current_user.wallet.amount += @loan.amount
-      current_user.wallet.save
+    # Add the borrower transaction as a transfer
+      borrower_amount = @loan.amount
+      borrower_wallet = current_user.wallet
+      loan_id = @loan.id
+
+      transfer_status = "Approved"
+      transfer_type = "Deposit"
+      @borrower_transfer = Transfer.new(amount: borrower_amount, status: transfer_status, transfer_type: transfer_type, wallet: borrower_wallet, loan_id: loan_id)
+
+     # Add the lender transaction as a transfer
+      lender_amount = @loan.amount
+      lender_wallet = @loan.user.wallet
+      loan_id = @loan.id
+      transfer_status = "Approved"
+      transfer_type = "Withdrawal"
+      @lender_transfer = Transfer.new(amount: lender_amount, status: transfer_status, transfer_type: transfer_type, wallet: lender_wallet, loan_id: loan_id)
+
     # and change the loan_request.status to Approved
+     if @lender_transfer.save! && @borrower_transfer.save!
       @loan_request.status = "Active"
+
       @loan.status = "Active"
+
+      UpdateWalletService.new(borrower_transaction: @borrower_transfer, lender_transaction: @lender_transfer, borrower_wallet: borrower_wallet, lender_wallet: lender_wallet, transaction_type: "Transfer").call
+     end
+
     # Else set loan_request.status to On process
     else
      @loan_request.status = "Pending"
@@ -45,7 +63,6 @@ class LoanRequestsController < ApplicationController
     else
       render :new
     end
-
   end
 
   def show
@@ -63,7 +80,7 @@ class LoanRequestsController < ApplicationController
     end
 
     @loan = @loan_request.loan
-
+    raise
     if @loan_request.save
       if params[:status] == "Active"
         @loan.status = "Active"

@@ -4,7 +4,7 @@
   <p class="padding-bottom">Not sure what you're looking for? See recommendations!</p>
   <%= simple_form_for :loan, url:loans_path, method: "get",
   data: {search_loans_target: "form"} do |f| %>
-    <p><label class = "filter-title">How much?</label></p>
+    <p><label class = "filter-title">How much? (minimum amount)</label></p>
     <div class="slider_wrapper">
       <input type="range"
               min="0"
@@ -17,7 +17,7 @@
               name="amount">
       <div data-target="search-loans.amountShow">0 €</div>
     </div>
-    <p><label class = "filter-title">How long?</label></p>
+    <p><label class = "filter-title">How long? (maximum length)</label></p>
     <div class="slider_wrapper">
       <input type="range"
               min="0"

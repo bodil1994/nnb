@@ -1,14 +1,16 @@
 <div class="container dashboard">
    <div class="wrapper-head">
-    <div class="row">
+    <div class="row" data-controller="avatar-dropdown">
       <h1>Hello <%= current_user.first_name %></h1>
-      <%= button_to destroy_user_session_path, class: "transparent", method: :delete do %>
        <% if current_user.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar avatar__large" %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar avatar__large", data: { action: "click->avatar-dropdown#showMenu" } %>
       <% else %>
-        <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+        <%= image_tag "avatar-icon.png", class: "avatar avatar__large" %>
       <% end %>
-      <%end%>
+      <div class="user_popup d-none"
+        data-target="avatar-dropdown.popup-menu">
+        hello
+      </div>
     </div>
     <p>Already invested in other people’s future today?</p>
   </div>
@@ -22,8 +24,8 @@
     </div>
 
     <div class="wallet-buttons">
-      <%= button_to "Cash out", "new_withdrawal_request_path" , class:"btn" %>
-      <%= button_to "Cash in",  "new_deposit_path" , class: "btn" %>
+      <%= link_to "Withdraw", new_withdrawal_request_path, class:"btn" %>
+      <%= link_to "Deposit", new_deposit_path, class:"btn"  %>
     </div>
   </div>
 
@@ -39,3 +41,4 @@
     <%= render "shared/cards_loan_lender" %>
   </div>
 </div>
+<%= console %>

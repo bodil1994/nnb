@@ -7,6 +7,9 @@ import { application } from "./application"
 import AlertController from "./alert_controller"
 application.register("alert", AlertController)
 
+import AvatarDropdownController from "./avatar_dropdown_controller"
+application.register("avatar-dropdown", AvatarDropdownController)
+
 import ChartsController from "./charts_controller"
 application.register("charts", ChartsController)
 
