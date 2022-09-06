@@ -7,16 +7,15 @@ class LoansController < ApplicationController
   end
 
   def index
+    @loans = Loan.where(status: "Listed")
     if params['length'].present? && params['amount'].present?
       length_in_days = params[:length].to_i * 30
-      @loans = Loan.where("amount >= #{params[:amount].to_f}").where("payback_time <= #{length_in_days}")
+      @loans = @loans.where("amount >= #{params[:amount].to_f}").where("payback_time <= #{length_in_days}")
     elsif params['amount'].present?
-      @loans = Loan.where("amount >= #{params[:amount].to_f}")
+      @loans = @loans.where("amount >= #{params[:amount].to_f}")
     elsif params['length'].present?
       length_in_days = params[:length].to_i * 30
-      @loans = Loan.where("payback_time <= #{length_in_days}")
-    else
-      @loans = Loan.all
+      @loans = @loans.where("payback_time <= #{length_in_days}")
     end
 
     if params['loan'].present?

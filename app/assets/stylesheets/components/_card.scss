@@ -6,6 +6,8 @@
 .card-request-approval {
   display: flex;
   flex-flow: row;
+  margin-bottom: 12px;
+  gap: 10px;
 
   .wrapper-content {
     border-top: solid 1px $light-gray;
@@ -13,7 +15,6 @@
 
     width: 100%;
     padding: 17px;
-    margin-bottom: 12px;
     gap: 12px;
 
     display: flex;
@@ -25,6 +26,14 @@
       font-size: 16px;
       // font-weight: $font-weight-regular;
       padding-bottom: 10px;
+    }
+
+    .loan-status {
+      text-align: center;
+      height: auto;
+      width: 120px;
+      padding: 5px;
+      font-weight: $font-weight-regular;
     }
 
     .wrapper-user {
@@ -42,12 +51,14 @@
     display: flex;
     flex-flow: column;
     gap: 15px;
+    justify-content: center;
 
     button {
       border-radius: 50%;
       background: $light-gray;
       color: $black;
       padding: 15px;
+      border: none;
     }
   }
 
@@ -100,7 +111,7 @@
   flex-flow: row;
   margin-bottom: 12px;
   border: solid 1px $light-gray;
-  gap: 12px;
+  gap: 17px;
 
   h1 {
     font-size: 16px;

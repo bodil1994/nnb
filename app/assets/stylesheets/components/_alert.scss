@@ -1,20 +1,41 @@
 #flash {
-  z-index: 1000;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+
 }
+
+#alert {
+  z-index: 150;
+  height: 100vh;
+  width: 100vh;
+  background: rgba(0,0,0,0.1)
+}
+
 .alert {
-  position: sticky;
-  top: 20px;
-  margin: 20px;
-  padding: 20px;
-  padding-right: 35px;
-  border-radius: 8px;
-  z-index: 1000;
+  position: fixed;
+  z-index: 200;
+  bottom: 0;
+
+  transform: translateY(calc(100%));
+
+  padding: 60px;
+  padding-block-start: 100px;
+  line-height: 1.8;
+  border-radius:20px 20px 0 0;
+  height: 50vh;
+
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
 
 
   button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     height: 20px;
     width: 20px;
     border: none;
@@ -25,18 +46,26 @@
   }
 
   &__success {
-  background: $alert-success;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(7px);
   }
 }
 
-// .alert-dismissable,
-// .alert-dismissible {
-//   padding-right: 35px;
-// }
-// .alert-dismissable .close,
-// .alert-dismissible .close {
-//   position: relative;
-//   top: -2px;
-//   right: -21px;
-//   color: inherit;
-// }
+@keyframes slideUp {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+}
+
+.alert {
+  animation: slideUp 1s ease forwards;
+}
+
+/* added to show how to hide with a click */
+@keyframes slideDown {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+.alert.hideMe {
+  animation: slideDown 1s ease forwards;
+}
