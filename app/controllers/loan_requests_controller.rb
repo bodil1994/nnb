@@ -46,8 +46,12 @@ class LoanRequestsController < ApplicationController
     # and change the loan_request.status to Approved
      if @lender_transfer.save! && @borrower_transfer.save!
       @loan_request.status = "Active"
+
+      @loan.status = "Active"
+
       UpdateWalletService.new(borrower_transaction: @borrower_transfer, lender_transaction: @lender_transfer, borrower_wallet: borrower_wallet, lender_wallet: lender_wallet, transaction_type: "Transfer").call
      end
+
     # Else set loan_request.status to On process
     else
      @loan_request.status = "Pending"
@@ -69,6 +73,12 @@ class LoanRequestsController < ApplicationController
   def update
     @loan_request = LoanRequest.find(params[:id])
     @loan_request.status = params[:status]
+    if params[:status] == "Active"
+      @loan_request.accepted_at = DateTime.now
+    elsif params[:status] == "Declined"
+      @loan_request.declined_at = DateTime.now
+    end
+
     @loan = @loan_request.loan
     raise
     if @loan_request.save
