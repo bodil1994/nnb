@@ -1,0 +1,36 @@
+<div class="container summary-pages">
+  <%= render "shared/back_navigation",path: loan_path(@chatroom.loan_id) %>
+  <div class="chat-header-wrapper header">
+    <div class="user-name margin-left-20px">
+      <h2> <%= "#{current_user.last_name} #{current_user.first_name}" %></h2>
+       <p class = "light">#<%= "#{@chatroom_amount} € loan for #{@chatroom_category}" %></p>
+    </div>
+      <%= button_to destroy_user_session_path, class: "transparent", method: :delete do %>
+        <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar avatar__large" %>
+        <% else %>
+          <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+        <% end %>
+      <%end%>
+    </div>
+  </div>
+  <div class="messages">
+    <% @chatroom.messages.each do |message| %>
+      <div id="message-<%= message.id %>">
+        <small>
+          <strong><%= "#{message.user.last_name} #{message.user.first_name}" %></strong>
+          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+        </small>
+        <p><%= message.content %></p>
+      </div>
+    <% end %>
+  </div>
+  <%= simple_form_for [@chatroom, @message], html: {class: "d-flex"} do |f|%>
+  <%= f.input :content,
+    label: false,
+    placeholder: "Message",
+    wrapper_html: {class: "flex-grow-1"}%>
+  <%= f.submit "Send", class: "btn" %>
+<% end %>
+</div>
+<% console %>
