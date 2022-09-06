@@ -3,7 +3,7 @@
     <div class="header margin-t-b">
       <h1 class = "light">Your personal statistics</h1>
     </div>
-    <div data-controller="charts" data-charts-health-value="<%= @health_loans %>" data-charts-education-value="<%= @education_loans %>" data-charts-business-value="<%= @business_loans %>" data-charts-insurance-value="<%= @insurance_loans.to_json %>" data-charts-already-value="<%= @already %>" data-charts-still-value="<%= @still %>" data-charts-profit-value="<%= @profit %>" >
+    <div data-controller="charts" data-charts-health-value="<%= @health_loans %>" data-charts-education-value="<%= @education_loans %>" data-charts-business-value="<%= @business_loans %>" data-charts-insurance-value="<%= @insurance_loans %>" data-charts-already-value="<%= @already %>" data-charts-still-value="<%= @still %>" data-charts-profit-value="<%= @payment_profit.to_json %>" >
       <div class="margin-t-b">
         <p>How much do you invest in each category?</p>
         <canvas id="categoryChart" data-charts-target="categoryChart"></canvas>

@@ -8,7 +8,7 @@
 <% else %>
 
  <div data-controller="loan-approval" >
-   <% loan.loan_requests.order(created_at: :desc).each do |loan_request| %>
+   <% loan.loan_requests.order(:status, created_at: :desc).each do |loan_request| %>
     <div class="card-request-approval" url= "<%= loan_request_path(loan_request)  %>">
       <div class="wrapper-content">
         <div class="wrapper-user">
@@ -18,17 +18,35 @@
                 <%= loan.user.address %>
               </p>
             </div>
-          <div class="loan-status d-none" data-loan-approval-target="statusbutton">
-          </div>
+
+            <% if ["Active", "Declined", "Closed", "Cancelled"].include? loan_request.status %>
+              <div class="loan-status" id="db-status" data-loan-approval-target="statusbutton">
+              <p><%= loan_request.status%>
+
+              <% if loan_request.status == "Active" %>
+                <br><%= loan_request.accepted_at.strftime("%d/%m/%Y") %></p>
+              <% elsif loan_request.status == "Declined" %>
+                <br><%= loan_request.declined_at.strftime("%d/%m/%Y") %></p>
+              <% else %>
+                </p>
+              <% end %>
+
+              </div>
+            <% else %>
+              <div class="loan-status d-none" id="status" data-loan-approval-target="statusbutton">
+              </div>
+            <% end %>
+
         </div>
         <p class= "gray-text">"<%= loan_request.description %>"</p>
       </div>
-
+      <% if ["Active", "Declined", "Closed", "Cancelled"].include? loan_request.status %>
+      <% else %>
       <div class="wrapper-buttons" data-loan-approval-target="buttons">
         <button data-action="click->loan-approval#accept"><i class="fas fa-check"></i></button>
         <button data-action="click->loan-approval#decline"><i class="fa-regular fa-x"></i></button>
       </div>
-      <%# <% end %>
+      <% end %>
     </div>
    <% end %>
  </div>

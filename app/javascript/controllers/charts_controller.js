@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { Chart, registerables } from 'chart.js';
 
 export default class extends Controller {
-  static values = { health: Number, education: Number, business: Number, insurance: Number, already: Number, still: Number};
+  static values = { health: Number, education: Number, business: Number, insurance: Number, already: Number, still: Number, profit: Object};
 
   connect() {
     Chart.register(...registerables);
@@ -61,12 +61,21 @@ export default class extends Controller {
       config2
     );
 
-    const labels3 = Utils.months({count: 7});
+    const labels3 = [this.profitValue.forEach(
+      function(value) {
+      value.payment_date
+      }
+    )];
+
     const data3 = {
       labels: labels3,
       datasets: [{
         label: 'Your profit in €',
-        data: [65, 59, 80, 81, 56, 55, 40],
+        data: [this.profitValue.forEach(
+          function(value) {
+          value.profit
+          }
+        )],
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1
@@ -82,7 +91,5 @@ export default class extends Controller {
       document.getElementById('profitChart'),
       config3
     );
-
   }
-
 }

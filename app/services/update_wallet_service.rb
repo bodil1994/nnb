@@ -15,6 +15,7 @@ class UpdateWalletService
       else
         loan_payback
       end
+
       # TRANSACTION OUTSIDE THE APP = status = "APPROVED"
       # There is no transaction_type, we look into the deposit table. Just need to see if it is approved
     elsif @borrower_transaction.class.name == "Deposit" && @borrower_transaction.status == "Approved"
@@ -25,6 +26,7 @@ class UpdateWalletService
       @borrower_wallet.amount -= @borrower_transaction.amount
     end
     @borrower_wallet.save
+
   end
 
   def loan_request
