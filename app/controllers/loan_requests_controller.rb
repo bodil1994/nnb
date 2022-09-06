@@ -43,11 +43,11 @@ class LoanRequestsController < ApplicationController
       transfer_type = "Withdrawal"
       @lender_transfer = Transfer.new(amount: lender_amount, status: transfer_status, transfer_type: transfer_type, wallet: lender_wallet, loan_id: loan_id)
 
-    # and change the loan_request.status to Approved
-     if @lender_transfer.save! && @borrower_transfer.save!
-      @loan_request.status = "Active"
-      UpdateWalletService.new(borrower_transaction: @borrower_transfer, lender_transaction: @lender_transfer, borrower_wallet: borrower_wallet, lender_wallet: lender_wallet, transaction_type: "Transfer").call
-     end
+      # and change the loan_request.status to Approved
+      if @lender_transfer.save! && @borrower_transfer.save!
+        @loan_request.status = "Active"
+        UpdateWalletService.new(borrower_transaction: @borrower_transfer, lender_transaction: @lender_transfer, borrower_wallet: borrower_wallet, lender_wallet: lender_wallet, transaction_type: "Transfer").call
+      end
     # Else set loan_request.status to On process
     else
      @loan_request.status = "Pending"

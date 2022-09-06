@@ -17,12 +17,14 @@ class UpdateWalletService
       end
       # TRANSACTION OUTSIDE THE APP = status = "APPROVED"
       # There is no transaction_type, we look into the deposit table. Just need to see if it is approved
-    elsif @transaction_status = "Approved"
-      current_user.wallet.amount += @borrower_transaction.amount
+    elsif @borrower_transaction.class.name == "Deposit" && @borrower_transaction.status == "Approved"
+      @borrower_wallet.amount += @borrower_transaction.amount
       # TRANSACTION OUTSIDE THE APP = transaction_type == "Withdrawal" and status = "APPROVED"
-       # There is no transaction_type, we look into the withdrawal table. Just need to see if it is approved
-    elsif @transaction_status = "Approved"
-      current_user.wallet.amount -= @borrower_transaction.amount
+      # There is no transaction_type, we look into the withdrawal table. Just need to see if it is approved
+    elsif @borrower_transaction.class.name == "WithdrawalRequest" && @borrower_transaction.status == "Approved"
+      @borrower_wallet.amount -= @borrower_transaction.amount
+    end
+    @borrower_wallet.save
   end
 
   def loan_request
