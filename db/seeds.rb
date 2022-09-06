@@ -177,8 +177,21 @@ all_users.each do |user|
 
 loan_sam = Loan.find_by(user: sam, status: "Active")
 amount = 30
-loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount)
+payment_date = Date.new(2020-01-01)
+loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date)
 puts "fist loan payment added for #{loan_sam_payment.loan}"
+
+loan_sam = Loan.find_by(user: sam, status: "Active")
+amount = 40
+payment_date = Date.new(2020-02-01)
+loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date)
+puts "second loan payment added for #{loan_sam_payment.loan}"
+
+loan_sam = Loan.find_by(user: sam, status: "Active")
+amount = 20
+payment_date = Date.new(2020-03-01)
+loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date)
+puts "third loan payment added for #{loan_sam_payment.loan}"
 
   # all_deposits = Deposit.all
   all_account = BankAccount.all

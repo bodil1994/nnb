@@ -6,7 +6,7 @@ class LoanPayment < ApplicationRecord
   after_create :set_profit
 
   def set_profit
-    total_profit = self.loan.interest_rate * self.amount
+    total_profit = (self.loan.interest_rate / 100) * self.amount
     self.update(profit: total_profit)
   end
 end
