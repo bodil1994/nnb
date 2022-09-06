@@ -61,11 +61,14 @@ export default class extends Controller {
       config2
     );
 
-    const labels3 = [this.profitValue.forEach(
-      function(value) {
-      value.payment_date
-      }
-    )];
+    const labels3 = [ for (const i in this.profitValue) {
+      console.log("hi")
+
+    };
+      // function(value) {
+      // value.payment_date
+      // }
+    ];
 
     const data3 = {
       labels: labels3,
