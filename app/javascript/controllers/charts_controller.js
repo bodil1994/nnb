@@ -2,21 +2,24 @@ import { Controller } from "@hotwired/stimulus"
 import { Chart, registerables } from 'chart.js';
 
 export default class extends Controller {
+  static values = { health: Number, education: Number, business: Number, insurance: Number, already: Number, still: Number};
+
   connect() {
     Chart.register(...registerables);
     const labels = [
-      'Total',
-      'Already payed back',
-      'Have to pay back',
+      'Education',
+      'Health',
+      'Business',
+      'Insurance'
     ];
 
     const data = {
       labels: labels,
       datasets: [{
-        label: 'Your Payback-Overview',
+        label: 'Your investments in €',
         backgroundColor: 'rgb(136, 46, 252)',
         borderColor: 'rgb(136, 46, 252)',
-        data: [0, 10, 5, 2, 20, 30, 45],
+        data: [this.educationValue, this.healthValue, this.businessValue, this.insuranceValue]
       }]
     };
 
@@ -26,10 +29,60 @@ export default class extends Controller {
       options: {}
     };
 
-    const firstChart = new Chart(
-      document.getElementById('firstChart'),
+    const categoryChart = new Chart(
+      document.getElementById('categoryChart'),
       config
     );
+
+    const data2 = {
+      labels: [
+        `Due: ${this.stillValue} €`,
+        `Already payed back: ${this.alreadyValue} €`
+      ],
+
+      datasets: [{
+        label: 'How much of your loan is already payed back?',
+        data: [this.stillValue, this.alreadyValue],
+        backgroundColor: [
+          'rgb(125,123,126)',
+          'rgb(136, 46, 252)',
+        ],
+        hoverOffset: 4
+      }]
+    };
+
+    const config2 = {
+      type: 'doughnut',
+      data: data2,
+    };
+
+    const paybackChart = new Chart(
+      document.getElementById('paybackChart'),
+      config2
+    );
+
+    const labels3 = Utils.months({count: 7});
+    const data3 = {
+    labels: labels3,
+    datasets: [{
+      label: 'My First Dataset',
+      data: [65, 59, 80, 81, 56, 55, 40],
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
+    }]
+    };
+
+    const config3 = {
+      type: 'line',
+      data: data3,
+    };
+
+    const profitChart = new Chart(
+      document.getElementById('profitChart'),
+      config3
+    );
+
   }
 
 }

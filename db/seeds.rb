@@ -149,6 +149,12 @@ all_users.each do |user|
   end
   end
 
+
+loan_sam = Loan.find_by(user: sam, status: "Active")
+amount = 30
+loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount)
+puts "fist loan payment added for #{loan_sam_payment.loan}"
+
   # all_deposits = Deposit.all
   all_account = BankAccount.all
 

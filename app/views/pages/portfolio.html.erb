@@ -1,6 +1,21 @@
-<div class="container">
-  <div>
-    <canvas id="firstChart" data-controller="charts"></canvas>
-
+<div class="container portfolio">
+  <div class="">
+    <div class="header margin-t-b">
+      <h1 class = "light">Your personal statistics</h1>
+    </div>
+    <div data-controller="charts" data-charts-health-value="<%= @health_loans.to_json %>" data-charts-education-value="<%= @education_loans.to_json %>" data-charts-business-value="<%= @business_loans.to_json %>" data-charts-insurance-value="<%= @insurance_loans.to_json %>" data-charts-already-value="<%= @already %>" data-charts-still-value="<%= @still %>" data-charts-profit-value="<%= @profit(month) %>" >
+      <div class="margin-t-b">
+        <p>How much do you invest in each category?</p>
+        <canvas id="categoryChart" data-charts-target="categoryChart"></canvas>
+      </div>
+      <div class="margin-t-b">
+        <p>What is the financial status of your loans?</p>
+        <canvas id="paybackChart"  data-charts-target="paybackChart"></canvas>
+      </div>
+      <div class="margin-t-b">
+        <p>Your Profit Curve!</p>
+        <canvas id="profitChart"  data-charts-target="profitChart"></canvas>
+      </div>
+    </div>
   </div>
 </div>
