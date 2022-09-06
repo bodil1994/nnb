@@ -10,4 +10,5 @@ class Wallet < ApplicationRecord
     self.amount = 0 if self.amount.nil?
     self.save
   end
+
 end

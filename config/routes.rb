@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     resources :loan_requests, only: [:new, :create, :update]
   end
 
+  resources :loan_requests, only: [] do
+    get "/user", to: "users#show"
+  end
+
   resources :loan_requests, only: [:show, :update]
   resources :wallets, only: [:show, :update]
   resources :withdrawal_requests, only: [:new, :create, :show, :update]
