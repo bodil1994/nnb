@@ -5,7 +5,7 @@ class Transfer < ApplicationRecord
   TRANSFER_TYPE = ["Withdrawal", "Deposit"]
   TRANSFER_STATUS = ["Pending", "Approved", "Declined"]
   validates :amount, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :transfert_type, presence: true, inclusion: { in: TRANSFER_TYPE  }
+  validates :transfer_type, presence: true, inclusion: { in: TRANSFER_TYPE  }
   validates :status, inclusion: { in: TRANSFER_STATUS}
 
 end

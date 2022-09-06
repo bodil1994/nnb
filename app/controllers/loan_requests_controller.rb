@@ -1,3 +1,4 @@
+require_relative '../services/update_wallet_service'
 class LoanRequestsController < ApplicationController
   before_action :set_loan, except: [:show, :update]
   def new
@@ -29,9 +30,10 @@ class LoanRequestsController < ApplicationController
       borrower_amount = @loan.amount
       borrower_wallet = current_user.wallet
       loan_id = @loan.id
+
       transfer_status = "Approved"
       transfer_type = "Deposit"
-      @borrower_transfer = Transfer.create(amount: borrower_amount, status: transfer_status, transfert_type: transfer_type, wallet: borrower_wallet, loan_id: loan_id)
+      @borrower_transfer = Transfer.new(amount: borrower_amount, status: transfer_status, transfer_type: transfer_type, wallet: borrower_wallet, loan_id: loan_id)
 
      # Add the lender transaction as a transfer
       lender_amount = @loan.amount
@@ -39,10 +41,13 @@ class LoanRequestsController < ApplicationController
       loan_id = @loan.id
       transfer_status = "Approved"
       transfer_type = "Withdrawal"
-      @lender_transfer = Transfer.create(amount: lender_amount, status: transfer_status, transfert_type: transfer_type, wallet: lender_wallet, loan_id: loan_id)
+      @lender_transfer = Transfer.new(amount: lender_amount, status: transfer_status, transfer_type: transfer_type, wallet: lender_wallet, loan_id: loan_id)
 
     # and change the loan_request.status to Approved
+     if @lender_transfer.save! && @borrower_transfer.save!
       @loan_request.status = "Active"
+      UpdateWalletService.new(borrower_transaction: @borrower_transfer, lender_transaction: @lender_transfer, borrower_wallet: borrower_wallet, lender_wallet: lender_wallet, transaction_type: "Transfer").call
+     end
     # Else set loan_request.status to On process
     else
      @loan_request.status = "Pending"
