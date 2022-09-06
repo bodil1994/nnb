@@ -27,6 +27,14 @@ class DepositsController < ApplicationController
     end
   end
 
+  def accept
+    @deposit = Deposit.find(params[:id])
+    @deposit.status = "Approved"
+    if @deposit.save
+      redirect_to wallet_path(current_user.wallet), status: :see_other
+    end
+  end
+
   private
 
   def deposit_params

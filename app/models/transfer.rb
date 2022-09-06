@@ -7,5 +7,4 @@ class Transfer < ApplicationRecord
   validates :amount, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :transfer_type, presence: true, inclusion: { in: TRANSFER_TYPE  }
   validates :status, inclusion: { in: TRANSFER_STATUS}
-
 end
