@@ -6,26 +6,30 @@
 
 <%# IF LOAN REQUESTS EXIST %>
 <% else %>
- <% loan.loan_requests.each do |loan_request| %>
-  <div class="card-request-approval" data-controller="loan-approval" data-loan-approval-update-url= "<%= loan_request_path(loan_request)  %>">
-    <div class="wrapper-content">
-      <div class="wrapper-user">
-        <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
-          <div class="wrapper-user-info">
-            <p>by <%= loan_request.user.first_name %><%= loan_request.user.last_name %><br>
-              <%= loan.user.address %>
-            </p>
+
+ <div data-controller="loan-approval" >
+   <% loan.loan_requests.order(created_at: :desc).each do |loan_request| %>
+    <div class="card-request-approval" url= "<%= loan_request_path(loan_request)  %>">
+      <div class="wrapper-content">
+        <div class="wrapper-user">
+          <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+            <div class="wrapper-user-info">
+              <p>by <%= loan_request.user.first_name %><%= loan_request.user.last_name %><br>
+                <%= loan.user.address %>
+              </p>
+            </div>
+          <div class="loan-status d-none" data-loan-approval-target="statusbutton">
           </div>
-        <div class="loan-status" >
-          <p data-loan-approval-target="status" ><%= loan_request.status %></p>
         </div>
+        <p class= "gray-text">"<%= loan_request.description %>"</p>
       </div>
-      <p class= "gray-text">"<%= loan_request.description %>"</p>
+
+      <div class="wrapper-buttons" data-loan-approval-target="buttons">
+        <button data-action="click->loan-approval#accept"><i class="fas fa-check"></i></button>
+        <button data-action="click->loan-approval#decline"><i class="fa-regular fa-x"></i></button>
+      </div>
+      <%# <% end %>
     </div>
-    <div class="wrapper-buttons" data-loan-approval-target="buttons">
-      <button data-action="click->loan-approval#accept"><i class="fas fa-check"></i></button>
-      <button data-action="click->loan-approval#decline"><i class="fa-regular fa-x"></i></button>
-    </div>
-  </div>
- <% end %>
+   <% end %>
+ </div>
 <% end %>
