@@ -7,7 +7,7 @@ class DepositsController < ApplicationController
   def create
     @deposit = Deposit.new(deposit_params)
     @deposit.wallet = current_user.wallet
-    @deposit.status = "Approved"
+    @deposit.status = "Pending"
     if @deposit.save!
       redirect_to deposit_path(@deposit)
     else
