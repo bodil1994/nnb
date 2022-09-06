@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ["amountSlider", "amountShow", "lengthSlider", "lengthShow", "form", "list", "categories"]
 
   connect() {
+    console.log("hello2")
   }
   getCategories() {
     const categories = this.categoriesTargets
