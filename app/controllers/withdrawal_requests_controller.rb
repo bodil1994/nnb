@@ -7,7 +7,7 @@ class WithdrawalRequestsController < ApplicationController
   def create
     @withdrawal_request = WithdrawalRequest.new(withdrawal_request_params)
     @withdrawal_request.wallet = current_user.wallet
-    @withdrawal_request.status = "Submitted"
+    @withdrawal_request.status = "Pending"
     if @withdrawal_request.save!
       redirect_to withdrawal_request_path(@withdrawal_request)
     else
@@ -21,8 +21,9 @@ class WithdrawalRequestsController < ApplicationController
 
   def update
     @withdrawal_request = WithdrawalRequest.find(params[:id])
-    @withdrawal_request.status = "Pending"
+    @withdrawal_request.status = "Approved"
     if @withdrawal_request.save
+      UpdateWalletService.new(borrower_transaction: @withdrawal_request, lender_transaction: "", borrower_wallet: current_user.wallet, lender_wallet: " ").call
       redirect_to wallet_path(current_user.wallet), status: :see_other
     end
   end

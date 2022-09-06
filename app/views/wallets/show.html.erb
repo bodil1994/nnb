@@ -14,7 +14,7 @@
 
     <div class="wallet-card">
       <h2>Your Wallet</h2>
-      <h1><%= @amount.to_i %> €</h1>
+      <h1><%= current_user.wallet.amount.to_i %> €</h1>
       <%= render "shared/wallet_pages" %>
     </div>
 

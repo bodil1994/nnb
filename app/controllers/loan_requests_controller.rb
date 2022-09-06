@@ -32,6 +32,7 @@ class LoanRequestsController < ApplicationController
       loan_id = @loan.id
 
       transfer_status = "Approved"
+
       transfer_type = "Deposit"
       @borrower_transfer = Transfer.new(amount: borrower_amount, status: transfer_status, transfer_type: transfer_type, wallet: borrower_wallet, loan_id: loan_id)
 
@@ -43,20 +44,17 @@ class LoanRequestsController < ApplicationController
       transfer_type = "Withdrawal"
       @lender_transfer = Transfer.new(amount: lender_amount, status: transfer_status, transfer_type: transfer_type, wallet: lender_wallet, loan_id: loan_id)
 
-    # and change the loan_request.status to Approved
-     if @lender_transfer.save! && @borrower_transfer.save!
-      @loan_request.status = "Active"
-
-      @loan.status = "Active"
-
-      UpdateWalletService.new(borrower_transaction: @borrower_transfer, lender_transaction: @lender_transfer, borrower_wallet: borrower_wallet, lender_wallet: lender_wallet, transaction_type: "Transfer").call
-     end
+      # and change the loan_request.status to Approved
+      if @lender_transfer.save! && @borrower_transfer.save!
+        @loan_request.status = "Active"
+        UpdateWalletService.new(borrower_transaction: @borrower_transfer, lender_transaction: @lender_transfer, borrower_wallet: borrower_wallet, lender_wallet: lender_wallet, transaction_type: "Transfer").call
+      end
 
     # Else set loan_request.status to On process
     else
-     @loan_request.status = "Pending"
+     @loan_request.update(status: "Pending")
     end
-    ###-----NEED TO SAVE THE TRANSACTION AS A TRANSFER ------###
+
     @loan_request.user = current_user
     if @loan_request.save
       redirect_to loan_request_path(@loan_request.id)
@@ -80,10 +78,11 @@ class LoanRequestsController < ApplicationController
     end
 
     @loan = @loan_request.loan
-    raise
+
     if @loan_request.save
       if params[:status] == "Active"
-        @loan.status = "Active"
+        @loan.update(status: "Active")
+        decline_all(@loan_request)
       end
       respond_to do |format|
         format.json { render :show, status: :ok, location: @loan_request }
@@ -93,6 +92,20 @@ class LoanRequestsController < ApplicationController
   end
 
   private
+
+  def decline_all(request)
+    # DECLINE ALL OTHER LOAN REQUESTS FOR A LOAN APART FROM "REQUEST"
+    request_arr = LoanRequest.where(id: request.id)
+    requests = LoanRequest.all.where(loan: request.loan)
+    requests = requests.where(status: "Pending")
+    requests -= request_arr
+    # now requests is only all other requests for our loan
+    requests.each do |element|
+      element.update(status: "Declined")
+      element.update(declined_at: DateTime.now)
+    end
+
+  end
 
   def set_loan
     @loan = Loan.find(params[:loan_id])
