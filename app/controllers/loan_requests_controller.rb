@@ -32,6 +32,7 @@ class LoanRequestsController < ApplicationController
       loan_id = @loan.id
 
       transfer_status = "Approved"
+
       transfer_type = "Deposit"
       @borrower_transfer = Transfer.new(amount: borrower_amount, status: transfer_status, transfer_type: transfer_type, wallet: borrower_wallet, loan_id: loan_id)
 
