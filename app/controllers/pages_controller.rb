@@ -40,6 +40,6 @@ class PagesController < ApplicationController
     @insurance_loans = Loan.where(user: current_user, loan_category: "Insurance").sum(:amount)
     @already = LoanPayment.where(loan: Loan.where(user: current_user, status: "Active")).sum(:amount)
     @still = Loan.where(user: current_user, status: "Active").sum(:amount) - LoanPayment.where(loan: Loan.where(user: current_user, status: "Active")).sum(:amount)
-    @profit(month) = Loan.where(user: current_user, status: "Active").interest_rate * LoanPayment.where(loan: Loan.where(user: current_user, status: "Active")).sum(:amount)
+    # @profit(month) = Loan.where(user: current_user, status: "Active").interest_rate * LoanPayment.where(loan: Loan.where(user: current_user, status: "Active")).sum(:amount)
   end
 end

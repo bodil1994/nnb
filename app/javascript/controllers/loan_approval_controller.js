@@ -21,7 +21,7 @@ export default class extends Controller {
 
     // Get the URL from the url parameter in the card element
     let url = card.getAttribute("url")
-
+    console.log(url)
 
     const token = document.getElementsByName(
       "csrf-token"
@@ -55,8 +55,14 @@ export default class extends Controller {
 
           // SHOW STATUS AND CURRENT DATE ON CURRENT CARD
           // Find status in it
-          let status = card.querySelector('.loan-status')
-          status.classList.remove("d-none")
+          document.querySelectorAll('#status').forEach(element => {
+            element.classList.remove("d-none")
+            element.insertAdjacentHTML("afterbegin", `<p>Declined<br>${today}</p>`)
+          });
+
+          let status = card.querySelector('#status')
+          let declined = status.querySelector("p")
+          status.removeChild(declined)
           status.insertAdjacentHTML("afterbegin", `<p>Accepted<br>${today}</p>`)
 
           // SHOW ALERT
@@ -114,7 +120,7 @@ export default class extends Controller {
 
        // SHOW STATUS AND CURRENT DATE ON CURRENT CARD
        // Find status in it
-       let status = card.querySelector('.loan-status')
+       let status = card.querySelector('#status')
        status.classList.remove("d-none")
        status.insertAdjacentHTML("afterbegin", `<p>Declined<br>${today}</p>`)
 

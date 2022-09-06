@@ -15,7 +15,7 @@ class UpdateWalletService
         loan_payback
       end
     # elsif @transaction_type == ""
-    # end
+    end
   end
 
   def loan_request
