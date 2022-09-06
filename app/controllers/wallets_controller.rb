@@ -28,7 +28,6 @@ class WalletsController < ApplicationController
     @all_transactions = @all_transactions.reverse
     # Display the last 5 which should be the most recent transactionss
     @all_transactions = @all_transactions.first(5)
-    raise
   end
 
   def update
