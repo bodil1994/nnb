@@ -49,7 +49,7 @@ amount = 200
 interest_rate = 2
 loan_category = "Education"
 instant_loan = true
-status = "Listed"
+status = "Active"
 payback_time = 365
 payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
@@ -163,11 +163,11 @@ wallet_sam = Wallet.create!(user: user_sam, amount: amount_sam)
 puts "new wallet added for User #{wallet_sam.user.email}"
 
 user = User.find_by(first_name: "Ben")
-wallet_ben = Wallet.create!(user: user)
+wallet_ben = Wallet.create!(user: user, amount:0)
 puts "new wallet added for User #{wallet_ben.user.email}"
 
 user = User.find_by(first_name: "Sarah")
-wallet_sarah = Wallet.create!(user: user)
+wallet_sarah = Wallet.create!(user: user, amount:0)
 puts "new wallet added for User #{wallet_sarah.user.email}"
 
 all_users = User.all
@@ -219,6 +219,7 @@ puts "third loan payment added for #{loan_sam_payment.loan}"
       bank_account_id = account.id
       depo = Deposit.create!(amount: amount, wallet_id: wallet_id, status: status, deposit_reference: deposit_reference, bank_account_id: bank_account_id)
       puts "deposit added for wallet : #{wallet_id}, amount: #{amount}"
+      UpdateWalletService.new(borrower_transaction: depo, lender_transaction: "", borrower_wallet: account.user.wallet, lender_wallet: "", transaction_type: "").call
     end
   end
 
@@ -228,14 +229,15 @@ puts "third loan payment added for #{loan_sam_payment.loan}"
     3.times do
      withdrawal_status = ["Submitted", "Pending", "Approved", "Declined"]
      reference = ["ZZ111", "WW2222", "XX3333", "YY4444", "MM5555", "NN666", "OO7777", "PP8888"]
-     amount_withdrawal = [50, 75, 100, 150, 250, 300]
-
+     amount_withdrawal = [1,2,3,4,5]
+      p account.user.wallet
      amount = amount_withdrawal.sample
      wallet_id = account.user.wallet.id
      bank_account_id = account.id
      status = withdrawal_status.sample
      withdraw = WithdrawalRequest.create!(amount: amount, wallet_id: wallet_id, status: status, bank_account_id: bank_account_id)
      puts "withdrawal added for wallet : #{wallet_id}, amount: #{amount}"
+     UpdateWalletService.new(borrower_transaction: withdraw, lender_transaction: "", borrower_wallet: account.user.wallet, lender_wallet: "", transaction_type: "").call
    end
  end
 
