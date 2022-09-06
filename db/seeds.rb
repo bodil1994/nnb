@@ -78,6 +78,19 @@ user = User.find_by(first_name: "Sam")
 education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
 
+
+amount = 100
+interest_rate = 5
+loan_category = "Health"
+instant_loan = false
+status = "Pending"
+payback_time = 180
+payment_frequency = "monthly"
+user = User.find_by(first_name: "Sam")
+health_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
+puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
+
+
 amount = 50
 interest_rate = 10
 loan_category = "Health"
@@ -99,6 +112,17 @@ loan = Loan.find_by(loan_category: "Education")
 user = User.find_by(first_name: "Ben")
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
+
+amount = 200
+title = "Paying school fees for my children"
+description = "New requests I need the money to pay for my two children's tuition fees, as well as for their books, their school uniform and their food."
+loan_category = "Education"
+status = "Pending"
+loan = Loan.find_by(loan_category: "Education")
+user = User.find_by(first_name: "Ben")
+education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
+puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
+
 
 
 amount = 400

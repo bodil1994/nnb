@@ -293,9 +293,7 @@ DEPENDENCIES
   bullet
   capybara
   chartkick
-
   cloudinary
-
   debug
   devise
   dotenv-rails
