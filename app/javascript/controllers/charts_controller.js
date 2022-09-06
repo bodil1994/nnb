@@ -13,6 +13,7 @@ export default class extends Controller {
       'Insurance'
     ];
 
+    console.log(this.profitValue)
     const data = {
       labels: labels,
       datasets: [{
@@ -61,26 +62,18 @@ export default class extends Controller {
       config2
     );
 
-    const labels3 = [ for (const i in this.profitValue) {
-      console.log("hi")
+    const labels3 = Object.keys(this.profitValue);
+    const banana = Object.values(this.profitValue).map((loan) => loan[0].profit);
 
-    };
-      // function(value) {
-      // value.payment_date
-      // }
-    ];
+    console.log(banana)
 
     const data3 = {
       labels: labels3,
       datasets: [{
         label: 'Your profit in €',
-        data: [this.profitValue.forEach(
-          function(value) {
-          value.profit
-          }
-        )],
+        data: banana,
         fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        borderColor: 'rgb(136, 46, 252)',
         tension: 0.1
       }]
     };
