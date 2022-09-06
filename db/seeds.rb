@@ -154,11 +154,11 @@ wallet_sam = Wallet.create!(user: user_sam, amount: amount_sam)
 puts "new wallet added for User #{wallet_sam.user.email}"
 
 user = User.find_by(first_name: "Ben")
-wallet_ben = Wallet.create!(user: user)
+wallet_ben = Wallet.create!(user: user, amount:0)
 puts "new wallet added for User #{wallet_ben.user.email}"
 
 user = User.find_by(first_name: "Sarah")
-wallet_sarah = Wallet.create!(user: user)
+wallet_sarah = Wallet.create!(user: user, amount:0)
 puts "new wallet added for User #{wallet_sarah.user.email}"
 
 all_users = User.all
