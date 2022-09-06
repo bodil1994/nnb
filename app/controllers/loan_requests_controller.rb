@@ -33,6 +33,7 @@ class LoanRequestsController < ApplicationController
       current_user.wallet.save
     # and change the loan_request.status to Approved
       @loan_request.status = "Active"
+      @loan.status = "Active"
     # Else set loan_request.status to On process
     else
      @loan_request.status = "Pending"
@@ -55,6 +56,12 @@ class LoanRequestsController < ApplicationController
   def update
     @loan_request = LoanRequest.find(params[:id])
     @loan_request.status = params[:status]
+    if params[:status] == "Active"
+      @loan_request.accepted_at = DateTime.now
+    elsif params[:status] == "Declined"
+      @loan_request.declined_at = DateTime.now
+    end
+
     @loan = @loan_request.loan
 
     if @loan_request.save
