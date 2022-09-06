@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema[7.0].define(version: 2022_09_06_065509) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_06_071054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,7 +71,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_06_065509) do
     t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "payment_date"
+    t.string "payment_status"
+    t.date "due_date"
+    t.bigint "transfer_id", null: false
     t.index ["loan_id"], name: "index_loan_payments_on_loan_id"
+    t.index ["transfer_id"], name: "index_loan_payments_on_transfer_id"
   end
 
   create_table "loan_requests", force: :cascade do |t|
@@ -102,6 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_06_065509) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "payment_frequency"
+    t.date "loan_start_date"
     t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
@@ -163,6 +168,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_06_065509) do
   add_foreign_key "deposits", "bank_accounts"
   add_foreign_key "deposits", "wallets"
   add_foreign_key "loan_payments", "loans"
+  add_foreign_key "loan_payments", "transfers"
   add_foreign_key "loan_requests", "loans"
   add_foreign_key "loan_requests", "users"
   add_foreign_key "loans", "users"
