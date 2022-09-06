@@ -226,11 +226,11 @@ all_users.each do |user|
     transfer_status = ["Pending", "Approved", "Declined"]
     status = transfer_status.sample
     type = ["Withdrawal", "Deposit"]
-    transfert_type = type.sample
+    transfer_type = type.sample
     loan_id = loan.sample.id
-    transfer = Transfer.create!(amount: amount, status: status, transfert_type: transfert_type, wallet: wallet, loan_id: loan_id)
+    transfer = Transfer.create!(amount: amount, status: status, transfer_type: transfer_type, wallet: wallet, loan_id: loan_id)
     puts "Transfer to the wallet : #{wallet}, amount: #{amount}"
-    transfer = Transfer.create!(amount: 100, status: status, transfert_type: transfert_type, wallet: wallet)
+    transfer = Transfer.create!(amount: 100, status: status, transfer_type: transfer_type, wallet: wallet)
     puts "Transfer to the wallet : #{wallet}, amount: #{amount}"
   end
 end
