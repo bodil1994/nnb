@@ -40,7 +40,9 @@ class PagesController < ApplicationController
     @insurance_loans = Loan.where(user: current_user, loan_category: "Insurance").sum(:amount)
     @already = LoanPayment.where(loan: Loan.where(user: current_user, status: "Active")).sum(:amount)
     @still = Loan.where(user: current_user, status: "Active").sum(:amount) - LoanPayment.where(loan: Loan.where(user: current_user, status: "Active")).sum(:amount)
+
     loan = Loan.find_by(user: current_user, status: "Active")
     @profit = LoanPayment.where(loan: loan).group_by {|loan| loan.created_at }
+
   end
 end
