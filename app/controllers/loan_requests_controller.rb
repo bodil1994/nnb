@@ -65,7 +65,7 @@ class LoanRequestsController < ApplicationController
     @loan_request = LoanRequest.find(params[:id])
     @loan_request.status = params[:status]
     @loan = @loan_request.loan
-
+    raise
     if @loan_request.save
       if params[:status] == "Active"
         @loan.status = "Active"

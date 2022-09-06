@@ -6,7 +6,7 @@
 
 <%# IF LOAN REQUESTS EXIST %>
 <% else %>
- <% loan.loan_requests.each do |loan_request| %>
+ <% loan.loan_requests.order(created_at: :desc).each do |loan_request| %>
   <div class="card-request-approval" data-controller="loan-approval" data-loan-approval-update-url= "<%= loan_request_path(loan_request)  %>">
     <div class="wrapper-content">
       <div class="wrapper-user">
@@ -16,8 +16,7 @@
               <%= loan.user.address %>
             </p>
           </div>
-        <div class="loan-status" >
-          <p data-loan-approval-target="status" ><%= loan_request.status %></p>
+        <div class="loan-status d-none" data-loan-approval-target="statusbutton">
         </div>
       </div>
       <p class= "gray-text">"<%= loan_request.description %>"</p>

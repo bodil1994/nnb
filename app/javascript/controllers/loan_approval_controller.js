@@ -1,7 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
+import { left } from "@popperjs/core"
 
 export default class extends Controller {
-  static targets = ["status", "buttons"]
+  static targets = [ "buttons", "statusbutton"]
   connect() {
     console.log("Hello World!")
     console.log(this.statusTarget)
@@ -28,11 +29,25 @@ export default class extends Controller {
       console.log(response.status)
       if (response.status === 200) {
         console.log("Active Response 200")
-          this.statusTarget.innerText = "Active"
-          const a = '<div class="alert alert__success" data-alert-target="alert"><p>🎉 Congratulations, your loan has been matched. The loan has been deducted from your wallet and transferred to the borrower.</p><button data-action="click->alert#close"><i class="fa-regular fa-x"></i></button></div>';
+
+
+          // GET CURRENT DATE
+          let today = new Date();
+          const dd = String(today.getDate()).padStart(2, '0');
+          const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+          const yyyy = today.getFullYear();
+          today = mm + '/' + dd + '/' + yyyy;
+
+          // SHOW STATUS AND CURRENT DATE
+          this.statusbuttonTarget.classList.remove("d-none")
+          this.statusbuttonTarget.insertAdjacentHTML("afterbegin", `<p>Accepted<br>${today}</p>`)
+
+          // SHOW ALERT
+          const a = '<div class="alert alert__success" data-alert-target="alert"><p class="bold">🎉 Congratulations, your loan has been matched.</p><br><p> The loan has been deducted from your wallet and transferred to the borrower.</p><button data-action="click->alert#close"><i class="fa-regular fa-x"></i></button></div>';
           const flash = document.getElementById("flash")
           flash.insertAdjacentHTML("afterbegin", a)
-
+          document.getElementById("alert").classList.add("d-block")
+          document.getElementById("alert").classList.remove("d-none")
        } else {
         "x" //* ADD ALERT HERE *//;
       }
@@ -64,7 +79,17 @@ export default class extends Controller {
      console.log(response.status)
      if (response.status === 200) {
        console.log("Declined Response 200")
-         this.statusTarget.innerText = "Declined"
+
+        // GET CURRENT DATE
+        let today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        const yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
+
+        // SHOW STATUS AND CURRENT DATE
+        this.statusbuttonTarget.classList.remove("d-none")
+        this.statusbuttonTarget.insertAdjacentHTML("afterbegin", `<p>Declined<br>${today}</p>`)
      } else {
        "x" //* ADD ALERT HERE *//;
      }
