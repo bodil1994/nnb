@@ -29,5 +29,7 @@ Rails.application.routes.draw do
   resources :loan_requests, only: [:show, :update]
   resources :wallets, only: [:show, :update]
   resources :withdrawal_requests, only: [:new, :create, :show, :update]
-  resources :deposits, only: [:new, :create, :show, :update]
+  resources :deposits, only: [:new, :create, :show, :update] do
+    patch "/accept", to: "deposit#accept"
+  end
 end

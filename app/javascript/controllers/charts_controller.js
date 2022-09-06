@@ -63,14 +63,14 @@ export default class extends Controller {
 
     const labels3 = Utils.months({count: 7});
     const data3 = {
-    labels: labels3,
-    datasets: [{
-      label: 'My First Dataset',
-      data: [65, 59, 80, 81, 56, 55, 40],
-      fill: false,
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.1
-    }]
+      labels: labels3,
+      datasets: [{
+        label: 'Your profit in €',
+        data: [65, 59, 80, 81, 56, 55, 40],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
     };
 
     const config3 = {
