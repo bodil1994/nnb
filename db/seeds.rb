@@ -51,7 +51,7 @@ loan_category = "Education"
 instant_loan = true
 status = "Active"
 payback_time = 365
-payment_frequency = "monthly"
+payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
 education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
@@ -62,7 +62,7 @@ loan_category = "Health"
 instant_loan = false
 status = "Listed"
 payback_time = 180
-payment_frequency = "monthly"
+payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
 education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
@@ -73,7 +73,7 @@ loan_category = "Business"
 instant_loan = false
 status = "Pending"
 payback_time = 180
-payment_frequency = "monthly"
+payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
 education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
@@ -85,7 +85,7 @@ loan_category = "Health"
 instant_loan = false
 status = "Pending"
 payback_time = 180
-payment_frequency = "monthly"
+payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
 health_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
@@ -97,7 +97,7 @@ loan_category = "Health"
 instant_loan = false
 status = "Closed"
 payback_time = 30
-payment_frequency = "monthly"
+payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
 education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
@@ -132,7 +132,7 @@ instant_loan = false
 status = "Listed"
 payback_time = 60
 user = User.find_by(first_name: "Sarah")
-payment_frequency = "monthly"
+payment_frequency = "Monthly"
 business_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added: #{business_loan.amount}€ for #{business_loan.loan_category} with interest rate of #{business_loan.interest_rate}%"
 
@@ -143,7 +143,7 @@ instant_loan = true
 status = "Listed"
 payback_time = 90
 user = User.find_by(first_name: "Sarah")
-payment_frequency = "monthly"
+payment_frequency = "Monthly"
 health_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added: #{health_loan.amount}€ for #{health_loan.loan_category} with interest rate of #{health_loan.interest_rate}%"
 
