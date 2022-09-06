@@ -44,20 +44,17 @@ class LoanRequestsController < ApplicationController
       transfer_type = "Withdrawal"
       @lender_transfer = Transfer.new(amount: lender_amount, status: transfer_status, transfer_type: transfer_type, wallet: lender_wallet, loan_id: loan_id)
 
-    # and change the loan_request.status to Approved
-     if @lender_transfer.save! && @borrower_transfer.save!
-      @loan_request.status = "Active"
-
-      @loan.status = "Active"
-
-      UpdateWalletService.new(borrower_transaction: @borrower_transfer, lender_transaction: @lender_transfer, borrower_wallet: borrower_wallet, lender_wallet: lender_wallet, transaction_type: "Transfer").call
-     end
-
+      # and change the loan_request.status to Approved
+      if @lender_transfer.save! && @borrower_transfer.save!
+        @loan_request.status = "Active"
+        UpdateWalletService.new(borrower_transaction: @borrower_transfer, lender_transaction: @lender_transfer, borrower_wallet: borrower_wallet, lender_wallet: lender_wallet, transaction_type: "Transfer").call
+      end
+      
     # Else set loan_request.status to On process
     else
      @loan_request.status = "Pending"
     end
-    ###-----NEED TO SAVE THE TRANSACTION AS A TRANSFER ------###
+
     @loan_request.user = current_user
     if @loan_request.save
       redirect_to loan_request_path(@loan_request.id)
@@ -81,7 +78,6 @@ class LoanRequestsController < ApplicationController
     end
 
     @loan = @loan_request.loan
-    raise
     if @loan_request.save
       if params[:status] == "Active"
         @loan.status = "Active"
