@@ -49,7 +49,7 @@ amount = 200
 interest_rate = 2
 loan_category = "Education"
 instant_loan = true
-status = "Active"
+status = "Listed"
 payback_time = 365
 payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
@@ -107,15 +107,15 @@ amount = 200
 title = "Paying school fees for my children"
 description = "I need the money to pay for my two children's tuition fees, as well as for their books, their school uniform and their food."
 loan_category = "Education"
-status = "Active"
+status = "Pending"
 loan = Loan.find_by(loan_category: "Education")
 user = User.find_by(first_name: "Ben")
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
 amount = 200
-title = "Paying school fees for my children"
-description = "New requests I need the money to pay for my two children's tuition fees, as well as for their books, their school uniform and their food."
+title = "Le wagon Course"
+description = "Wagon course"
 loan_category = "Education"
 status = "Pending"
 loan = Loan.find_by(loan_category: "Education")
@@ -123,6 +123,15 @@ user = User.find_by(first_name: "Ben")
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
+amount = 200
+title = "Le wagon Course"
+description = "Fun times"
+loan_category = "Education"
+status = "Declined"
+loan = Loan.find_by(loan_category: "Education")
+user = User.find_by(first_name: "Ben")
+education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan, declined_at: DateTime.now)
+puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
 
 amount = 400
