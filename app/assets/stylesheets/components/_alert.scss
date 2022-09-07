@@ -8,7 +8,7 @@
 #alert {
   z-index: 150;
   height: 100vh;
-  width: 100vh;
+  width: 100%;
   background: rgba(0,0,0,0.1)
 }
 
@@ -24,6 +24,7 @@
   line-height: 1.8;
   border-radius:20px 20px 0 0;
   height: 50vh;
+  width: 100%;
 
   display: flex;
   flex-flow: column;

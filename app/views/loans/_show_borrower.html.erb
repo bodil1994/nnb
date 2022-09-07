@@ -20,7 +20,7 @@
     </div>
   <%= render "loans/show_basic_info", loan: loan %>
   <% if current_user.nil? %>
-    <%= link_to "APPLY", new_user_registration_path, class: "btn" %>
+    <%= link_to "APPLY", new_user_session_path, class: "btn" %>
   <% else %>
    <%= link_to "APPLY", new_loan_loan_request_path(loan), class: "btn" %>
   <% end %>
