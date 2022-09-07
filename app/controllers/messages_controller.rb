@@ -16,12 +16,6 @@ class MessagesController < ApplicationController
     end
   end
 
-  def index
-    @user = current_user
-    @loans = Loan.where(id: @user)
-
-  end
-
   private
 
   def message_params
