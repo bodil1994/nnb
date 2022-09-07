@@ -1,20 +1,44 @@
 <div class="container portfolio">
+  <%= render 'shared/back_navigation', path: dashboard_lender_path %>
   <div class="">
-    <div class="header margin-t-b">
-      <h1 class = "light">Your personal statistics</h1>
+    <div class="header margin-b">
+      <h1 class = "light">Portfolio</h1>
+      <p>Learn from from your personal statistics</p>
     </div>
     <div data-controller="charts" data-charts-health-value="<%= @health_loans %>" data-charts-education-value="<%= @education_loans %>" data-charts-business-value="<%= @business_loans %>" data-charts-insurance-value="<%= @insurance_loans %>" data-charts-already-value="<%= @already %>" data-charts-still-value="<%= @still %>" data-charts-profit-value="<%= @payment_profit.to_json %>" >
       <div class="margin-t-b">
-        <p>How much do you invest in each category?</p>
-        <canvas id="categoryChart" data-charts-target="categoryChart"></canvas>
+        <div class="border">
+          <p>How much do you invest in each category?</p>
+          <canvas id="categoryChart" data-charts-target="categoryChart"></canvas>
+        </div>
+      </div>
+      <div data-controller="carousel" class="swiper-container margin-t-b">
+        <div class="border">
+          <p>What is the financial status of your loans?</p>
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="">
+                <canvas id="paybackChart"  data-charts-target="paybackChart"></canvas>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="">
+                <canvas id="paybackChart"  data-charts-target="paybackChart"></canvas>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="">
+                <canvas id="paybackChart"  data-charts-target="paybackChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="margin-t-b">
-        <p>What is the financial status of your loans?</p>
-        <canvas id="paybackChart"  data-charts-target="paybackChart"></canvas>
-      </div>
-      <div class="margin-t-b">
-        <p>Your Profit Curve!</p>
-        <canvas id="profitChart"  data-charts-target="profitChart"></canvas>
+        <div class="border">
+          <p>Your Profit Curve!</p>
+          <canvas id="profitChart"  data-charts-target="profitChart"></canvas>
+        </div>
       </div>
     </div>
   </div>
