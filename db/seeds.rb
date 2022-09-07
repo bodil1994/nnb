@@ -208,10 +208,8 @@ all_users.each do |user|
   end
   end
 
-
-loan_sam = Loan.find_by(user: sam, status: "Active", loan_category: "Education")
+loan_sam = Loan.find_by(user: sam, status: "Active")
 amount = 17.08
-
 start_date = Date.new(2020-01-01)
 12.times do
   due_date = start_date.next_month
