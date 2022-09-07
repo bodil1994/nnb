@@ -29,7 +29,7 @@
   <div class="wrapper-main">
     <h2>Payments</h2>
     <%# LOAN PAYMENTS %>
-    <%= render "loans/show_payment_info", loan: loan %>
+    <%#= render "loans/show_payment_info", loan: loan %>
   </div>
 
   <div class="wrapper-main">
@@ -42,9 +42,9 @@
 
   <%# BORROWER INFO %>
   <% if @loan.status == "Active" %>
+  <div class="wrapper-main">
     <% loan_request = LoanRequest.find_by(loan: @loan) %>
     <h2>Loan Recipient</h2>
-    <div class="wrapper-main">
       <%= link_to loan_request_borrower_profile_path(loan_request_id: loan_request.id, id: loan_request.user.id) do %>
           <div class="card-request-approval">
             <div class="wrapper-content">
@@ -59,14 +59,10 @@
                     <div class="loan-status" id="db-status" data-loan-approval-target="statusbutton">
                       <p>Accepted<br><%= loan_request.accepted_at.strftime("%d/%m/%Y") %></p>
                     </div>
+                    <%= image_tag "icon-chat.svg", id: "chat" %>
               </div>
               <p class= "gray-text">"<%= loan_request.description %>"</p>
             </div>
-            <%# ONLY SHOW BUTTONS IF NOT ONE OF ARRAY %>
-              <div class="wrapper-chat">
-                <%= image_tag "icon-chat.svg" %>
-                <p>Chat</p>
-              </div>
           </div>
       <% end %>
     </div>
