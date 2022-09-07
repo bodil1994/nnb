@@ -12,6 +12,9 @@
           <p class="gray-text"><%= loan.payback_time %> days</p>
         </div>
         <div class="loan-status" >
+            <% if loan.status == "Active" %>
+           <p><%= "Chat" %></p>
+            <% end  %>
           <p><%= loan.status %></p>
         </div>
       </div>
