@@ -1,25 +1,31 @@
-<div class="container portfolio">
-  <%= render 'shared/back_navigation', path: dashboard_lender_path %>
-  <div class="header margin-b">
-    <h1 class = "light">Portfolio</h1>
-    <p>Learn from from your personal statistics</p>
+<div class="portfolio">
+  <div class="container-portfolio">
+    <%= render 'shared/back_navigation', path: dashboard_lender_path %>
+    <div class="header margin-b">
+      <h1 class = "light">Portfolio</h1>
+      <p>Learn from from your personal statistics</p>
+    </div>
   </div>
   <div data-controller="charts" data-charts-health-value="<%= @health_loans %>" data-charts-education-value="<%= @education_loans %>" data-charts-business-value="<%= @business_loans %>" data-charts-insurance-value="<%= @insurance_loans %>" data-charts-already-value="<%= @first_active_already %>" data-charts-still-value="<%= @first_active_still %>" data-charts-profit-value="<%= @payment_profit.to_json %>" data-charts-loans-value="<%= @active_loans.to_json %>">
-    <div class="margin-t-b">
-      <div class="border">
-        <p>How much do you invest in each category?</p>
-        <canvas id="categoryChart" data-charts-target="categoryChart"></canvas>
+    <div class="container-portfolio">
+      <div class="margin-t-b">
+        <div class="border">
+          <p>How much do you invest in each category?</p>
+          <canvas id="categoryChart" data-charts-target="categoryChart"></canvas>
+        </div>
       </div>
-    </div>
       <p class="margin-t">What is the financial status of your loans?</p>
-      <div data-controller="carousel" class="swiper-container margin-t-b" id="remove-container">
+    </div>
+      <div data-controller="carousel" class="swiper-container-portfolio margin-t-b" id="remove-container-portfolio">
         <div class="swiper-wrapper" data-charts-target="wrapper">
         </div>
       </div>
-    <div class="margin-t-b">
-      <div class="border">
-        <p>Your Profit Curve!</p>
-        <canvas id="profitChart"  data-charts-target="profitChart"></canvas>
+    <div class="container-portfolio">
+      <div class="margin-t-b">
+        <div class="border">
+          <p>Your Profit Curve!</p>
+          <canvas id="profitChart"  data-charts-target="profitChart"></canvas>
+        </div>
       </div>
     </div>
   </div>

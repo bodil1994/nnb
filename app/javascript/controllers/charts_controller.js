@@ -13,7 +13,6 @@ export default class extends Controller {
       'Insurance'
     ];
 
-    console.log(this.profitValue)
     const data = {
       labels: labels,
       datasets: [{
@@ -93,9 +92,14 @@ export default class extends Controller {
       config3
     );
 
+    console.log("HELLOO")
+
     this.loansValue.forEach((loan) => {
       const id = Object.keys(loan)[0]
       const values = Object.values(loan)
+      console.log(Object.values(loan)[0])
+      // const category = values[0]
+      // const amount = values[0]
       const already = values[0].already
       const still = values[0].still
       const data4 = {
@@ -122,7 +126,7 @@ export default class extends Controller {
 
       const div = `<div class="swiper-slide">
       <div class="">
-        <canvas id="chart${id}" ></canvas>
+        <canvas id="chart${id}"></canvas>
       </div>
     </div>`
 
@@ -134,3 +138,5 @@ export default class extends Controller {
     })
   }
 }
+
+//<p>This is your ${category}-Loan over ${amount}€</p>
