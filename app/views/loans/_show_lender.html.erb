@@ -1,4 +1,4 @@
-<div class="container summary-pages loan-show">
+
   <%= render "shared/back_navigation", path: dashboard_lender_path %>
 
   <%# TITLE %>
@@ -30,7 +30,7 @@
     <div class="wrapper-main">
       <h2>Payments</h2>
       <%# LOAN PAYMENTS %>
-      <%= render "loans/show_payment_info", loan: loan %>
+      <%# <%= render "loans/show_payment_info", loan: loan %>
     </div>
   <% end %>
 
@@ -75,4 +75,3 @@
   <div class="wrapper-main">
     <%= render "loans/show_lender_loan_requests", loan: loan %>
   </div>
-</div>
