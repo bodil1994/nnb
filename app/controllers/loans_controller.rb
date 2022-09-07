@@ -50,7 +50,6 @@ class LoansController < ApplicationController
     @user = current_user
 
     if @loan.save!
-
       redirect_to loan_summary_lender_path(@loan)
     else
       render :new

@@ -13,6 +13,9 @@ application.register("avatar-dropdown", AvatarDropdownController)
 import ChartsController from "./charts_controller"
 application.register("charts", ChartsController)
 
+import ChatroomSubscriptionController from "./chatroom_subscription_controller"
+application.register("chatroom-subscription", ChatroomSubscriptionController)
+
 import CreateLoanController from "./create_loan_controller"
 application.register("create-loan", CreateLoanController)
 

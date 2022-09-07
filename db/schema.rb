@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_06_081940) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_06_132317) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_06_081940) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_bank_accounts_on_user_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.bigint "loan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loan_id"], name: "index_chatrooms_on_loan_id"
   end
 
   create_table "deposits", force: :cascade do |t|
@@ -110,6 +117,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_06_081940) do
     t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "transfers", force: :cascade do |t|
     t.float "amount"
     t.string "status"
@@ -165,6 +182,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_06_081940) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bank_accounts", "users"
+  add_foreign_key "chatrooms", "loans"
   add_foreign_key "deposits", "bank_accounts"
   add_foreign_key "deposits", "wallets"
   add_foreign_key "loan_payments", "loans"
@@ -172,6 +190,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_06_081940) do
   add_foreign_key "loan_requests", "loans"
   add_foreign_key "loan_requests", "users"
   add_foreign_key "loans", "users"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "transfers", "loans"
   add_foreign_key "transfers", "wallets"
   add_foreign_key "wallets", "users"

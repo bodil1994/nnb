@@ -1,0 +1,25 @@
+<div class="container summary-pages">
+  <!-- Building the left arrow container which is a link that redirect towards-->
+  <% if current_user.user_type == "Lender"  %>
+    <%= render "shared/back_navigation", path: dashboard_lender_path(@user)  %>
+
+    <%= current_user.last_name %>
+    <%= current_user.user_type %>
+      <!-- Title -->
+    <h1 class = "light" >Messages</h1>
+        <!-- Display all the chatrooms in a card -->
+    <%= render "shared/cards_loan_lender" %>
+  <% else %>
+    <%= render "shared/back_navigation", path: dashboard_borrower_path(@user)  %>
+
+    <%= current_user.last_name %>
+    <%= current_user.user_type %>
+      <!-- Title -->
+    <h1 class = "light" >Messages</h1>
+        <!-- Display all the chatrooms in a card -->
+    <%= render "shared/cards_loan_borrower" %>
+
+  <% end %>
+</div>
+
+<% console()  %>
