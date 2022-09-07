@@ -1,3 +1,5 @@
+require "open-uri"
+
 Message.destroy_all
 Chatroom.destroy_all
 Transfer.destroy_all
@@ -21,7 +23,10 @@ phone = "0199887682"
 address = "Frii Hotel Bali"
 password ="123123"
 user_type = "Lender"
-sam = User.create!(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+sam = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+file = URI.open("https://i.pinimg.com/originals/af/02/e6/af02e644e673cbb71d0cd886306e8274.jpg")
+sam.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
+sam.save!
 puts "new user added: #{sam.first_name} #{sam.last_name}"
 
 
@@ -33,7 +38,10 @@ phone = "08899887682"
 address = "Frii Hotel Bali"
 password ="123123"
 user_type = "Lender"
-sarah = User.create!(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+sarah = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+file = URI.open("https://i.pinimg.com/736x/7a/d3/1a/7ad31af11e1108ed093eca1b3438bc25.jpg")
+sarah.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
+sarah.save!
 puts "new user added: #{sarah.first_name} #{sarah.last_name}"
 
 first_name = "Ben"
@@ -44,7 +52,10 @@ phone = "08899899982"
 address = "Canggu Bali"
 password ="123123"
 user_type = "Borrower"
-ben = User.create!(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+ben = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+file = URI.open("https://i.pinimg.com/originals/d8/a0/1e/d8a01e34926bdb7eb9e1fb506d0aea1b.jpg")
+ben.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
+ben.save!
 puts "new user added: #{ben.first_name} #{ben.last_name}"
 
 amount = 200
@@ -218,24 +229,6 @@ start_date = Date.new(2020-01-01)
 
   puts "loan payment added for #{payment.loan}"
 end
-# loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount)
-# puts "fist loan payment added for #{loan_sam_payment.loan}"
-# payment_date = Date.new(2020-01-01)
-# payment_status = "Completed"
-# loan_sam_payment_1 = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date, payment_status: payment_status)
-# puts "fist loan payment added for #{loan_sam_payment_1.loan}"
-
-# loan_sam = Loan.find_by(user: sam, status: "Active", loan_category: "Education")
-# payment_date = Date.new(2020-02-01)
-# payment_status = "Completed"
-# loan_sam_payment_2 = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date, payment_status: payment_status)
-# puts "second loan payment added for #{loan_sam_payment_2.loan}"
-
-# loan_sam = Loan.find_by(user: sam, status: "Active", loan_category: "Education")
-# payment_date = Date.new(2020-03-01)
-# payment_status = "Completed"
-# loan_sam_payment_3 = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date, payment_status: payment_status)
-# puts "third loan payment added for #{loan_sam_payment_3.loan}"
 
   # all_deposits = Deposit.all
   all_account = BankAccount.all
