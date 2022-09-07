@@ -39,6 +39,40 @@
     <p class="gray-text">Please note this investment can only be claimed after the expect yield date is due. The interest rates are fixed and the loan has no collateral attached.</p>
   </div>
 
+
+  <%# BORROWER INFO %>
+  <% if @loan.status == "Active" %>
+    <% loan_request = LoanRequest.find_by(loan: @loan) %>
+    <h2>Loan Recipient</h2>
+    <div class="wrapper-main">
+      <%= link_to loan_request_borrower_profile_path(loan_request_id: loan_request.id, id: loan_request.user.id) do %>
+          <div class="card-request-approval">
+            <div class="wrapper-content">
+              <div class="wrapper-user">
+                <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+                <div class="wrapper-user-info">
+                  <p><%= loan_request.user.first_name %><%= loan_request.user.last_name %><br>
+                    <%= loan.user.address %>
+                  </p>
+                </div>
+                  <%# IF STATUS ONE OF ARRAY THEN SHOW STATUS OTHERWISE SHOW NOTHING UNTIL BUTTON CLICKED %>
+                    <div class="loan-status" id="db-status" data-loan-approval-target="statusbutton">
+                      <p>Accepted<br><%= loan_request.accepted_at.strftime("%d/%m/%Y") %></p>
+                    </div>
+              </div>
+              <p class= "gray-text">"<%= loan_request.description %>"</p>
+            </div>
+            <%# ONLY SHOW BUTTONS IF NOT ONE OF ARRAY %>
+              <div class="wrapper-chat">
+                <%= image_tag "icon-chat.svg" %>
+                <p>Chat</p>
+              </div>
+          </div>
+      <% end %>
+    </div>
+  <% end %>
+
+
   <%# LOAN REQUESTS %>
   <div class="wrapper-main">
     <%= render "loans/show_lender_loan_requests", loan: loan %>
