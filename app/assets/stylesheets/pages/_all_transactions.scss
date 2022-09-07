@@ -1,5 +1,13 @@
-.user-card-display {
-  display: flex;
-  justify-content: space-between;
+.transactions-index {
+  .card-loan {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width:auto;
+  }
 
+  h1 {
+    padding-bottom: 30px;
+  }
 }

@@ -19,13 +19,13 @@
     </div>
 
     <div class="wallet-buttons">
-      <%= link_to new_withdrawal_request_path do %>
+      <%= link_to new_deposit_path do %>
         <div class="wallet-button">
           <%= image_tag "icon-deposit.svg" %>
           <p>Deposit</p>
         </div>
       <% end %>
-      <%= link_to new_deposit_path do %>
+      <%= link_to new_withdrawal_request_path do %>
         <div class="wallet-button">
           <%= image_tag "icon-withdraw.svg" %>
           <p>Withdraw</p>

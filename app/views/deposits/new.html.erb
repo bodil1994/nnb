@@ -1,9 +1,9 @@
 <div class="container new-forms">
   <%= render "shared/back_navigation", path: current_user.user_type = "lender" ? dashboard_lender_path : dashboard_lender_path %>
   <div class="header">
-    <h1 class = "light">Let's transfer money!</h1>
+    <h1 class = "light">Let's deposit money</h1>
   </div>
-<h2>How much would you like to withdraw?</h2>
+<h2>How much would you like to deposit?</h2>
 <div class="wrapper-wallet">
   <div class="wrapper-wallet-amount">
     <p>Current Balance: <%= current_user.wallet.amount.round %> €</p>

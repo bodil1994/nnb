@@ -1,51 +1,78 @@
-.align-title {
-  display: flex;
-  align-content: center;
-  justify-content: space-between;
-}
+.wallet-show {
 
-.align-element {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between
-}
+  .back-navigation {
+    padding-top: 73px;
+    padding-bottom: 20px;
+  }
+  .align-title {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    p {
+      padding-top: 4px;
+      text-decoration: underline;
+      a{
+        color: $dark-gray;
+      }
 
-.display-card-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between
-}
+    }
+  }
 
-.display-card-item-right{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
-}
+  .align-element {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+  }
 
-p.small {
-  font-size: 14px;
-  font-style: italic;
-}
+  .display-card-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+  }
 
-.transaction-status {
-  height: 33px;
-  border-radius: 25px;
-  width: 97px;
-  background: #e5dcff;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
+  .card-loan {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width:auto;
+  }
+  .display-card-item-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
 
-.red-transaction {
-  color:$red;
-}
+    h2 {
+      font-size:16px;
+      padding-bottom: 8px;
+    }
+  }
 
-.green-transaction {
-  color: $green;
-}
+  p.small {
+    font-size: 14px;
+    font-style: italic;
+  }
 
-.pending-transaction {
-  color: $dark-gray;
+  .transaction-status {
+    height: 33px;
+    border-radius: 25px;
+    width: 97px;
+    background: $light-gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .red-transaction {
+    color:$red;
+  }
+
+  .green-transaction {
+    color: $green;
+  }
+
+  .pending-transaction {
+    color: $dark-gray;
+  }
 }
