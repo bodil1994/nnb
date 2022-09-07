@@ -1,0 +1,18 @@
+<div class="list-box">
+  <div class="list-item">
+    <p>Amount Paid</p>
+    <p><%= @amount_paid %> €</p>
+  </div>
+  <div class="list-item">
+    <p>Amount Remaining</p>
+    <p><%= (@loan.amount - @amount_paid).round %> €</p>
+  </div>
+  <div class="list-item">
+    <p>Next Payment Due</p>
+    <p><%= @loan_payments_remaining.first.payment_due %> €</p>
+  </div>
+  <div class="list-item">
+    <p>Next Payment Amount</p>
+    <p><%= @loan_payments_remaining.first.payment_amount %> €</p>
+  </div>
+</div>
