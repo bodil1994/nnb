@@ -11,19 +11,19 @@
         <div class="flex-selectors">
           <div class="radio-botton select-button">
             <%= f.radio_button :amount, 1000, data: {create_loan_target: "botton", action: "change->create-loan#updateAmount"} %>
-            <%= f.label :amount, "1000 NFCP", data: {create_loan_target: "label"} %>
+            <%= f.label :amount, "1000 €", data: {create_loan_target: "label"} %>
           </div>
           <div class="radio-botton select-button">
             <%= f.radio_button :amount, 2000, data: {create_loan_target: "botton", action: "change->create-loan#updateAmount"} %>
-            <%= f.label :amount, "2000 NFCP", data: {create_loan_target: "label"} %>
+            <%= f.label :amount, "2000 €", data: {create_loan_target: "label"} %>
           </div>
           <div class="radio-botton select-button">
             <%= f.radio_button :amount, 3000, data: {create_loan_target: "botton", action: "change->create-loan#updateAmount"} %>
-            <%= f.label :amount, "3000 NFCP", data: {create_loan_target: "label"} %>
+            <%= f.label :amount, "3000 €", data: {create_loan_target: "label"} %>
           </div>
           <div class="radio-botton select-button amount-value">
             <%= f.radio_button :amount, 4000, data: {create_loan_target: "botton", action: "change->create-loan#updateAmount"} %>
-            <%= f.label :amount, "4000 NFCP", data: {create_loan_target: "label"} %>
+            <%= f.label :amount, "4000 €", data: {create_loan_target: "label"} %>
           </div>
           <div class="select-input purple-background amount-value">
             <%= f.input :amount, placeholder: 'Enter amount', label: false, class: "create-input", input_html: { data: {create_loan_target: "input", action: "focus->create-loan#removeColor"}} %>
