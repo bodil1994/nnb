@@ -107,15 +107,15 @@ amount = 200
 title = "Paying school fees for my children"
 description = "I need the money to pay for my two children's tuition fees, as well as for their books, their school uniform and their food."
 loan_category = "Education"
-status = "Active"
+status = "Pending"
 loan = Loan.find_by(loan_category: "Education")
 user = User.find_by(first_name: "Ben")
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
 amount = 200
-title = "Paying school fees for my children"
-description = "New requests I need the money to pay for my two children's tuition fees, as well as for their books, their school uniform and their food."
+title = "Le wagon Course"
+description = "Wagon course"
 loan_category = "Education"
 status = "Pending"
 loan = Loan.find_by(loan_category: "Education")
@@ -123,6 +123,15 @@ user = User.find_by(first_name: "Ben")
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
+amount = 200
+title = "Le wagon Course"
+description = "Fun times"
+loan_category = "Education"
+status = "Declined"
+loan = Loan.find_by(loan_category: "Education")
+user = User.find_by(first_name: "Ben")
+education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan, declined_at: DateTime.now)
+puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
 
 amount = 400
@@ -154,11 +163,11 @@ wallet_sam = Wallet.create!(user: user_sam, amount: amount_sam)
 puts "new wallet added for User #{wallet_sam.user.email}"
 
 user = User.find_by(first_name: "Ben")
-wallet_ben = Wallet.create!(user: user)
+wallet_ben = Wallet.create!(user: user, amount:0)
 puts "new wallet added for User #{wallet_ben.user.email}"
 
 user = User.find_by(first_name: "Sarah")
-wallet_sarah = Wallet.create!(user: user)
+wallet_sarah = Wallet.create!(user: user, amount:0)
 puts "new wallet added for User #{wallet_sarah.user.email}"
 
 all_users = User.all
@@ -177,8 +186,21 @@ all_users.each do |user|
 
 loan_sam = Loan.find_by(user: sam, status: "Active")
 amount = 30
-loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount)
+payment_date = Date.new(2020-01-01)
+loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date)
 puts "fist loan payment added for #{loan_sam_payment.loan}"
+
+loan_sam = Loan.find_by(user: sam, status: "Active")
+amount = 40
+payment_date = Date.new(2020-02-01)
+loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date)
+puts "second loan payment added for #{loan_sam_payment.loan}"
+
+loan_sam = Loan.find_by(user: sam, status: "Active")
+amount = 20
+payment_date = Date.new(2020-03-01)
+loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date)
+puts "third loan payment added for #{loan_sam_payment.loan}"
 
   # all_deposits = Deposit.all
   all_account = BankAccount.all
@@ -197,6 +219,7 @@ puts "fist loan payment added for #{loan_sam_payment.loan}"
       bank_account_id = account.id
       depo = Deposit.create!(amount: amount, wallet_id: wallet_id, status: status, deposit_reference: deposit_reference, bank_account_id: bank_account_id)
       puts "deposit added for wallet : #{wallet_id}, amount: #{amount}"
+      UpdateWalletService.new(borrower_transaction: depo, lender_transaction: "", borrower_wallet: account.user.wallet, lender_wallet: "", transaction_type: "").call
     end
   end
 
@@ -206,14 +229,15 @@ puts "fist loan payment added for #{loan_sam_payment.loan}"
     3.times do
      withdrawal_status = ["Submitted", "Pending", "Approved", "Declined"]
      reference = ["ZZ111", "WW2222", "XX3333", "YY4444", "MM5555", "NN666", "OO7777", "PP8888"]
-     amount_withdrawal = [50, 75, 100, 150, 250, 300]
-
+     amount_withdrawal = [1,2,3,4,5]
+      p account.user.wallet
      amount = amount_withdrawal.sample
      wallet_id = account.user.wallet.id
      bank_account_id = account.id
      status = withdrawal_status.sample
      withdraw = WithdrawalRequest.create!(amount: amount, wallet_id: wallet_id, status: status, bank_account_id: bank_account_id)
      puts "withdrawal added for wallet : #{wallet_id}, amount: #{amount}"
+     UpdateWalletService.new(borrower_transaction: withdraw, lender_transaction: "", borrower_wallet: account.user.wallet, lender_wallet: "", transaction_type: "").call
    end
  end
 

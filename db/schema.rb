@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_06_071054) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_06_081940) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_06_071054) do
     t.string "payment_status"
     t.date "due_date"
     t.bigint "transfer_id"
+    t.float "profit"
     t.index ["loan_id"], name: "index_loan_payments_on_loan_id"
     t.index ["transfer_id"], name: "index_loan_payments_on_transfer_id"
   end
