@@ -1,3 +1,5 @@
+Message.destroy_all
+Chatroom.destroy_all
 Transfer.destroy_all
 LoanRequest.destroy_all
 LoanPayment.destroy_all
@@ -55,6 +57,8 @@ payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
 education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
+chatroom = Chatroom.create!(loan_id: education_loan.id)
+puts "chatrooom num #{chatroom.id}"
 
 amount = 1000
 interest_rate = 5
@@ -66,6 +70,8 @@ payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
 education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
+chatroom = Chatroom.create!(loan_id: education_loan.id)
+puts "chatrooom num #{chatroom.id}"
 
 amount = 600
 interest_rate = 5
@@ -77,6 +83,8 @@ payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
 education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
+chatroom = Chatroom.create!(loan_id: education_loan.id)
+puts "chatrooom num #{chatroom.id}"
 
 amount = 450
 interest_rate = 12
@@ -99,7 +107,8 @@ payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
 health_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
-
+chatroom = Chatroom.create!(loan_id: health_loan.id)
+puts "chatrooom num #{chatroom.id}"
 
 amount = 50
 interest_rate = 10
@@ -111,21 +120,22 @@ payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
 education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
-
+chatroom = Chatroom.create!(loan_id: education_loan.id)
+puts "chatrooom num #{chatroom.id}"
 
 amount = 200
 title = "Paying school fees for my children"
 description = "I need the money to pay for my two children's tuition fees, as well as for their books, their school uniform and their food."
 loan_category = "Education"
-status = "Pending"
+status = "Active"
 loan = Loan.find_by(loan_category: "Education")
 user = User.find_by(first_name: "Ben")
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
 amount = 200
-title = "Le wagon Course"
-description = "Wagon course"
+title = "Paying school fees for my children"
+description = "New requests I need the money to pay for my two children's tuition fees, as well as for their books, their school uniform and their food."
 loan_category = "Education"
 status = "Pending"
 loan = Loan.find_by(loan_category: "Education")
@@ -133,15 +143,6 @@ user = User.find_by(first_name: "Ben")
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
-amount = 200
-title = "Le wagon Course"
-description = "Fun times"
-loan_category = "Education"
-status = "Declined"
-loan = Loan.find_by(loan_category: "Education")
-user = User.find_by(first_name: "Ben")
-education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan, declined_at: DateTime.now)
-puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
 
 amount = 400
@@ -173,11 +174,13 @@ wallet_sam = Wallet.create!(user: user_sam, amount: amount_sam)
 puts "new wallet added for User #{wallet_sam.user.email}"
 
 user = User.find_by(first_name: "Ben")
-wallet_ben = Wallet.create!(user: user, amount:0)
+amount_ben = 1000
+wallet_ben = Wallet.create!(user: user,amount: amount_ben)
 puts "new wallet added for User #{wallet_ben.user.email}"
 
 user = User.find_by(first_name: "Sarah")
-wallet_sarah = Wallet.create!(user: user, amount:0)
+amount_sarah = 1000
+wallet_sarah = Wallet.create!(user: user, amount: amount_sarah)
 puts "new wallet added for User #{wallet_sarah.user.email}"
 
 all_users = User.all
@@ -196,6 +199,10 @@ all_users.each do |user|
 
 loan_sam = Loan.find_by(user: sam, status: "Active", loan_category: "Education")
 amount = 30
+
+loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount)
+puts "fist loan payment added for #{loan_sam_payment.loan}"
+
 payment_date = Date.new(2020-01-01)
 payment_status = "Completed"
 loan_sam_payment_1 = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date, payment_status: payment_status)
@@ -215,7 +222,6 @@ payment_status = "Completed"
 loan_sam_payment_3 = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date, payment_status: payment_status)
 puts "third loan payment added for #{loan_sam_payment_3.loan}"
 
-
   # all_deposits = Deposit.all
   all_account = BankAccount.all
 
@@ -233,7 +239,6 @@ puts "third loan payment added for #{loan_sam_payment_3.loan}"
       bank_account_id = account.id
       depo = Deposit.create!(amount: amount, wallet_id: wallet_id, status: status, deposit_reference: deposit_reference, bank_account_id: bank_account_id)
       puts "deposit added for wallet : #{wallet_id}, amount: #{amount}"
-      UpdateWalletService.new(borrower_transaction: depo, lender_transaction: "", borrower_wallet: account.user.wallet, lender_wallet: "", transaction_type: "").call
     end
   end
 
@@ -243,15 +248,14 @@ puts "third loan payment added for #{loan_sam_payment_3.loan}"
     3.times do
      withdrawal_status = ["Submitted", "Pending", "Approved", "Declined"]
      reference = ["ZZ111", "WW2222", "XX3333", "YY4444", "MM5555", "NN666", "OO7777", "PP8888"]
-     amount_withdrawal = [1,2,3,4,5]
-      p account.user.wallet
+     amount_withdrawal = [50, 75, 100, 150, 250, 300]
+
      amount = amount_withdrawal.sample
      wallet_id = account.user.wallet.id
      bank_account_id = account.id
      status = withdrawal_status.sample
      withdraw = WithdrawalRequest.create!(amount: amount, wallet_id: wallet_id, status: status, bank_account_id: bank_account_id)
      puts "withdrawal added for wallet : #{wallet_id}, amount: #{amount}"
-     UpdateWalletService.new(borrower_transaction: withdraw, lender_transaction: "", borrower_wallet: account.user.wallet, lender_wallet: "", transaction_type: "").call
    end
  end
 
