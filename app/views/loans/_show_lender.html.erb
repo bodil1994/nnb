@@ -25,12 +25,13 @@
         </p>
       </div>
     </div>
-
-  <div class="wrapper-main">
-    <h2>Payments</h2>
-    <%# LOAN PAYMENTS %>
-    <%= render "loans/show_payment_info", loan: loan %>
-  </div>
+  <% if loan.status == "Active" %>
+    <div class="wrapper-main">
+      <h2>Payments</h2>
+      <%# LOAN PAYMENTS %>
+      <%= render "loans/show_payment_info", loan: loan %>
+    </div>
+  <% end %>
 
   <div class="wrapper-main">
     <h2>Overview</h2>
