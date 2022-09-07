@@ -1,0 +1,31 @@
+<%# currently only set up for Lender viewing %>
+<div class="user-show-borrower">
+  <div class="banner">
+    <div class="banner-contents">
+      <%# Back navigation %>
+      <%= link_to loan_path(@loan_request.loan) do %>
+        <%= image_tag "arrow.png" %>
+      <% end %>
+      <%# Image and name %>
+      <div class="wrapper-avatar">
+        <%= image_tag "avatar-real.png", class: "avatar avatar__large" %>
+        <h1><%= @user.first_name %><%= @user.last_name %></h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+   <%# PROFILE INFOS %>
+    <div class="wrapper-info">
+      <p class="gray">Profession</p>
+      <p><%= @user.profession %></p>
+    </div>
+     <div class="wrapper-info">
+      <p class="gray">Location</p>
+      <p><%= @user.address %></p>
+    </div>
+    <div class="wrapper-info">
+      <p class="gray">Loan Purpose</p>
+      <p><%= @loan_request.description %></p>
+    </div>
+  </div>
+</div>

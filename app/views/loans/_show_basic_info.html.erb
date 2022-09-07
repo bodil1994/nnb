@@ -23,10 +23,13 @@
     <p>Approval</p>
     <p><%= loan.instant_loan ? "Auto" : "Manual" %></p>
   </div>
-  <% if current_user.user_type == "Lender" %>
-    <div class="list-item">
-      <p class="bold">Earned Interest</p>
-      <p>+<%= loan.amount.to_i * loan.interest_rate.to_i / 100 %> €</p>
-    </div>
+  <% if current_user.nil? %>
+  <% else %>
+    <% if current_user.user_type == "Lender" %>
+      <div class="list-item">
+        <p class="bold">Earned Interest</p>
+        <p>+<%= loan.amount.to_i * loan.interest_rate.to_i / 100 %> €</p>
+      </div>
+    <% end %>
   <% end %>
 </div>
