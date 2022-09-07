@@ -9,8 +9,8 @@
 
   <div data-controller="loan-approval" >
     <% loan.loan_requests.order(:status, created_at: :desc).each do |loan_request| %>
-      <%= link_to loan_request_borrower_profile_path(loan_request_id: loan_request.id, id: loan_request.user.id) do %>
         <div class="card-request-approval" url= "<%= loan_request_path(loan_request)  %>">
+        <%= link_to loan_request_borrower_profile_path(loan_request_id: loan_request.id, id: loan_request.user.id), id:"content-link" do %>
           <div class="wrapper-content">
             <div class="wrapper-user">
               <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
@@ -41,6 +41,7 @@
             </div>
             <p class= "gray-text">"<%= loan_request.description %>"</p>
           </div>
+        <% end %>
 
           <%# ONLY SHOW BUTTONS IF NOT ONE OF ARRAY %>
           <% if ["Active", "Declined", "Closed", "Cancelled"].include? loan_request.status %>
@@ -51,7 +52,6 @@
             </div>
           <% end %>
         </div>
-      <% end %>
     <% end %>
   </div>
 <% end %>

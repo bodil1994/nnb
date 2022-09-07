@@ -1,7 +1,12 @@
  <% if flash.any? %>
-    <% flash.each do |type, msg| %>
-    <div class="alert alert__<%= type %>">
-      <%= msg %>
+  <% flash.each do |type, msg| %>
+    <div id="alert" data-alert-target="background" >
+      <div class="alert alert__success" data-alert-target="alert">
+        <%= msg %>
+        <button data-action="click->alert#close"><i class="fa-regular fa-x"></i></button>
+      </div>
     </div>
-    <% end %>
+  <% end %>
 <% end %>
+
+<%# alert__<%= type  --> change the type above  %>
