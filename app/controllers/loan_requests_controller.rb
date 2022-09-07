@@ -50,6 +50,12 @@ class LoanRequestsController < ApplicationController
         UpdateWalletService.new(borrower_transaction: @borrower_transfer, lender_transaction: @lender_transfer, borrower_wallet: borrower_wallet, lender_wallet: lender_wallet, transaction_type: "Transfer").call
       end
 
+      # update the loan status to active
+      @loan.update(status: "Active")
+
+      # create loan payment schedule
+      LoanPaymentSchedule.new(loan: @loan).call
+
     # Else set loan_request.status to On process
     else
      @loan_request.update(status: "Pending")
@@ -82,6 +88,10 @@ class LoanRequestsController < ApplicationController
     if @loan_request.save
       if params[:status] == "Active"
         @loan.update(status: "Active")
+
+        # create loan payment schedule
+        LoanPaymentSchedule.new(loan: @loan).call
+
         decline_all(@loan_request)
       end
       respond_to do |format|
