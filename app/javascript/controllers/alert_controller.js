@@ -18,4 +18,10 @@ export default class extends Controller {
    this.alertTarget.remove();
    this.backgroundTarget.remove();
   }
+
+
+  reload(){
+    window.location.reload();
+    this.close()
+}
 }

@@ -66,7 +66,7 @@ export default class extends Controller {
           status.insertAdjacentHTML("afterbegin", `<p>Accepted<br>${today}</p>`)
 
           // SHOW ALERT
-          const a = '<div class="alert alert__success" data-alert-target="alert"><p class="bold">🎉 Congratulations, your loan has been matched.</p><br><p> The loan has been deducted from your wallet and transferred to the borrower.</p><button data-action="click->alert#close"><i class="fa-regular fa-x"></i></button></div>';
+          const a = '<div class="alert alert__success" data-alert-target="alert"><p class="bold">🎉 Congratulations, your loan has been matched.</p><br><p> The loan has been deducted from your wallet and transferred to the borrower.</p><button data-action="click->alert#reload"><i class="fa-regular fa-x"></i></button></div>';
           const flash = document.getElementById("flash")
           flash.insertAdjacentHTML("afterbegin", a)
           document.getElementById("alert").classList.add("d-block")

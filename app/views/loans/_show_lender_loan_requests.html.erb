@@ -1,14 +1,17 @@
 
 <h2>Loan Requests</h2>
 <%# IF NOT LOAN REQUESTS %>
-<% if loan.loan_requests.count.nil?%>
-  <p class="gray"><%="No requests"%></p>
+<% loan_requests = loan.loan_requests.order(:status, created_at: :desc) %>
+    <% loan_active = loan_requests.where(status: "Active") %>
+    <% loan_requests -= loan_active %>
+<% if loan_requests.count == 0|| loan.loan_requests.count == 0 %>
+  <p class="gray">No requests</p>
 
 <%# IF LOAN REQUESTS EXIST %>
 <% else %>
 
   <div data-controller="loan-approval" >
-    <% loan.loan_requests.order(:status, created_at: :desc).each do |loan_request| %>
+    <% loan_requests.each do |loan_request| %>
         <div class="card-request-approval" url= "<%= loan_request_path(loan_request)  %>">
           <%= link_to loan_request_borrower_profile_path(loan_request_id: loan_request.id, id: loan_request.user.id), id:"content-link" do %>
           <div class="wrapper-content">
