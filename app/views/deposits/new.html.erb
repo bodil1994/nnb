@@ -3,13 +3,16 @@
   <div class="header">
     <h1 class = "light">Let's transfer money!</h1>
   </div>
-  <div class="wrapper">
-    <p>Current balance: </p>
-    <p class="wallet-amount">&nbsp;&nbsp;<%= current_user.wallet.amount.round %> €</p>
+<h2>How much would you like to withdraw?</h2>
+<div class="wrapper-wallet">
+  <div class="wrapper-wallet-amount">
+    <p>Current Balance: <%= current_user.wallet.amount.round %> €</p>
   </div>
-  <h2>How much would you like to deposit?</h2>
   <%= simple_form_for @deposit do |f| %>
-  <%= f.input :amount %>
+  <div class="text-input-wrapper">
+    <%= f.text_field :amount, class: "amount-input", placeholder: "enter amount" %>
+  </div>
+</div>
   <%# <%= f.collection_radio_buttons :bank_account_id, @bank_accounts, :id, :bank_name,
             collection_wrapper_tag: 'div',
             collection_wrapper_class: 'category-wrapper',
@@ -19,13 +22,15 @@
     <div class="category-item">
       <input class="form-check-input radio_buttons required category-selector" type="radio" value="<%= bank_account.id %>" name="deposit[bank_account_id]" id=<%= bank_account.id %> >
       <label class="form-check-label collection_radio_buttons wrapper" for="<%= bank_account.id %>">
+        <div class="image-wrapper">
         <% if bank_account.bank_type == "Bank" %>
           <%= image_tag("icon-bank.svg", :alt => "rss feed") %>
         <% else %>
           <%= image_tag("icon-orange-money.svg", :alt => "rss feed") %>
         <% end %>
-        <div class="bank_details">
-          <p class="light"><strong><%= bank_account.bank_name %></strong></p>
+        </div>
+        <div class="bank-details">
+          <p><%= bank_account.bank_name %></p>
           <p class="gray-text"><%= bank_account.account_number %></p>
         </div>
       </label>
