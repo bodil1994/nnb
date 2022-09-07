@@ -2,11 +2,8 @@
    <div class="wrapper-head">
     <div class="row" data-controller="avatar-dropdown">
       <h1>Hello <%= current_user.first_name %></h1>
-       <% if current_user.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar avatar__large", data: { action: "click->avatar-dropdown#showMenu" } %>
-      <% else %>
-        <%= image_tag "avatar-icon.png", class: "avatar avatar__large" %>
-      <% end %>
+      <% user = current_user %>
+      <%= render "shared/avatar_large", user: user %>
       <div class="user_popup d-none"
         data-target="avatar-dropdown.popup-menu">
         hello
