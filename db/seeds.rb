@@ -68,7 +68,7 @@ payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
 education_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{education_loan.user.first_name}: #{education_loan.amount}€ for #{education_loan.loan_category} with interest rate of #{education_loan.interest_rate}%"
-chatroom = Chatroom.create!(loan_id: education_loan.id)
+chatroom = Chatroom.create!(loan: education_loan)
 puts "chatrooom num #{chatroom.id}"
 
 amount = 1000
@@ -208,10 +208,8 @@ all_users.each do |user|
   end
   end
 
-
-loan_sam = Loan.find_by(user: sam, status: "Active", loan_category: "Education")
+loan_sam = Loan.find_by(user: sam, status: "Active")
 amount = 17.08
-
 start_date = Date.new(2020-01-01)
 12.times do
   due_date = start_date.next_month

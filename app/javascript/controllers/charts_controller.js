@@ -2,8 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 import { Chart, registerables } from 'chart.js';
 
 export default class extends Controller {
-  static values = { health: Number, education: Number, business: Number, insurance: Number, already: Number, still: Number, profit: Object};
-
+  static values = { health: Number, education: Number, business: Number, insurance: Number, already: Number, still: Number, profit: Object, loans: Array};
+  static targets = ["wrapper"]
   connect() {
     Chart.register(...registerables);
     const labels = [
@@ -13,7 +13,6 @@ export default class extends Controller {
       'Insurance'
     ];
 
-    console.log(this.profitValue)
     const data = {
       labels: labels,
       datasets: [{
@@ -45,7 +44,7 @@ export default class extends Controller {
         label: 'How much of your loan is already payed back?',
         data: [this.stillValue, this.alreadyValue],
         backgroundColor: [
-          'rgb(125,123,126)',
+          'rgb(229,220,255)',
           'rgb(136, 46, 252)',
         ],
         hoverOffset: 4
@@ -62,10 +61,15 @@ export default class extends Controller {
       config2
     );
 
-    const labels3 = Object.keys(this.profitValue);
-    const banana = Object.values(this.profitValue).map((loan) => loan[0].profit);
 
-    console.log(banana)
+    const labels3 = Object.keys(this.profitValue).reverse();
+    //console.log(Object.values(this.profitValue)[0][0].created_at.toLocaleDateString())
+    // labels3.unshift(Object.values(this.profitValue)[0][0].created_at)
+    labels3.unshift("2015-01-01")
+    // .strftime("%d-%m-%Y")
+    let l = 0
+    const banana = Object.values(this.profitValue).map((loan) => l += loan[0].profit);
+    banana.unshift(0);
 
     const data3 = {
       labels: labels3,
@@ -87,5 +91,52 @@ export default class extends Controller {
       document.getElementById('profitChart'),
       config3
     );
+
+    console.log("HELLOO")
+
+    this.loansValue.forEach((loan) => {
+      const id = Object.keys(loan)[0]
+      const values = Object.values(loan)
+      console.log(Object.values(loan)[0])
+      // const category = values[0]
+      // const amount = values[0]
+      const already = values[0].already
+      const still = values[0].still
+      const data4 = {
+        labels: [
+          `Due: ${still} €`,
+          `Already payed back: ${already} €`
+        ],
+
+        datasets: [{
+          label: 'How much of your loan is already payed back?',
+          data: [still, already],
+          backgroundColor: [
+            'rgb(229,220,255)',
+            'rgb(136, 46, 252)',
+          ],
+          hoverOffset: 4
+        }]
+      };
+
+      const config4 = {
+        type: 'doughnut',
+        data: data4,
+      };
+
+      const div = `<div class="swiper-slide">
+      <div class="">
+        <canvas id="chart${id}"></canvas>
+      </div>
+    </div>`
+
+    this.wrapperTarget.insertAdjacentHTML("beforeend", div)
+      const paybackChart2 = new Chart(
+        document.getElementById(`chart${id}`),
+        config4
+      );
+    })
   }
 }
+
+//<p>This is your ${category}-Loan over ${amount}€</p>

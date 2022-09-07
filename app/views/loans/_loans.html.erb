@@ -28,11 +28,8 @@
             </div>
 
             <div>
-              <% if loan.user.photo.attached? %>
-                <%= cl_image_tag loan.user.photo.key, class: "avatar" %>
-              <% else %>
-                <%= image_tag "avatar-icon.png", class: "avatar" %>
-              <% end %>
+              <% user = loan.user %>
+              <%= render "shared/avatar", user: user %>
             </div>
 
           </div>
