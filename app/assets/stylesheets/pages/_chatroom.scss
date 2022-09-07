@@ -8,3 +8,41 @@
 .margin-left-20px {
   margin-left: 20px;
 }
+
+.margin-bottom-20px {
+  margin-bottom: 20px;
+}
+
+.l-msg-style {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border-radius: 25px;
+  width: auto;
+  height: auto;
+  min-height: 5px;
+  background: $purple-background;
+  margin-bottom:10px;
+}
+
+.b-msg-style {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 25px;
+  width: auto;
+  height: auto;
+  min-height: 5px;
+  background: $dark-gray;
+  margin-bottom:10px;
+}
+
+.text-box-size {
+  width: 100%;
+}
+
+.chat-form {
+  input {
+    width: 100%;
+  }
+}
