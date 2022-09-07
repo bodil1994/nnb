@@ -1,3 +1,8 @@
 <%= render "shared/back_navigation", path: loans_path %>
 <h1 class="light"> Loan Description</h1>
+<div class="wrapper-avatar">
+  <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+  <p>by <%= @loan.user.first_name %> <%= @loan.user.last_name %><br>
+  <%= @loan.user.address %></p>
+</div>
 <%= render "loans/show_basic_info", loan: loan %>
