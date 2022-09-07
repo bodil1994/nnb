@@ -24,8 +24,24 @@
     </div>
 
     <div class="wallet-buttons">
-      <%= link_to "Withdraw", new_withdrawal_request_path, class:"btn" %>
-      <%= link_to "Deposit", new_deposit_path, class:"btn"  %>
+      <%= link_to new_withdrawal_request_path do %>
+        <div class="wallet-button">
+          <%= image_tag "icon-deposit.svg" %>
+          <p>Deposit</p>
+        </div>
+      <% end %>
+      <%= link_to new_deposit_path do %>
+        <div class="wallet-button">
+          <%= image_tag "icon-withdraw.svg" %>
+          <p>Withdraw</p>
+        </div>
+      <% end %>
+      <%= link_to portfolio_path do %>
+        <div class="wallet-button">
+          <%= image_tag "icon-portfolio.svg" %>
+          <p>Portfolio</p>
+        </div>
+      <% end %>
     </div>
   </div>
 
@@ -35,10 +51,11 @@
   </div>
   <div class="wrapper-main">
     <h2>Your Loans</h2>
-    <% if current_user.loans.nil? %>
-      <p class="gray"><%="No Loans yet"%></p>
+    <% if current_user.loans.count == 0 %>
+      <p class="gray">No loans yet</p>
     <% end %>
     <%= render "shared/cards_loan_lender" %>
   </div>
 </div>
+
 <%# <%= console %>

@@ -57,9 +57,34 @@
     flex-flow: row;
     gap: 15px;
 
+    a {
+      flex: 1 1 0px;
+    }
+
+    .wallet-button {
+      border: solid 1px $light-gray;
+      border-radius: 5px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+
+
+      p {
+        font-size: 12px;
+      }
+
+      img {
+        width: 33px;
+      }
+    }
+
     form {
       flex: 1 1 0px;
     }
 
   }
+
+
 }
