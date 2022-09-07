@@ -130,7 +130,8 @@ loan_category = "Education"
 status = "Active"
 loan = Loan.find_by(loan_category: "Education")
 user = User.find_by(first_name: "Ben")
-education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
+accepted_at = Date.today
+education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan, accepted_at: accepted_at)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
 amount = 200
@@ -198,29 +199,43 @@ all_users.each do |user|
 
 
 loan_sam = Loan.find_by(user: sam, status: "Active", loan_category: "Education")
-amount = 30
+amount = 17.08
 
-loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount)
-puts "fist loan payment added for #{loan_sam_payment.loan}"
+start_date = Date.new(2020-01-01)
+12.times do
+  due_date = start_date.next_month
+  if due_date > Date.today
+    payment_status = "Completed"
+  else
+    payment_status = "Scheduled"
+  end
+  payment = LoanPayment.new(loan: loan_sam, amount: amount, due_date: due_date, payment_status: payment_status)
+  if due_date < Date.today
+    payment_date = due_date
+    payment.payment_date = payment_date
+  end
+  payment.save!
 
-payment_date = Date.new(2020-01-01)
-payment_status = "Completed"
-loan_sam_payment_1 = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date, payment_status: payment_status)
-puts "fist loan payment added for #{loan_sam_payment_1.loan}"
+  puts "loan payment added for #{payment.loan}"
+end
+# loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount)
+# puts "fist loan payment added for #{loan_sam_payment.loan}"
+# payment_date = Date.new(2020-01-01)
+# payment_status = "Completed"
+# loan_sam_payment_1 = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date, payment_status: payment_status)
+# puts "fist loan payment added for #{loan_sam_payment_1.loan}"
 
-loan_sam = Loan.find_by(user: sam, status: "Active", loan_category: "Education")
-amount = 40
-payment_date = Date.new(2020-02-01)
-payment_status = "Completed"
-loan_sam_payment_2 = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date, payment_status: payment_status)
-puts "second loan payment added for #{loan_sam_payment_2.loan}"
+# loan_sam = Loan.find_by(user: sam, status: "Active", loan_category: "Education")
+# payment_date = Date.new(2020-02-01)
+# payment_status = "Completed"
+# loan_sam_payment_2 = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date, payment_status: payment_status)
+# puts "second loan payment added for #{loan_sam_payment_2.loan}"
 
-loan_sam = Loan.find_by(user: sam, status: "Active", loan_category: "Education")
-amount = 20
-payment_date = Date.new(2020-03-01)
-payment_status = "Completed"
-loan_sam_payment_3 = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date, payment_status: payment_status)
-puts "third loan payment added for #{loan_sam_payment_3.loan}"
+# loan_sam = Loan.find_by(user: sam, status: "Active", loan_category: "Education")
+# payment_date = Date.new(2020-03-01)
+# payment_status = "Completed"
+# loan_sam_payment_3 = LoanPayment.create!(loan: loan_sam, amount: amount, payment_date: payment_date, payment_status: payment_status)
+# puts "third loan payment added for #{loan_sam_payment_3.loan}"
 
   # all_deposits = Deposit.all
   all_account = BankAccount.all

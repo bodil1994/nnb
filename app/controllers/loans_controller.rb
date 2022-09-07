@@ -4,6 +4,14 @@ class LoansController < ApplicationController
     @loan = Loan.find(params[:id])
     # @loan_request = @loan.loan_requests.where(status: "Active").first
     @loan_requests = @loan.loan_requests
+    @loan_payments = @loan.loan_payments
+    @loan_payments_made = @loan_payments.where(payment_status: "Completed")
+    sum = 0
+    @loan_payments_made.each do |payment|
+      sum += payment.amount
+    end
+    @amount_paid = sum
+    @loan_payments_remaining = @loan_payments.where(payment_status: "Scheduled")
   end
 
   def index

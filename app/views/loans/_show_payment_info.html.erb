@@ -1,0 +1,13 @@
+<div class="list-box">
+
+  <%# Franka add payment chart here %>
+
+  <div class="list-item">
+    <p>Next Payment Due</p>
+    <p><%= @loan_payments_remaining.first.due_date %></p>
+  </div>
+  <div class="list-item">
+    <p>Next Payment Amount</p>
+    <p><%= @loan_payments_remaining.first.amount %> €</p>
+  </div>
+</div>
