@@ -8,12 +8,18 @@ class MessagesController < ApplicationController
     if @message.save
       ChatroomChannel.broadcast_to(
         @chatroom,
-        render_to_string(partial: "shared/message", locals: {message: @message})
+        render_to_string(partial: "messages/message", locals: {message: @message})
       )
       head :ok
     else
       render "chatrooms/show", status: :unprocessable_entity
     end
+  end
+
+  def index
+    @user = current_user
+    @loans = Loan.where(id: @user)
+
   end
 
   private

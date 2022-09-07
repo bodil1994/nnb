@@ -1,8 +1,8 @@
-<div class = "container summary-pages"
-    data-controller = "chatroom-subscription"
-    data-chatroom-subscription-chatroom-id-value = "<%= @chatroom.id %>"
+<div class = "container"
+  data-controller="chatroom-subscription"
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
 >
-  <%= render "shared/back_navigation",path: loan_path(@chatroom.loan_id) %>
+  <%= render "shared/back_navigation",path: chatrooms_path %>
   <div class="chat-header-wrapper header">
     <div class="user-name margin-left-20px">
       <h2> <%= "#{current_user.last_name} #{current_user.first_name}" %></h2>
@@ -27,7 +27,7 @@
     label: false,
     placeholder: "Message",
     wrapper_html: {class: "flex-grow-1"}%>
-  <%= f.submit "Send", class: "btn" %>
+  <%= f.submit "Send", class: "btn_secondary " %>
 <% end %>
 </div>
 <% console %>

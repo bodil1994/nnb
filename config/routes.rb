@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   resources :deposits, only: [:new, :create, :show, :update] do
     patch "/accept", to: "deposit#accept"
   end
-  resources :chatrooms, only: :show do
+  resources :chatrooms, only: [:show, :index] do
     resources :messages, only: :create
   end
 end
