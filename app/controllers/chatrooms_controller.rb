@@ -8,6 +8,7 @@ class ChatroomsController < ApplicationController
 
   def index
     @user = current_user
+    @chatroom = Chatroom.all
     @loans = Loan.where(user_id: @user.id, status: "Active")
   end
 

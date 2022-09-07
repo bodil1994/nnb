@@ -1,13 +1,13 @@
-<div class = "container"
+<div class = "container summary-pages"
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
 >
   <%= render "shared/back_navigation",path: chatrooms_path %>
-  <div class="chat-header-wrapper header">
+  <div class="chat-header-wrapper header margin-bottom-20px">
     <div class="user-name margin-left-20px">
       <h2> <%= "#{current_user.last_name} #{current_user.first_name}" %></h2>
        <p class = "light">#<%= "#{@chatroom_amount} € loan for #{@chatroom_category}" %></p>
-
+    </div>
       <%= button_to destroy_user_session_path, class: "transparent", method: :delete do %>
         <% if current_user.photo.attached? %>
           <%= cl_image_tag current_user.photo.key, class: "avatar avatar__large" %>
@@ -15,7 +15,6 @@
           <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
         <% end %>
       <%end%>
-    </div>
   </div>
 
   <div class="messages" data-chatroom-subscription-target="messages">
@@ -24,12 +23,14 @@
     <% end %>
   </div>
 <%= simple_form_for [@chatroom, @message],
-  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f|
+  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex chat-form" } do |f|
 %>
   <%= f.input :content,
     label: false,
     placeholder: "Message",
-    wrapper_html: {class: "flex-grow-1"}%>
-  <%= f.submit "Send", class: "btn_secondary " %>
+    wrapper_html: {class: "flex-grow-1 w-100"}%>
+  <%= f.submit "Send", class: "btn" %>
 <% end %>
 </div>
+
+<% console %>

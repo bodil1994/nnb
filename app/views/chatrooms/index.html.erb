@@ -9,6 +9,8 @@
         <!-- Display all the chatrooms in a card -->
     <% @loans.each do |loan| %>
       <%= loan.amount  %>
+      <% chatroom = @chatroom.where(loan: loan)  %>
+      <%= chatroom.ids  %>
     <% end %>
     <%= render "shared/cards_loan_lender" %>
    <% else %>
