@@ -89,15 +89,14 @@ class LoanRequestsController < ApplicationController
       if params[:status] == "Active"
         @loan.update(status: "Active")
 
-        # create loan payment schedule
-        LoanPaymentSchedule.new(loan: @loan).call
-
         decline_all(@loan_request)
       end
       respond_to do |format|
         format.json { render :show, status: :ok, location: @loan_request }
         format.html { redirect_to request.referer }
       end
+       # create loan payment schedule
+      #  LoanPaymentSchedule.new(loan: @loan).call
     end
   end
 

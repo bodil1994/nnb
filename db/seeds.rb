@@ -1,3 +1,5 @@
+require "open-uri"
+
 Message.destroy_all
 Chatroom.destroy_all
 Transfer.destroy_all
@@ -21,7 +23,10 @@ phone = "0199887682"
 address = "Frii Hotel Bali"
 password ="123123"
 user_type = "Lender"
-sam = User.create!(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+sam = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+file = URI.open("https://i.pinimg.com/originals/af/02/e6/af02e644e673cbb71d0cd886306e8274.jpg")
+sam.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
+sam.save!
 puts "new user added: #{sam.first_name} #{sam.last_name}"
 
 
@@ -33,7 +38,10 @@ phone = "08899887682"
 address = "Frii Hotel Bali"
 password ="123123"
 user_type = "Lender"
-sarah = User.create!(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+sarah = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+file = URI.open("https://i.pinimg.com/736x/7a/d3/1a/7ad31af11e1108ed093eca1b3438bc25.jpg")
+sarah.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
+sarah.save!
 puts "new user added: #{sarah.first_name} #{sarah.last_name}"
 
 first_name = "Ben"
@@ -44,14 +52,17 @@ phone = "08899899982"
 address = "Canggu Bali"
 password ="123123"
 user_type = "Borrower"
-ben = User.create!(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+ben = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+file = URI.open("https://i.pinimg.com/originals/d8/a0/1e/d8a01e34926bdb7eb9e1fb506d0aea1b.jpg")
+ben.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
+ben.save!
 puts "new user added: #{ben.first_name} #{ben.last_name}"
 
 amount = 200
 interest_rate = 2
 loan_category = "Education"
 instant_loan = true
-status = "Active"
+status = "Pending"
 payback_time = 365
 payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
@@ -86,6 +97,16 @@ puts "new loan added for user #{education_loan.user.first_name}: #{education_loa
 chatroom = Chatroom.create!(loan_id: education_loan.id)
 puts "chatrooom num #{chatroom.id}"
 
+amount = 450
+interest_rate = 12
+loan_category = "Insurance"
+instant_loan = false
+status = "Active"
+payback_time = 150
+payment_frequency = "Monthly"
+user = User.find_by(first_name: "Sam")
+insurance_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
+puts "new loan added for user #{insurance_loan.user.first_name}: #{insurance_loan.amount}€ for #{insurance_loan.loan_category} with interest rate of #{insurance_loan.interest_rate}%"
 
 amount = 100
 interest_rate = 5
@@ -117,10 +138,11 @@ amount = 200
 title = "Paying school fees for my children"
 description = "I need the money to pay for my two children's tuition fees, as well as for their books, their school uniform and their food."
 loan_category = "Education"
-status = "Active"
+status = "Pending"
 loan = Loan.find_by(loan_category: "Education")
 user = User.find_by(first_name: "Ben")
-education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
+accepted_at = Date.today
+education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan, accepted_at: accepted_at)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
 amount = 200
@@ -187,10 +209,26 @@ all_users.each do |user|
   end
 
 
-loan_sam = Loan.find_by(user: sam, status: "Active")
-amount = 30
-loan_sam_payment = LoanPayment.create!(loan: loan_sam, amount: amount)
-puts "fist loan payment added for #{loan_sam_payment.loan}"
+loan_sam = Loan.find_by(user: sam, status: "Active", loan_category: "Education")
+amount = 17.08
+
+start_date = Date.new(2020-01-01)
+12.times do
+  due_date = start_date.next_month
+  if due_date > Date.today
+    payment_status = "Completed"
+  else
+    payment_status = "Scheduled"
+  end
+  payment = LoanPayment.new(loan: loan_sam, amount: amount, due_date: due_date, payment_status: payment_status)
+  if due_date < Date.today
+    payment_date = due_date
+    payment.payment_date = payment_date
+  end
+  payment.save!
+
+  puts "loan payment added for #{payment.loan}"
+end
 
   # all_deposits = Deposit.all
   all_account = BankAccount.all
