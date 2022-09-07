@@ -10,4 +10,9 @@ class ChatroomsController < ApplicationController
     @user = current_user
     @loans = Loan.where(user_id: @user.id)
   end
+
+  def new
+    @chatroom = Chatroom.new
+  end
+
 end
