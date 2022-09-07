@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :loan_requests, only: [] do
-    get "/user", to: "users#show"
+    get "/borrower-profile", to: "users#show"
   end
 
   resources :loan_requests, only: [:show, :update]

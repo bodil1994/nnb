@@ -19,5 +19,9 @@
     <%= image_tag "icon-info.svg", class: "icon icon__info" %>
     </div>
   <%= render "loans/show_basic_info", loan: loan %>
-  <%= link_to "APPLY", new_loan_loan_request_path(loan), class: "btn" %>
+  <% if current_user.nil? %>
+    <%= link_to "APPLY", new_user_registration_path, class: "btn" %>
+  <% else %>
+   <%= link_to "APPLY", new_loan_loan_request_path(loan), class: "btn" %>
+  <% end %>
 </div>
