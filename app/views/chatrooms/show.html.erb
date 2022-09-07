@@ -1,6 +1,7 @@
 <div class = "container summary-pages"
   data-controller="chatroom-subscription summmary-pages"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+  data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
 >
   <% if current_user.user_type == "lender" %>
     <%= render "shared/back_navigation",path: dashboard_lender_path %>
@@ -24,6 +25,8 @@
 
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
+      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+      <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
       <%= render "messages/message", message: message %>
     <% end %>
   </div>
