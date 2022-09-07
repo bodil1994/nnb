@@ -2,6 +2,7 @@ class Loan < ApplicationRecord
   belongs_to :user
   has_many :loan_payments
   has_many :loan_requests
+  has_one :chatroom
 
   LOAN_CATEGORIES = ["Education", "Health", "Insurance", "Business"]
   LOAN_STATUS = ["Pending", "Listed", "Active", "Closed"]

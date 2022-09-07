@@ -10,7 +10,8 @@
     <% @loans.each do |loan| %>
       <%= loan.amount  %>
       <% chatroom = @chatroom.where(loan: loan)  %>
-      <%= chatroom.ids  %>
+      <%= chat = chatroom.ids  %>
+      <%= link_to "chat", chatroom_path(loan.chatroom) %>
     <% end %>
     <%= render "shared/cards_loan_lender" %>
    <% else %>
