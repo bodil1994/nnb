@@ -24,3 +24,6 @@ application.register("loan-approval", LoanApprovalController)
 
 import SearchLoansController from "./search_loans_controller"
 application.register("search-loans", SearchLoansController)
+
+import Carousel from 'stimulus-carousel'
+application.register('carousel', Carousel)
