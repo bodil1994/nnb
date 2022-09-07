@@ -1,8 +1,12 @@
-<div class = "container"
-  data-controller="chatroom-subscription"
+<div class = "container summary-pages"
+  data-controller="chatroom-subscription summmary-pages"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
 >
-  <%= render "shared/back_navigation",path: chatrooms_path %>
+  <% if current_user.user_type == "lender" %>
+    <%= render "shared/back_navigation",path: dashboard_lender_path %>
+  <% else %>
+    <%= render "shared/back_navigation",path: dashboard_borrower_path %>
+  <% end  %>
   <div class="chat-header-wrapper header">
     <div class="user-name margin-left-20px">
       <h2> <%= "#{current_user.last_name} #{current_user.first_name}" %></h2>
@@ -33,3 +37,5 @@
   <%= f.submit "Send", class: "btn_secondary " %>
 <% end %>
 </div>
+
+<% console() %>
