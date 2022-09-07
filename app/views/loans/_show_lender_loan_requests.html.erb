@@ -1,5 +1,8 @@
-
-<h2>Loan Requests</h2>
+<% if loan.status == "Active" %>
+  <h2>Requests History</h2>
+<% else %>
+  <h2>Loan Requests</h2>
+<% end %>
 <%# IF NOT LOAN REQUESTS %>
 <% loan_requests = loan.loan_requests.order(:status, created_at: :desc) %>
     <% loan_active = loan_requests.where(status: "Active") %>
@@ -16,9 +19,9 @@
           <%= link_to loan_request_borrower_profile_path(loan_request_id: loan_request.id, id: loan_request.user.id), id:"content-link" do %>
           <div class="wrapper-content">
             <div class="wrapper-user">
-              <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+              <%= render "shared/avatar_large", user: loan_request.user %>
                 <div class="wrapper-user-info">
-                  <p>by <%= loan_request.user.first_name %><%= loan_request.user.last_name %><br>
+                  <p>by <%= loan_request.user.first_name %> <%= loan_request.user.last_name %><br>
                     <%= loan.user.address %>
                   </p>
                 </div>

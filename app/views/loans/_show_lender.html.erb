@@ -2,14 +2,14 @@
   <%= render "shared/back_navigation", path: dashboard_lender_path %>
 
   <%# TITLE %>
-  <h1 class="light">Loan Description</h1>
+  <h1 class="light"><%= number_with_precision(loan.amount, precision: 2, strip_insignificant_zeros: true)%> € Loan for <%= loan.loan_category %></h1>
 
   <%# NOTICE BOX %>
   <div class="wrapper-main">
     <div class="notice-box">
         <p>Your loan ist currently <span class="bold"><%= loan.status.downcase %></span>.
         <% if loan.status == "Pending" %>
-          <span>It will not be listed until the loan amount # add more info an banking info here</span>
+          <span>It will not be listed until the loan is sufficiently funded in your wallet.</span>
         <% elsif loan.status == "Listed" %>
           <span>It can be seen by potential borrowers.</span>
           <% if loan.instant_loan %>
@@ -18,60 +18,62 @@
             <span>As you set the "Approval" to "Manual", borrower requests will not be accepted automatically. Instead they will be shown below and require you to accept or decline.</span>
           <% end %>
         <% elsif loan.status == "Active" %>
-          <span>Congratulations, your money is working for you. Why not chat to your borrower?</span>
+          <span>You can connect to the loan recipient through the chat.</span>
         <% elsif loan.status == "Closed" %>
           <span></span>
         <% end %>
         </p>
       </div>
     </div>
-
+<%# BORROWER INFO %>
   <% if loan.status == "Active" %>
-    <div class="wrapper-main">
-      <h2>Payments</h2>
-      <%# LOAN PAYMENTS %>
-      <%# <%= render "loans/show_payment_info", loan: loan %>
+  <div class="wrapper-main">
+    <% loan_request = LoanRequest.find_by(loan: loan) %>
+    <h2>Borrower</h2>
+      <div class="card-request-approval">
+        <div class="wrapper-content">
+          <div class="wrapper-user">
+            <%= link_to loan_request_borrower_profile_path(loan_request_id: loan_request.id, id: loan_request.user.id) do %>
+              <%= render "shared/avatar_large", user: loan_request.user %>
+              <% end %>
+            <div class="wrapper-user-info">
+              <p><%= loan_request.user.first_name %> <%= loan_request.user.last_name %><br>
+                <%= loan.user.address %>
+              </p>
+            </div>
+
+              <%# IF STATUS ONE OF ARRAY THEN SHOW STATUS OTHERWISE SHOW NOTHING UNTIL BUTTON CLICKED %>
+                <div class="loan-status" id="db-status" data-loan-approval-target="statusbutton">
+                  <p>Accepted<br><%= loan_request.accepted_at.strftime("%d/%m/%Y") %></p>
+                </div>
+                <%= link_to chatroom_path(loan.chatroom) do %>
+                <%= image_tag "icon-chat.svg", id: "chat" %>
+                <% end %>
+          </div>
+          <p class= "gray-text">"<%= loan_request.description %>"</p>
+        </div>
+      </div>
     </div>
   <% end %>
 
+<%# LOAN PAYMENTS %>
+  <% if loan.status == "Active" %>
+    <%# <div class="wrapper-main"> %>
+      <%# <h2>Payments</h2> %>
+      <%#= render "loans/show_payment_info", loan: loan %>
+    <%# </div> %>
+  <% end %>
+
   <div class="wrapper-main">
-    <h2>Overview</h2>
+    <h2>Details</h2>
     <%# LOAN SUMMARY %>
     <%= render "loans/show_basic_info", loan: loan %>
     <p class="gray-text">Please note this investment can only be claimed after the expect yield date is due. The interest rates are fixed and the loan has no collateral attached.</p>
   </div>
 
-
-  <%# BORROWER INFO %>
-  <% if @loan.status == "Active" %>
-  <div class="wrapper-main">
-    <% loan_request = LoanRequest.find_by(loan: @loan) %>
-    <h2>Loan Recipient</h2>
-      <%= link_to loan_request_borrower_profile_path(loan_request_id: loan_request.id, id: loan_request.user.id) do %>
-          <div class="card-request-approval">
-            <div class="wrapper-content">
-              <div class="wrapper-user">
-                <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
-                <div class="wrapper-user-info">
-                  <p><%= loan_request.user.first_name %><%= loan_request.user.last_name %><br>
-                    <%= loan.user.address %>
-                  </p>
-                </div>
-                  <%# IF STATUS ONE OF ARRAY THEN SHOW STATUS OTHERWISE SHOW NOTHING UNTIL BUTTON CLICKED %>
-                    <div class="loan-status" id="db-status" data-loan-approval-target="statusbutton">
-                      <p>Accepted<br><%= loan_request.accepted_at.strftime("%d/%m/%Y") %></p>
-                    </div>
-                    <%= image_tag "icon-chat.svg", id: "chat" %>
-              </div>
-              <p class= "gray-text">"<%= loan_request.description %>"</p>
-            </div>
-          </div>
-      <% end %>
-    </div>
-  <% end %>
-
-
   <%# LOAN REQUESTS %>
   <div class="wrapper-main">
     <%= render "loans/show_lender_loan_requests", loan: loan %>
   </div>
+
+  <%= console %>
