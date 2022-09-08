@@ -1,5 +1,5 @@
 
-<% current_user.loan_requests.order("loans.created_at").reverse.each do |request| %>
+<% current_user.loan_requests.order("loan_request.created_at").reverse.each do |request| %>
   <%= link_to loan_path(request.loan) do %>
     <div class="card-loan">
       <div class="wrapper-title">
