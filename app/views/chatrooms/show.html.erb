@@ -4,27 +4,15 @@
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
   data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
 >
-  <% if current_user.user_type == "lender" %>
-    <%= render "shared/back_navigation",path: dashboard_lender_path %>
-  <% else %>
-    <%= render "shared/back_navigation",path: dashboard_borrower_path %>
-  <% end  %>
+    <%= render "shared/back_navigation",path: current_user.user_type == "Lender" ? loan_path(@chatroom.loan) : loan_request_path(@chatroom.loan_request) %>
+
   <div class="chat-header-wrapper header">
     <div class="user-name margin-left-20px">
-    <% if current_user.user_type == "Borrower" %>
-    <div class="chat-room-wrapper">
-      <%= render "shared/avatar", user: @chatroom.loan.user %>
-      <div class="title-room-wrapper">
-        <h2> <%= "#{@chatroom.loan.user.last_name} #{@chatroom.loan.user.first_name}" %></h2>
-        <p class = "light">#<%= "#{@chatroom_amount} € loan for #{@chatroom_category}" %></p>
-      </div>
+    <%= render "chatrooms/header", chatroom: @chatroom, chatroom_amount: @chatroom_amount, chatroom_category: @chatroom_category %>
+    <br>
+    <br>
     </div>
-    <% else %>
-        <%= render "shared/avatar", user: @chatroom.borrower %>
-       <h2> <%= "#{@chatroom.borrower.last_name} #{@chatroom.borrower.first_name}" %></h2>
-        <p class = "light">#<%= "#{@chatroom_amount} € loan for #{@chatroom_category}" %></p>
-    <% end %>
-
+    </div>
 
       <div class="messages"
             data-chatroom-subscription-target="messages">
@@ -36,15 +24,15 @@
           </div>
         <% end %>
       </div>
-      <%= simple_form_for [@chatroom, @message],  html: {class: "flex-form"} do |f|%>
+      <%= simple_form_for [@chatroom, @message],  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "flex-form chat-form "} do |f|%>
         <%= f.input :content,
           label: false,
           placeholder: "Message",
           wrapper_html: {class: "flex-grow-1"}
         %>
-        <%= f.submit "Send", class: "btn btn-primary mb-3" %>
       <% end %>
-</div>
+
 
 </div>
+
 <% console() %>

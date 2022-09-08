@@ -20,14 +20,16 @@ export default class extends Controller {
 
  #insertMessageAndScrollDown(data) {
   // Logic to know if the sender is the current_user
-  const currentUserIsSender = this.currentUserIdValue === data.sender_id
+
+  const currentUserIsSender = this.currentUserIdValue == data.sender_id
 
   // Creating the whole message from the `data.message` String
   const messageElement = this.#buildMessageElement(currentUserIsSender, data.message)
 
   // Inserting the `message` in the DOM
   this.messagesTarget.insertAdjacentHTML("beforeend", messageElement)
-  this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
+  // this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
+  this.messagesTarget.lastElementChild.scrollIntoView()
 }
 
   #buildMessageElement(currentUserIsSender, message) {
@@ -41,7 +43,7 @@ export default class extends Controller {
   }
 
   #justifyClass(currentUserIsSender) {
-    return currentUserIsSender ? "justify-content-end" : "justify-content-start"
+    return currentUserIsSender ? "msg-end" : "msg-start"
   }
 
   #userStyleClass(currentUserIsSender) {
