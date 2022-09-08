@@ -105,6 +105,10 @@
 .chat-form {
   input {
     width: 100%;
+    border: 1px solid $light-gray;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
   }
 }
 .chat-room-wrapper {

@@ -5,12 +5,9 @@
   data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
 >
     <%= render "shared/back_navigation",path: current_user.user_type == "Lender" ? loan_path(@chatroom.loan) : loan_path(@chatroom.loan) %>
-
   <div class="chat-header-wrapper header">
     <div class="user-name margin-left-20px list">
     <%= render "chatrooms/header", chatroom: @chatroom, chatroom_amount: @chatroom_amount, chatroom_category: @chatroom_category %>
-    <br>
-    <br>
     </div>
     </div>
 
@@ -27,7 +24,7 @@
       <%= simple_form_for [@chatroom, @message],  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "flex-form chat-form "} do |f|%>
         <%= f.input :content,
           label: false,
-          placeholder: "Message",
+          placeholder: "# Message",
           wrapper_html: {class: "flex-grow-1"}
         %>
       <% end %>
