@@ -170,16 +170,16 @@ status = "Active"
 # loan = Loan.find_by(loan_category: "Education")
 loan = bodil_education_loan
 user = franka
-accepted_at = Date.new(2022,3,15)
+accepted_at = Date.new(2022,5,15)
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan, accepted_at: accepted_at)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
 loan = bodil_education_loan
 amount = 360
-date = Date.new(2022,3,15)
+date = Date.new(2022,5,15)
 num = 0
 while num < 6
-  due_date = date
+  due_date = date.next_month
   if due_date < Date.today
     payment_status = "Completed"
     transfer_status = "Approved"
@@ -195,7 +195,7 @@ while num < 6
     payment.payment_date = due_date
   end
   payment.save!
-  due_date = due_date.next_month
+  date = due_date
   num += 1
 
   puts "loan payment added for #{payment.loan}"
@@ -232,7 +232,7 @@ amount = 90.83
 date = Date.new(2022,3,15)
 num = 0
 while num < 12
-  due_date = date
+  due_date = date.next_month
   if due_date < Date.today
     payment_status = "Completed"
     transfer_status = "Approved"
@@ -248,7 +248,7 @@ while num < 12
     payment.payment_date = due_date
   end
   payment.save!
-  due_date = due_date.next_month
+  date = due_date
   num += 1
 
   puts "loan payment added for #{payment.loan}"
@@ -313,8 +313,8 @@ title = "Health Insurance for my kid"
 description = "New requests I need the money to pay for my two children's health insurance."
 loan_category = "Insurance"
 status = "Active"
-loan = Loan.find_by(loan_category: "Education")
-user = User.find_by(first_name: "Ben")
+loan = insurance_loan
+user = ben
 accepted_at = Date.new(2022,1,3)
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan, accepted_at: accepted_at)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
@@ -338,18 +338,38 @@ loan_category = "Business"
 instant_loan = false
 status = "Listed"
 payback_time = 60
-user = User.find_by(first_name: "Sarah")
+user = sarah
 payment_frequency = "Monthly"
 business_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added: #{business_loan.amount}€ for #{business_loan.loan_category} with interest rate of #{business_loan.interest_rate}%"
 
+amount = 400
+title = "Start a business"
+description = "I need the money to start my new business."
+loan_category = "Business"
+status = "Pending"
+loan = business_loan
+user = ben
+education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
+puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
+
 amount = 200
 title = "Paying school fees for my children"
-description = "New requests I need the money to pay for my two children's tuition fees, as well as for their books, their school uniform and their food."
+description = "I need the money to pay for my two children's tuition fees, as well as for their books, their school uniform and their food."
 loan_category = "Education"
 status = "Pending"
-loan = Loan.find_by(loan_category: "Education")
-user = User.find_by(first_name: "Ben")
+loan = education_loan
+user = ben
+education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
+puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
+
+amount = 200
+title = "Money for tution"
+description = "I need the money to pay for tuition."
+loan_category = "Education"
+status = "Pending"
+loan = education_loan
+user = franka
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan)
 puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
 
@@ -359,7 +379,7 @@ loan_category = "Health"
 instant_loan = true
 status = "Listed"
 payback_time = 90
-user = User.find_by(first_name: "Sarah")
+user = sarah
 payment_frequency = "Monthly"
 health_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added: #{health_loan.amount}€ for #{health_loan.loan_category} with interest rate of #{health_loan.interest_rate}%"

@@ -47,6 +47,13 @@ class LoansController < ApplicationController
     @loan.user = current_user
     params[:loan][:instant_loan] == "Auto" ? @loan.instant_loan = true : @loan.instant_loan = false
 
+    if @loan.instant_loan == true && current_user.wallet.amount <= @loan.amount
+      @loan.status = "Pending"
+    else
+      @loan.status = "Listed"
+    end
+
+
     if params[:loan][:payback_time] == "Month"
       @loan.payback_time = 30
     elsif params[:loan][:payback_time] == "Week"
@@ -56,7 +63,7 @@ class LoansController < ApplicationController
     else
       @loan.payback_time = 365
     end
-    @loan.status = "Pending"
+
     @user = current_user
 
     if @loan.save!
