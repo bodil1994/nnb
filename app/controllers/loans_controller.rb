@@ -7,6 +7,8 @@ class LoansController < ApplicationController
     @loan_payments = @loan.loan_payments
     @loan_payments_made = @loan_payments.where(payment_status: "Completed")
     sum = 0
+    @already = @loan.loan_payments.where(payment_status: "Completed").sum(:amount)
+    @still = @loan.amount + @loan.amount * @loan.interest_rate / 100 - @loan.loan_payments.where(payment_status: "Completed").sum(:amount)
     @loan_payments_made.each do |payment|
       sum += payment.amount
     end
@@ -65,7 +67,7 @@ class LoansController < ApplicationController
     @user = current_user
 
     if @loan.save!
-      Chatroom.create(loan: @loan)
+      # Chatroom.create(loan: @loan)
       redirect_to loan_summary_lender_path(@loan)
       # if @loan.user.first_name == "Bodil"
       #   amount = @loan.amount
