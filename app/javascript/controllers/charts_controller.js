@@ -64,7 +64,7 @@ export default class extends Controller {
 
     const labels3 = Object.keys(this.profitValue).reverse();
     // labels3.unshift(Object.values(this.profitValue)[0][0].created_at)
-    labels3.unshift("2015-01-01")
+    // labels3.unshift("2015-01-01")
     // .strftime("%d-%m-%Y")
     let l = 0
     const banana = Object.values(this.profitValue).map((loan) => l += loan[0].profit);
