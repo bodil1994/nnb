@@ -62,10 +62,10 @@ export default class extends Controller {
     // );
 
 
-    const labels3 = Object.keys(this.profitValue).reverse();
+    const labels3 = Object.keys(this.profitValue);
     // labels3.unshift(Object.values(this.profitValue)[0][0].created_at)
     // console.log(Object.values(this.profitValue)[0][0].created_at)
-    labels3.unshift("2015-01-01")
+    labels3.unshift("2022-05-15")
     // .strftime("%d-%m-%Y")
     // let date = Object.values(this.profitValue)[0][0].created_at
     // , options = {weekday: 'short', month: 'short', day: 'numeric' };
