@@ -56,19 +56,25 @@ export default class extends Controller {
       data: data2,
     };
 
-    const paybackChart = new Chart(
-      document.getElementById('paybackChart'),
-      config2
-    );
+    // const paybackChart = new Chart(
+    //   document.getElementById('paybackChart'),
+    //   config2
+    // );
 
 
-    const labels3 = Object.keys(this.profitValue).reverse();
+    const labels3 = Object.keys(this.profitValue);
     // labels3.unshift(Object.values(this.profitValue)[0][0].created_at)
-    // labels3.unshift("2015-01-01")
+    // console.log(Object.values(this.profitValue)[0][0].created_at)
+    labels3.unshift("2022-05-15")
     // .strftime("%d-%m-%Y")
+    // let date = Object.values(this.profitValue)[0][0].created_at
+    // , options = {weekday: 'short', month: 'short', day: 'numeric' };
+    // console.logtoDateString((date.toLocaleString('eu-US')));
     let l = 0
     const banana = Object.values(this.profitValue).map((loan) => l += loan[0].profit);
     banana.unshift(0);
+    console.log(labels3, banana)
+    console.log(Object.values(this.profitValue))
 
     const data3 = {
       labels: labels3,

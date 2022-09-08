@@ -10,6 +10,9 @@ application.register("alert", AlertController)
 import AvatarDropdownController from "./avatar_dropdown_controller"
 application.register("avatar-dropdown", AvatarDropdownController)
 
+import CarouselController from "./carousel_controller"
+application.register("carousel", CarouselController)
+
 import ChartsController from "./charts_controller"
 application.register("charts", ChartsController)
 
