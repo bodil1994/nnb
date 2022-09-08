@@ -58,7 +58,7 @@ class LoansController < ApplicationController
     @user = current_user
 
     if @loan.save!
-      Chatroom.create(loan: @loan)
+      # Chatroom.create(loan: @loan)
       redirect_to loan_summary_lender_path(@loan)
       if @loan.user.first_name == "Bodil"
         amount = @loan.amount

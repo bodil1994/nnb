@@ -11,7 +11,11 @@
   <% end  %>
   <div class="chat-header-wrapper header">
     <div class="user-name margin-left-20px">
-      <h2> <%= "#{current_user.last_name} #{current_user.first_name}" %></h2>
+    <% if current_user.user_type == "Borrower" %>
+      <h2> <%= "#{@chatroom.loan.user.last_name} #{@chatroom.loan.user.first_name}" %></h2>
+    <% else %>
+       <h2> <%= "#{@chatroom.borrower.last_name} #{@chatroom.borrower.first_name}" %></h2>
+    <% end %>
        <p class = "light">#<%= "#{@chatroom_amount} € loan for #{@chatroom_category}" %></p>
 
       <div class="messages"
@@ -35,3 +39,4 @@
 </div>
 
 </div>
+<% console() %>
