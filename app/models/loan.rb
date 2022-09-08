@@ -5,7 +5,6 @@ class Loan < ApplicationRecord
   has_one :chatroom
 
   LOAN_CATEGORIES = ["Education", "Health", "Insurance", "Business", "Emergency", "Any"]
-
   LOAN_STATUS = ["Pending", "Listed", "Active", "Closed"]
   PAYMENY_FREQUENCY = ["Monthly", "Quarterly"]
   validates :amount, presence: true, numericality: { greater_than_or_equal_to: 0 }

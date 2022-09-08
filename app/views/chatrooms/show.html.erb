@@ -1,22 +1,37 @@
 <!-- app/views/chatrooms/show.html.erb -->
-<div class="container summary-pages"
+<div class="container"
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+  data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
 >
-  <h1>#<%= "#{@chatroom_amount} € loan for #{@chatroom_category}" %></h1>
+  <% if current_user.user_type == "lender" %>
+    <%= render "shared/back_navigation",path: dashboard_lender_path %>
+  <% else %>
+    <%= render "shared/back_navigation",path: dashboard_borrower_path %>
+  <% end  %>
+  <div class="chat-header-wrapper header">
+    <div class="user-name margin-left-20px">
+      <h2> <%= "#{current_user.last_name} #{current_user.first_name}" %></h2>
+       <p class = "light">#<%= "#{@chatroom_amount} € loan for #{@chatroom_category}" %></p>
 
-  <div class="messages"
-        data-chatroom-subscription-target="messages">
-    <% @chatroom.messages.each do |message| %>
-      <%= render "messages/message", message: message %>
-    <% end %>
-  </div>
-  <%= simple_form_for [@chatroom, @message],  html: {class: "d-flex"} do |f|%>
-    <%= f.input :content,
-      label: false,
-      placeholder: "Message",
-      wrapper_html: {class: "flex-grow-1"}
-    %>
-    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-  <% end %>
+      <div class="messages"
+            data-chatroom-subscription-target="messages">
+        <% @chatroom.messages.each do |message| %>
+          <div class="message-row d-flex <%= message.sender?(current_user) ? 'msg-end' : 'msg-start' %>">
+            <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+              <%= render "messages/message", message: message %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%= simple_form_for [@chatroom, @message],  html: {class: "flex-form"} do |f|%>
+        <%= f.input :content,
+          label: false,
+          placeholder: "Message",
+          wrapper_html: {class: "flex-grow-1"}
+        %>
+        <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+      <% end %>
+</div>
+
 </div>
