@@ -19,7 +19,8 @@ class LoanPaymentSchedule
   end
   def create_payments()
     number_of_payments = (@payback_time / @payment_gap).ceil
-    payment_amount = (@loan.amount / number_of_payments).round(2)
+    total_amount = @loan.amount * (1 + (@loan.interest_rate / 100))
+    payment_amount = (total_amount / number_of_payments).round(2)
     date = Date.today
     num = 0
     while num < number_of_payments
