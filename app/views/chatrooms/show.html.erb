@@ -12,11 +12,19 @@
   <div class="chat-header-wrapper header">
     <div class="user-name margin-left-20px">
     <% if current_user.user_type == "Borrower" %>
-      <h2> <%= "#{@chatroom.loan.user.last_name} #{@chatroom.loan.user.first_name}" %></h2>
+    <div class="chat-room-wrapper">
+      <%= render "shared/avatar", user: @chatroom.loan.user %>
+      <div class="title-room-wrapper">
+        <h2> <%= "#{@chatroom.loan.user.last_name} #{@chatroom.loan.user.first_name}" %></h2>
+        <p class = "light">#<%= "#{@chatroom_amount} € loan for #{@chatroom_category}" %></p>
+      </div>
+    </div>
     <% else %>
+        <%= render "shared/avatar", user: @chatroom.borrower %>
        <h2> <%= "#{@chatroom.borrower.last_name} #{@chatroom.borrower.first_name}" %></h2>
+        <p class = "light">#<%= "#{@chatroom_amount} € loan for #{@chatroom_category}" %></p>
     <% end %>
-       <p class = "light">#<%= "#{@chatroom_amount} € loan for #{@chatroom_category}" %></p>
+
 
       <div class="messages"
             data-chatroom-subscription-target="messages">
