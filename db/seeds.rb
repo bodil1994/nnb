@@ -178,7 +178,7 @@ loan = bodil_education_loan
 amount = 360
 date = Date.new(2022,3,15)
 num = 0
-while num < 16
+while num < 6
   due_date = date
   if due_date < Date.today
     payment_status = "Completed"
