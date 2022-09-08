@@ -1,13 +1,13 @@
 <!-- app/views/chatrooms/show.html.erb -->
-<div class="container"
+<div class="container summary-pages"
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
   data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
 >
-    <%= render "shared/back_navigation",path: current_user.user_type == "Lender" ? loan_path(@chatroom.loan) : loan_request_path(@chatroom.loan_request) %>
+    <%= render "shared/back_navigation",path: current_user.user_type == "Lender" ? loan_path(@chatroom.loan) : loan_path(@chatroom.loan) %>
 
   <div class="chat-header-wrapper header">
-    <div class="user-name margin-left-20px">
+    <div class="user-name margin-left-20px list">
     <%= render "chatrooms/header", chatroom: @chatroom, chatroom_amount: @chatroom_amount, chatroom_category: @chatroom_category %>
     <br>
     <br>
@@ -34,5 +34,3 @@
 
 
 </div>
-
-<% console() %>
