@@ -7,6 +7,7 @@
 
 .margin-left-20px {
   margin-left: 20px;
+  width: 100%;
 }
 
 .margin-bottom-20px {
@@ -45,4 +46,22 @@
   input {
     width: 100%;
   }
+}
+
+.flex-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.msg-start {
+  justify-content: start;
+}
+
+.msg-end {
+  justify-content: end;
+}
+
+.d-flex {
+  display: flex;
 }
