@@ -30,9 +30,9 @@
                   <div class="loan-status" id="db-status" data-loan-approval-target="statusbutton">
                   <p><%= loan_request.status%>
 
-                  <% if loan_request.status == "Active" %>
+                  <% if loan_request.status == "Active" && loan_request.accepted_at != nil %>
                     <br><%= loan_request.accepted_at.strftime("%d/%m/%Y") %></p>
-                  <% elsif loan_request.status == "Declined" %>
+                  <% elsif loan_request.status == "Declined" && loan_request.declined_at != nil %>
                     <br><%= loan_request.declined_at.strftime("%d/%m/%Y") %></p>
                   <% else %>
                     </p>
