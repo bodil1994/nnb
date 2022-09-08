@@ -2,22 +2,27 @@
 <div class="home ">
 <div class="navbar">
   <div class="wrapper-nav">
-  <%= image_tag "logo.png" %>
-  <%= button_to "Login", new_user_session_path, method: :get, class: "btn" %>
+  <%= image_tag "Logo-2.png" %>
+  <% if current_user.nil? %>
+    <%= button_to "Login", new_user_session_path, method: :get, class: "btn" %>
+  <% else %>
+    <i class="fa-solid fa-bars"></i>
+  <% end %>
   </div>
 </div>
 <div class="hero">
   <div class="titel">
-    <h1>The Airbnb</h1>
-    <h1 class= "h1-bank">for Banking</h1>
+    <h1>Airbnb<br>
+    for Loans</h1>
   </div>
-    <p>Start earning passive income by funding personal loans.</p>
-    <%= link_to "Start funding ›", new_user_session_path, method: :get %>
+    <p>Be the bank and start earning passive income by funding personal loans.</p>
+    <%= button_to "Start funding ›", new_user_session_path, class: "btn", method: :get %>
 </div>
+<%#= image_tag "Paid idea-bro.png" %>
 <div class="main">
   <div class="content">
     <h1>You invest</h1>
-    <p>You choose which loan and how much, as little as 10€</p>
+    <p>You choose which loan and how much, as little as 10€. Easy and accessible.</p>
   </div>
   <div class="content">
     <h1>You earn</h1>
@@ -25,7 +30,7 @@
   </div>
   <div class="content">
     <h1>You connect</h1>
-    <p>NNB directly connects to individuals with money to lend and individuals seeking loans.</p>
+    <p>NNB directly connects individuals with money to lend and individuals seeking loans.</p>
   </div>
 </div>
 </div>

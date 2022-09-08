@@ -5,7 +5,8 @@
   </div>
   <div class="list-item">
     <p>Payment Duration</p>
-    <p><%= loan.payback_time %> days</p>
+    <% payback_months = (loan.payback_time / 30).round %>
+    <p><%= payback_months %> months</p>
   </div>
   <div class="list-item">
     <p>Payment Frequency</p>

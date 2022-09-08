@@ -1,7 +1,14 @@
 
-.category-selector {
-  position: absolute;
-  transform: scale(0);
+input.category-selector {
+  position: relative;
+  top: 43px;
+  right: -28px;
+  opacity: 0;
+  transform: scale(4);
+
+
+  .category-item & {
+  }
 
 }
 
