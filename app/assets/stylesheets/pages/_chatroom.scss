@@ -1,11 +1,15 @@
 .header {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: flex-end;
-  align-items: center;
+  align-items: center
 }
 
 .margin-left-20px {
+  margin-left: 20px;
+  width: 100%;
+}
+.margin-right-20px {
   margin-left: 20px;
   width: 100%;
 }
@@ -101,5 +105,22 @@
 .chat-form {
   input {
     width: 100%;
+    border: 1px solid $light-gray;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
   }
+}
+.chat-room-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start
+}
+
+
+.list {
+  border-bottom: 1px solid $light-gray;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
 }
