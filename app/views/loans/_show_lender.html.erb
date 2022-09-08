@@ -43,9 +43,11 @@
             </div>
 
               <%# IF STATUS ONE OF ARRAY THEN SHOW STATUS OTHERWISE SHOW NOTHING UNTIL BUTTON CLICKED %>
-                <div class="loan-status" id="db-status" data-loan-approval-target="statusbutton">
-                  <p>Accepted<br><%= loan_request.accepted_at.strftime("%d/%m/%Y") %></p>
-                </div>
+                <% if loan_request.accepted_at != nil %>
+                  <div class="loan-status" id="db-status" data-loan-approval-target="statusbutton">
+                    <p>Accepted<br><%= loan_request.accepted_at.strftime("%d/%m/%Y") %></p>
+                  </div>
+                <% end %>
                 <%= link_to chatroom_path(loan.chatroom) do %>
                 <%= image_tag "icon-chat.svg", id: "chat" %>
                 <% end %>
