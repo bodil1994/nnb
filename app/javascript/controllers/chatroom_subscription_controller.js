@@ -1,4 +1,3 @@
-// Connects to data-controller="chatroom-subscription"
 import { Controller } from "@hotwired/stimulus"
 import { createConsumer } from "@rails/actioncable"
 
@@ -9,7 +8,7 @@ export default class extends Controller {
   connect() {
     this.channel = createConsumer().subscriptions.create(
       { channel: "ChatroomChannel", id: this.chatroomIdValue },
-      { received: data => this.#insertMessageAndScrollDown(data) }
+      { received: data => console.log(data) }
     )
     console.log(`Subscribed to the chatroom with the id ${this.chatroomIdValue}.`)
   }
@@ -57,4 +56,5 @@ export default class extends Controller {
     console.log("Unsubscribed from the chatroom")
     this.channel.unsubscribe()
   }
+
 }
