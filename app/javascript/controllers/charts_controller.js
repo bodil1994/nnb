@@ -103,8 +103,8 @@ export default class extends Controller {
       const amount = values[0].amount
       const data4 = {
         labels: [
-          `Due: ${still} €`,
-          `Already payed back: ${already} €`
+          `Due: ${Math.round(still)} €`,
+          `Already payed back: ${Math.round(already)} €`
         ],
 
         datasets: [{

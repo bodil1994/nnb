@@ -41,15 +41,9 @@ class PagesController < ApplicationController
     loan = Loan.find_by(user: current_user, status: "Active")
 
     @active_loans = current_user.loans.where(status: "Active").map do |loan|
-      { loan.id => { already: loan.loan_payments.where(payment_status: "Completed").sum(:amount), still: loan.amount - loan.loan_payments.where(payment_status: "Completed").sum(:amount), category: loan.loan_category, amount: loan.amount } }
+      { loan.id => { already: loan.loan_payments.where(payment_status: "Completed").sum(:amount), still: loan.amount + loan.amount * loan.interest_rate / 100 - loan.loan_payments.where(payment_status: "Completed").sum(:amount), category: loan.loan_category, amount: loan.amount } }
     end
 
     @payment_profit = LoanPayment.where(loan: loan, payment_status: "Completed").group_by { |payment| payment.payment_date }
-  end
-
-  def schow_payment_info
-    loan = Loan.find(params[:id])
-    @already = loan.loan_payments.where(payment_status: "Completed").sum(:amount)
-    @still = loan.amount - loan.loan_payments.where(payment_status: "Completed").sum(:amount)
   end
 end
