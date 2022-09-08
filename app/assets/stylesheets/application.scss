@@ -107,3 +107,9 @@ a:link, a:visited, a:active {
 .background-darken {
   background-color: $light-gray;
 }
+
+input {
+  &:focus {
+    outline:none
+  }
+}

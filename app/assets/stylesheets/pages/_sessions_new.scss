@@ -29,9 +29,15 @@
 
   }
 
+  .form-text {
+    color: $dark-gray;
+    font-size: 12px;
+  }
+
   h2 {
     font-size: 25px;
     padding-top: 10px;
+    text-align: center;
   }
 
   form {
@@ -45,6 +51,10 @@
     border-radius: 5px;
     margin-top: 5px;
     border: 1px solid $light-gray;
+
+    &:focus {
+      outline:none
+    }
     &.btn {
       height: 43px;
     }
