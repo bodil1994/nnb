@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="dropdown">
-          <%= f.input :payback_time, label: 'Loan Duration (days)' %>
+          <%= f.input :payback_time, label: 'Loan Duration', as: :select, :collection => %w[Week Month Quarter Year], prompt: 'Select' %>
         </div>
         <div class="dropdown margin-bottom">
           <%= f.input :payment_frequency, label: 'Payment Frequency', as: :select, :collection => %w[Monthly Quaterly], prompt: 'Select' %>
@@ -39,7 +39,7 @@
           <%= f.input :interest_rate, label: 'What is the Interest rate that you expect ?', error: 'Interest rate is mandatory, please specify one' %>
         </div>
         <div class="dropdown">
-          <%= f.input :loan_category, label: 'For which project do you want to loan your money for ?', as: :select, :collection => %w[Education Health Insurance Business Emergency Any], prompt: 'Select' %>
+          <%= f.input :loan_category, label: 'For which project do you want to loan your money for ?', as: :select, :collection => %w[Education Health Insurance Business Emergency All], prompt: 'Select' %>
         </div>
         <div class="dropdown">
           <%= f.input :instant_loan, label: 'How do you want to approve the loan?', as: :select, :collection => %w[Manual Auto], prompt: 'Select' %>
