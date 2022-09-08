@@ -4,6 +4,9 @@
   <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
   <p>by <%= @loan.user.first_name %> <%= @loan.user.last_name %><br>
   <%= @loan.user.address %></p>
+  <%= link_to chatroom_path(loan.chatroom) do %>
+   <%= image_tag "icon-chat.svg", id: "chat" %>
+  <% end %>
 </div>
 <div class="wrapper-main">
   <div class="notice-box notice-box__purple">
