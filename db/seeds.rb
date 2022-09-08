@@ -125,7 +125,7 @@ amount = 91.66
 date = Date.new(2019,2,25)
 num = 0
 while num < 12
-  due_date = date
+  due_date = date.next_month
   if due_date < Date.today
     payment_status = "Completed"
     transfer_status = "Approved"
@@ -141,7 +141,7 @@ while num < 12
     payment.payment_date = due_date
   end
   payment.save!
-  due_date = due_date.next_month
+  date = due_date
   num += 1
 
   puts "loan payment added for #{payment.loan}"
