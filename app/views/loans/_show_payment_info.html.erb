@@ -3,6 +3,14 @@
   <%# Franka add payment chart here %>
 
   <div class="list-item">
+    <p>Payments made: </p>
+    <p><%= @loan_payments_made.length %></p>
+  </div>
+  <div class="list-item">
+    <p>Payments remaining: </p>
+    <p><%= @loan_payments_remaining.length %></p>
+  </div>
+  <div class="list-item">
     <p>Next Payment Due</p>
     <p><%= @loan_payments_remaining.first.due_date %></p>
   </div>

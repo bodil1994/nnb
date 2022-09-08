@@ -58,6 +58,34 @@ ben.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
 ben.save!
 puts "new user added: #{ben.first_name} #{ben.last_name}"
 
+first_name = "Bodil"
+last_name = "Hundevad"
+profession = "Fullstack Developer"
+email = "bodil@hundevad.de"
+phone = "08899899982"
+address = "Canggu Bali"
+password ="123123"
+user_type = "Lender"
+bodil = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+file = URI.open("https://ca.slack-edge.com/T02NE0241-U03NVAPFBGV-cf08ead93701-512")
+bodil.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
+bodil.save!
+puts "new user added: #{bodil.first_name} #{bodil.last_name}"
+
+first_name = "Franka"
+last_name = "Weiler"
+profession = "Fullstack Developer"
+email = "franka@gmail.com"
+phone = "08899899982"
+address = "Canggu Bali"
+password ="123123"
+user_type = "Borrower"
+franka = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+file = URI.open("https://ca.slack-edge.com/T02NE0241-U03NF0X32TV-816358aee467-512")
+franka.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
+franka.save!
+puts "new user added: #{franka.first_name} #{franka.last_name}"
+
 amount = 200
 interest_rate = 2
 loan_category = "Education"
@@ -107,6 +135,8 @@ payment_frequency = "Monthly"
 user = User.find_by(first_name: "Sam")
 insurance_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added for user #{insurance_loan.user.first_name}: #{insurance_loan.amount}€ for #{insurance_loan.loan_category} with interest rate of #{insurance_loan.interest_rate}%"
+chatroom = Chatroom.create!(loan_id: insurance_loan.id)
+puts "chatrooom num #{chatroom.id}"
 
 amount = 100
 interest_rate = 5
@@ -138,8 +168,9 @@ amount = 200
 title = "Paying school fees for my children"
 description = "I need the money to pay for my two children's tuition fees, as well as for their books, their school uniform and their food."
 loan_category = "Education"
-status = "Pending"
-loan = Loan.find_by(loan_category: "Education")
+status = "Active"
+# loan = Loan.find_by(loan_category: "Education")
+loan = Loan.find_by(user: sam, status: "Active")
 user = User.find_by(first_name: "Ben")
 accepted_at = Date.today
 education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan, accepted_at: accepted_at)
@@ -179,23 +210,14 @@ payment_frequency = "Monthly"
 health_loan = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
 puts "new loan added: #{health_loan.amount}€ for #{health_loan.loan_category} with interest rate of #{health_loan.interest_rate}%"
 
-user_sam = User.find_by(first_name: "Sam")
-amount_sam = 1000
-wallet_sam = Wallet.create!(user: user_sam, amount: amount_sam)
-
-puts "new wallet added for User #{wallet_sam.user.email}"
-
-user = User.find_by(first_name: "Ben")
-amount_ben = 1000
-wallet_ben = Wallet.create!(user: user,amount: amount_ben)
-puts "new wallet added for User #{wallet_ben.user.email}"
-
-user = User.find_by(first_name: "Sarah")
-amount_sarah = 1000
-wallet_sarah = Wallet.create!(user: user, amount: amount_sarah)
-puts "new wallet added for User #{wallet_sarah.user.email}"
-
 all_users = User.all
+all_users.each do |user|
+  amount = 1000
+  wallet = Wallet.create!(user: user, amount: amount)
+
+  puts "new wallet added for User #{user.email}"
+end
+
 bank_types = ["Bank", "Mobile money"]
 all_users.each do |user|
   3.times do
@@ -206,27 +228,30 @@ all_users.each do |user|
     ba = BankAccount.create!(bank_name: bank_name, account_number: account_number, bank_type: bank_type, swift_number: swift_number, user: user)
     puts "bank account added for #{user.first_name} #{user.last_name}"
   end
-  end
+end
 
 loan_sam = Loan.find_by(user: sam, status: "Active")
 amount = 17.08
-start_date = Date.new(2020-01-01)
-12.times do
-  due_date = start_date.next_month
-  if due_date > Date.today
+date = Date.new(2022,6,1)
+num = 0
+while num < 12
+  due_date = date.next_month
+  if due_date < Date.today
     payment_status = "Completed"
   else
     payment_status = "Scheduled"
   end
   payment = LoanPayment.new(loan: loan_sam, amount: amount, due_date: due_date, payment_status: payment_status)
   if due_date < Date.today
-    payment_date = due_date
-    payment.payment_date = payment_date
+    payment.payment_date = due_date
   end
   payment.save!
+  date = due_date
+  num += 1
 
   puts "loan payment added for #{payment.loan}"
 end
+
 
   # all_deposits = Deposit.all
   all_account = BankAccount.all

@@ -8,7 +8,8 @@
       <% end %>
       <%# Image and name %>
       <div class="wrapper-avatar">
-        <%= image_tag "avatar-real.png", class: "avatar avatar__large" %>
+        <% user = @user %>
+        <%= render "shared/avatar_large", user: user %>
         <h1><%= @user.first_name %><%= @user.last_name %></h1>
       </div>
     </div>
@@ -26,6 +27,16 @@
     <div class="wrapper-info">
       <p class="gray">Loan Purpose</p>
       <p><%= @loan_request.description %></p>
+    </div>
+    <div class="wrapper-info">
+      <p class="gray">Loan History</p>
+      <% if @user.loans.length > 0 %>
+        <% @user.loans.each do |loan| %>
+        <p><%= loan.amount %> € for <%= loan.loan_category %></p>
+        <% end %>
+      <% else %>
+        <p><em>No past loans</em>
+      <% end %>
     </div>
   </div>
 </div>

@@ -7,7 +7,7 @@
   <%# NOTICE BOX %>
   <div class="wrapper-main">
     <div class="notice-box">
-        <p>Your loan ist currently <span class="bold"><%= loan.status.downcase %></span>.
+        <p>Your loan is currently <span class="bold"><%= loan.status.downcase %></span>.
         <% if loan.status == "Pending" %>
           <span>It will not be listed until the loan is sufficiently funded in your wallet.</span>
         <% elsif loan.status == "Listed" %>
@@ -56,20 +56,24 @@
     </div>
   <% end %>
 
-<%# LOAN PAYMENTS %>
-  <% if loan.status == "Active" %>
-    <%# <div class="wrapper-main"> %>
-      <%# <h2>Payments</h2> %>
-      <%#= render "loans/show_payment_info", loan: loan %>
-    <%# </div> %>
-  <% end %>
-
   <div class="wrapper-main">
     <h2>Details</h2>
     <%# LOAN SUMMARY %>
     <%= render "loans/show_basic_info", loan: loan %>
     <p class="gray-text">Please note this investment can only be claimed after the expect yield date is due. The interest rates are fixed and the loan has no collateral attached.</p>
   </div>
+
+  <%# LOAN PAYMENTS %>
+  <% if loan.status == "Active" %>
+    <div class="wrapper-main">
+      <h2>Payments</h2>
+      <% if @loan_payments.length > 0 %>
+        <%= render "loans/show_payment_info", loan: loan %>
+      <% else %>
+        <p>No payments for this loan.</p>
+      <% end %>
+    </div>
+  <% end %>
 
   <%# LOAN REQUESTS %>
   <div class="wrapper-main">
