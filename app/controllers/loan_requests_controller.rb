@@ -96,7 +96,7 @@ class LoanRequestsController < ApplicationController
         format.html { redirect_to request.referer }
       end
        # create loan payment schedule
-      #  LoanPaymentSchedule.new(loan: @loan).call
+       LoanPaymentSchedule.new(loan: @loan).call
     end
   end
 
