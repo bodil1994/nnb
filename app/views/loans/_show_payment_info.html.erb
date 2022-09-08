@@ -1,10 +1,10 @@
 <div class="list-box">
 
   <%# Franka add payment chart here %>
-  <div data-controller="info" data-info-still-value="<%= @still %>" data-info-already-value="<%= @already %>">
+  <div data-controller="info" data-info-still-value="<%= @still %>" data-info-already-value="<%= @already %>" class="margin-b">
     <canvas id="paymentsChart" data-charts-target="paymentsChart"></canvas>
   </div>
-  <div class="list-item">
+    <div class="list-item">
     <p>Payments made: </p>
     <p><%= @loan_payments_made.length %></p>
   </div>
