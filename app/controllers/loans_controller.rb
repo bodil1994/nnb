@@ -7,6 +7,8 @@ class LoansController < ApplicationController
     @loan_payments = @loan.loan_payments
     @loan_payments_made = @loan_payments.where(payment_status: "Completed")
     sum = 0
+    @already = @loan.loan_payments.where(payment_status: "Completed").sum(:amount)
+    @still = @loan.amount + @loan.amount * @loan.interest_rate / 100 - @loan.loan_payments.where(payment_status: "Completed").sum(:amount)
     @loan_payments_made.each do |payment|
       sum += payment.amount
     end
@@ -45,6 +47,13 @@ class LoansController < ApplicationController
     @loan.user = current_user
     params[:loan][:instant_loan] == "Auto" ? @loan.instant_loan = true : @loan.instant_loan = false
 
+    if @loan.instant_loan == true && current_user.wallet.amount <= @loan.amount
+      @loan.status = "Pending"
+    else
+      @loan.status = "Listed"
+    end
+
+
     if params[:loan][:payback_time] == "Month"
       @loan.payback_time = 30
     elsif params[:loan][:payback_time] == "Week"
@@ -54,11 +63,11 @@ class LoansController < ApplicationController
     else
       @loan.payback_time = 365
     end
-    @loan.status = "Pending"
+
     @user = current_user
 
     if @loan.save!
-      Chatroom.create(loan: @loan)
+      # Chatroom.create(loan: @loan)
       redirect_to loan_summary_lender_path(@loan)
       # if @loan.user.first_name == "Bodil"
       #   amount = @loan.amount

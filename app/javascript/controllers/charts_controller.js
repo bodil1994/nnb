@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { Chart, registerables } from 'chart.js';
 
 export default class extends Controller {
-  static values = { health: Number, education: Number, business: Number, insurance: Number, already: Number, still: Number, profit: Object, loans: Array};
+  static values = { health: Number, education: Number, business: Number, insurance: Number, already: Number, still: Number, amount: Number, category: String, profit: Object, loans: Array};
   static targets = ["wrapper"]
   connect() {
     Chart.register(...registerables);
@@ -63,9 +63,8 @@ export default class extends Controller {
 
 
     const labels3 = Object.keys(this.profitValue).reverse();
-    //console.log(Object.values(this.profitValue)[0][0].created_at.toLocaleDateString())
     // labels3.unshift(Object.values(this.profitValue)[0][0].created_at)
-    labels3.unshift("2015-01-01")
+    // labels3.unshift("2015-01-01")
     // .strftime("%d-%m-%Y")
     let l = 0
     const banana = Object.values(this.profitValue).map((loan) => l += loan[0].profit);
@@ -98,14 +97,14 @@ export default class extends Controller {
       const id = Object.keys(loan)[0]
       const values = Object.values(loan)
       console.log(Object.values(loan)[0])
-      // const category = values[0]
-      // const amount = values[0]
       const already = values[0].already
       const still = values[0].still
+      const category = values[0].category
+      const amount = values[0].amount
       const data4 = {
         labels: [
-          `Due: ${still} €`,
-          `Already payed back: ${already} €`
+          `Due: ${Math.round(still)} €`,
+          `Already payed back: ${Math.round(already)} €`
         ],
 
         datasets: [{
@@ -126,6 +125,7 @@ export default class extends Controller {
 
       const div = `<div class="swiper-slide">
       <div class="">
+        <p class="description">This is your ${category}-Loan over ${amount}€</p>
         <canvas id="chart${id}"></canvas>
       </div>
     </div>`
@@ -138,5 +138,3 @@ export default class extends Controller {
     })
   }
 }
-
-//<p>This is your ${category}-Loan over ${amount}€</p>

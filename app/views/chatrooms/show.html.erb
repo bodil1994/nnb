@@ -1,18 +1,15 @@
 <!-- app/views/chatrooms/show.html.erb -->
-<div class="container"
+<div class="container summary-pages"
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
   data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
 >
-  <% if current_user.user_type == "lender" %>
-    <%= render "shared/back_navigation",path: dashboard_lender_path %>
-  <% else %>
-    <%= render "shared/back_navigation",path: dashboard_borrower_path %>
-  <% end  %>
+    <%= render "shared/back_navigation",path: current_user.user_type == "Lender" ? loan_path(@chatroom.loan) : loan_path(@chatroom.loan) %>
   <div class="chat-header-wrapper header">
-    <div class="user-name margin-left-20px">
-      <h2> <%= "#{current_user.last_name} #{current_user.first_name}" %></h2>
-       <p class = "light">#<%= "#{@chatroom_amount} € loan for #{@chatroom_category}" %></p>
+    <div class="user-name margin-left-20px list">
+    <%= render "chatrooms/header", chatroom: @chatroom, chatroom_amount: @chatroom_amount, chatroom_category: @chatroom_category %>
+    </div>
+    </div>
 
       <div class="messages"
             data-chatroom-subscription-target="messages">
@@ -24,14 +21,13 @@
           </div>
         <% end %>
       </div>
-      <%= simple_form_for [@chatroom, @message],  html: {class: "flex-form"} do |f|%>
+      <%= simple_form_for [@chatroom, @message],  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "flex-form chat-form "} do |f|%>
         <%= f.input :content,
           label: false,
-          placeholder: "Message",
+          placeholder: "# Message",
           wrapper_html: {class: "flex-grow-1"}
         %>
-        <%= f.submit "Send", class: "btn btn-primary mb-3" %>
       <% end %>
-</div>
+
 
 </div>
