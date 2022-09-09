@@ -66,16 +66,26 @@ class LoansController < ApplicationController
 
     if @loan.save!
       Chatroom.create(loan: @loan)
-      redirect_to loan_summary_lender_path(@loan)
+      # raise
       # if @loan.user.first_name == "Bodil"
       #   amount = @loan.amount
-      #   title = "I need to buy a new iPhone"
-      #   description = "My phone fell in the pool and I need to buy a new one!"
-      #   loan_category = "Emergency"
+      #   title = "education loan"
+      #   description = "I need help to pay for the tuition for my kids education."
+      #   loan_category = "Education"
       #   status = "Submitted"
-      #   user = User.find_by(first_name: "Franka")
+      #   user = User.find_by(first_name: "Ben")
+      #   loan_request = LoanRequest.create(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan_id: @loan.id)
+
+      #   amount = @loan.amount
+      #   title = "business loan"
+      #   description = "I'm starting my own business and need quick money for intial expenses."
+      #   loan_category = "Business"
+      #   status = "Submitted"
+      #   user = User.find_by(first_name: "Valentina")
       #   loan_request = LoanRequest.create(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan_id: @loan.id)
       # end
+
+      redirect_to loan_summary_lender_path(@loan)
     else
       render :new
     end
