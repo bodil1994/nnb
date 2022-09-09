@@ -103,7 +103,7 @@ puts "new user added: #{franka.first_name} #{franka.last_name}"
 all_users = User.all
 all_users.each do |user|
 
-  if user.first_name = "Bodil"
+  if user.first_name == "Bodil"
     amount = 2000
   else
     amount = 1000
