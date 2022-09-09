@@ -102,7 +102,12 @@ puts "new user added: #{franka.first_name} #{franka.last_name}"
 
 all_users = User.all
 all_users.each do |user|
-  amount = 1000
+
+  if user.first_name = "Bodil"
+    amount = 2000
+  else
+    amount = 1000
+  end
   wallet = Wallet.create!(user: user, amount: amount)
 
   puts "new wallet added for User #{user.email}"
