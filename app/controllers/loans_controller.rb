@@ -75,7 +75,7 @@ class LoansController < ApplicationController
       if @loan.user.first_name == "Bodil"
         amount = @loan.amount
         title = "education loan"
-        description = "I need dome money for a new car."
+        description = "new car"
         loan_category = "Emergency"
         status = "Pending"
         user = User.find_by(first_name: "Ben")
