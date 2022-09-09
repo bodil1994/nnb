@@ -20,7 +20,7 @@ last_name = "Banana"
 profession = "Web developer"
 email = "info@sam.com"
 phone = "0199887682"
-address = "Frii Hotel Bali"
+address = "Sydney, Australia"
 password ="123123"
 user_type = "Lender"
 sam = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
@@ -35,7 +35,7 @@ last_name = "Baum"
 profession = "Influencer"
 email = "info@sarah.com"
 phone = "08899887682"
-address = "Frii Hotel Bali"
+address = "London, England"
 password ="123123"
 user_type = "Lender"
 sarah = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
@@ -44,12 +44,26 @@ sarah.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
 sarah.save!
 puts "new user added: #{sarah.first_name} #{sarah.last_name}"
 
+first_name = "Valentina"
+last_name = "Begona"
+profession = "Marketing"
+email = "info@valentina.com"
+phone = "08899887682"
+address = "Barcelona, Spain"
+password ="123123"
+user_type = "Borrower"
+valentina = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+file = URI.open("https://static.vecteezy.com/system/resources/thumbnails/001/258/097/small_2x/beautiful-spanish-woman-smiling.jpg")
+valentina.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
+valentina.save!
+puts "new user added: #{valentina.first_name} #{valentina.last_name}"
+
 first_name = "Ben"
 last_name = "Blue"
 profession = "Gojek driver"
 email = "info@ben.com"
 phone = "08899899982"
-address = "Canggu Bali"
+address = "Amsterdam, Holland"
 password ="123123"
 user_type = "Borrower"
 ben = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
@@ -63,7 +77,7 @@ last_name = "Hundevad"
 profession = "Fullstack Developer"
 email = "bodil@hundevad.de"
 phone = "08899899982"
-address = "Canggu Bali"
+address = "Vienna, Austria"
 password ="123123"
 user_type = "Lender"
 bodil = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
@@ -77,7 +91,7 @@ last_name = "Weiler"
 profession = "Fullstack Developer"
 email = "franka@gmail.com"
 phone = "08899899982"
-address = "Canggu Bali"
+address = "Berlin, Germany"
 password ="123123"
 user_type = "Borrower"
 franka = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
@@ -88,7 +102,12 @@ puts "new user added: #{franka.first_name} #{franka.last_name}"
 
 all_users = User.all
 all_users.each do |user|
-  amount = 1000
+
+  if user.first_name = "Bodil"
+    amount = 2000
+  else
+    amount = 1000
+  end
   wallet = Wallet.create!(user: user, amount: amount)
 
   puts "new wallet added for User #{user.email}"
@@ -113,7 +132,7 @@ amount = 1000
 title = "Hospital bills for my mother"
 description = "My mother is sick and I need to pay the hospitals bills."
 loan_category = "Health"
-status = "Closed"
+status = "Active"
 loan = loan_bodil_health
 user = ben
 accepted_at = Date.new(2019,2,25)
@@ -177,6 +196,60 @@ puts "new loan request added: #{education_loan_request.amount}€ for #{educatio
 loan = bodil_education_loan
 amount = 360
 date = Date.new(2022,5,15)
+num = 0
+while num < 6
+  due_date = date.next_month
+  if due_date < Date.today
+    payment_status = "Completed"
+    transfer_status = "Approved"
+    transfer_type = "Deposit"
+    wallet = bodil.wallet
+    created_at = DateTime.new(due_date.year, due_date.mon, due_date.mday, 0, 0, 0)
+    transfer = Transfer.create!(amount: amount, status: transfer_status, transfer_type: transfer_type, wallet: wallet, loan: loan, created_at: created_at)
+  else
+    payment_status = "Scheduled"
+  end
+  payment = LoanPayment.new(loan: loan, amount: amount, due_date: due_date, payment_status: payment_status)
+  if due_date < Date.today
+    payment.payment_date = due_date
+  end
+  payment.save!
+  date = due_date
+  num += 1
+
+  puts "loan payment added for #{payment.loan}"
+end
+# ----------------------------
+
+# --------- Bodil education loan 2
+amount = 3000
+interest_rate = 10
+loan_category = "Education"
+instant_loan = true
+status = "Closed"
+payback_time = 180
+payment_frequency = "Monthly"
+user = bodil
+bodil_education_loan_2 = Loan.create!(amount: amount, interest_rate: interest_rate, loan_category: loan_category, instant_loan: instant_loan, status: status, payback_time: payback_time, payment_frequency: payment_frequency, user: user)
+puts "new loan added for user #{bodil_education_loan_2.user.first_name}: #{bodil_education_loan_2.amount}€ for #{bodil_education_loan_2.loan_category} with interest rate of #{bodil_education_loan_2.interest_rate}%"
+chatroom = Chatroom.create!(loan: bodil_education_loan_2)
+puts "chatrooom num #{chatroom.id}"
+
+amount = 3000
+title = "Paying for professional development courses"
+description = "I want to take some extra courses to add skills and help advance my career."
+loan_category = "Education"
+status = "Active"
+# loan = Loan.find_by(loan_category: "Education")
+loan = bodil_education_loan_2
+user = valentina
+accepted_at = Date.new(2021,5,15)
+education_loan_request = LoanRequest.create!(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: loan, accepted_at: accepted_at)
+puts "new loan request added: #{education_loan_request.amount}€ for #{education_loan_request.loan_category}"
+
+loan = bodil_education_loan_2
+amount = 550
+date = accepted_at
 num = 0
 while num < 6
   due_date = date.next_month

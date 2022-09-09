@@ -19,12 +19,12 @@ class LoansController < ApplicationController
   def index
     @loans = Loan.where(status: "Listed")
     if params['length'].present? && params['amount'].present?
-      length_in_days = params[:length].to_i * 30
+      length_in_days = params[:length].to_i * 31
       @loans = @loans.where("amount >= #{params[:amount].to_f}").where("payback_time <= #{length_in_days}")
     elsif params['amount'].present?
       @loans = @loans.where("amount >= #{params[:amount].to_f}")
     elsif params['length'].present?
-      length_in_days = params[:length].to_i * 30
+      length_in_days = params[:length].to_i * 31
       @loans = @loans.where("payback_time <= #{length_in_days}")
     end
 
@@ -67,17 +67,28 @@ class LoansController < ApplicationController
     @user = current_user
 
     if @loan.save!
-      # Chatroom.create(loan: @loan)
+
+      Chatroom.create(loan: @loan)
+
       redirect_to loan_summary_lender_path(@loan)
-      # if @loan.user.first_name == "Bodil"
-      #   amount = @loan.amount
-      #   title = "I need to buy a new iPhone"
-      #   description = "My phone fell in the pool and I need to buy a new one!"
-      #   loan_category = "Emergency"
-      #   status = "Submitted"
-      #   user = User.find_by(first_name: "Franka")
-      #   loan_request = LoanRequest.create(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan_id: @loan.id)
-      # end
+
+      if @loan.user.first_name == "Bodil"
+        amount = @loan.amount
+        title = "education loan"
+        description = "I need help to pay for the tuition for my kids education."
+        loan_category = "Education"
+        status = "Submitted"
+        user = User.find_by(first_name: "Ben")
+        loan_request = LoanRequest.create(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan_id: @loan.id)
+
+        amount = @loan.amount
+        title = "business loan"
+        description = "I'm starting my own business and need quick money for intial expenses."
+        loan_category = "Business"
+        status = "Submitted"
+        user = User.find_by(first_name: "Valentina")
+        loan_request = LoanRequest.create(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan_id: @loan.id)
+      end
     else
       render :new
     end

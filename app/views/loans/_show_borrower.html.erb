@@ -1,9 +1,14 @@
 <%= render "shared/back_navigation", path: loans_path %>
 <h1 class="light"> Loan Description</h1>
 <div class="wrapper-avatar">
-  <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+  <%= render "shared/avatar_large", user: loan.user %>
   <p>by <%= @loan.user.first_name %> <%= @loan.user.last_name %><br>
   <%= @loan.user.address %></p>
+  <% if @loan.status == "Active" %>
+  <%= link_to chatroom_path(loan.chatroom) do %>
+   <%= image_tag "icon-chat.svg", id: "chat" %>
+  <% end %>
+  <% end %>
 </div>
 <div class="wrapper-main">
   <div class="notice-box notice-box__purple">

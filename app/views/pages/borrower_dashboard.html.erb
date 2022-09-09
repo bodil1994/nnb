@@ -11,12 +11,13 @@
   </div>
 
   <div class="wallet">
-
+  <%= link_to wallet_path(current_user.wallet) do%>
     <div class="wallet-card">
       <h2>Your Wallet</h2>
       <h1><%= @amount.to_i %> €</h1>
       <%= render "shared/wallet_pages" %>
     </div>
+  <% end %>
 
     <div class="wallet-buttons">
       <%= link_to new_deposit_path do %>

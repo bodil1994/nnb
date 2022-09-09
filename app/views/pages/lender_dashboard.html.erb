@@ -14,14 +14,15 @@
     <p>Already invested in other people’s future today?</p>
   </div>
 
-  <div class="wallet">
 
+  <div class="wallet">
+  <%= link_to wallet_path(current_user.wallet) do%>
     <div class="wallet-card">
       <h2>Your Wallet</h2>
       <h1><%= @amount.to_i %> €</h1>
       <%= render "shared/wallet_pages" %>
     </div>
-
+  <% end %>
     <div class="wallet-buttons">
       <%= link_to new_deposit_path do %>
         <div class="wallet-button">
@@ -44,6 +45,7 @@
     </div>
   </div>
 
+
   <div class="wrapper-main">
     <h2>Get your money working for you</h2>
     <%= render "shared/button_dashboard_cta_create" %>
@@ -56,3 +58,5 @@
     <%= render "shared/cards_loan_lender" %>
   </div>
 </div>
+
+<%# <%= console %>
