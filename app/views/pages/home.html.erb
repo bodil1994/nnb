@@ -6,7 +6,9 @@
   <% if current_user.nil? %>
     <%= button_to "Login", new_user_session_path, method: :get, class: "btn" %>
   <% else %>
-    <i class="fa-solid fa-bars"></i>
+    <%= link_to dashboard_lender_path do %>
+      <i class="fa-solid fa-bars"></i>
+    <% end %>
   <% end %>
   </div>
 </div>
