@@ -102,7 +102,7 @@ class LoanRequestsController < ApplicationController
       @lender_transfer = Transfer.new(amount: amount, status: transfer_status, transfer_type: transfer_type, wallet: lender_wallet, loan_id: loan_id)
       UpdateWalletService.new(borrower_transaction: @borrower_transfer, lender_transaction: @lender_transfer, borrower_wallet: borrower_wallet, lender_wallet: lender_wallet, transaction_type: "Transfer").call
        # create loan payment schedule
-       LoanPaymentSchedule.new(loan: @loan).call
+      LoanPaymentSchedule.new(loan: @loan).call
 
     end
   end
