@@ -14,7 +14,7 @@
     <p>You will receive <%= @loan.instant_loan ? "an instant loan" : "a manually-approved loan" %>
     of <%= @loan.amount.to_i %> €, with <%= number_of_payments %> <%= @loan.payment_frequency %>
     payments of <%= @loan.amount.to_i / number_of_payments %> € each, in total you will pay back
-    <%= @loan.amount.to_i * (1 + (@loan.interest_rate.to_i / 100)) %> €.</p>
+    <%= number_with_precision((@loan.amount * (1 + (@loan.interest_rate / 100))), precision: 2, strip_insignificant_zeros: true)  %> €.</p>
     <%= image_tag "icon-info.svg", class: "icon icon__info" %>
   </div>
     <!-- Add a wrapper div to encapsulate the list and the button and apply a display css
