@@ -26,7 +26,7 @@
         <% if bank_account.bank_type == "Bank" %>
           <%= image_tag("icon-bank.svg", :alt => "rss feed") %>
         <% else %>
-          <%= image_tag("Orange-Money-logo.jpeg", :alt => "rss feed") %>
+          <%= image_tag("Orange-Money-logo.jpg", :alt => "rss feed") %>
         <% end %>
         </div>
         <div class="bank-details">
@@ -36,9 +36,6 @@
       </label>
     </div>
   <% end %>
-
-  <div class="button">
-    <%= f.button :submit, 'Next'%>
-  </div>
+      <button form="new_deposit" class="button" >NEXT</button>
   <% end %>
 </div>

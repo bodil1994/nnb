@@ -1,4 +1,38 @@
 
-<div class="container ">
-<%= button_to "Login", new_user_session_path, method: :get, class: "btn"  %>
+<div class="home ">
+<div class="navbar">
+  <div class="wrapper-nav">
+  <%= image_tag "Logo-2.png" %>
+  <% if current_user.nil? %>
+    <%= button_to "Login", new_user_session_path, method: :get, class: "btn" %>
+  <% else %>
+    <%= link_to dashboard_lender_path do %>
+      <i class="fa-solid fa-bars"></i>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+<div class="hero">
+  <div class="titel">
+    <h1>Airbnb<br>
+    for Loans</h1>
+  </div>
+    <p>Be the bank and start earning passive income by funding personal loans.</p>
+    <%= button_to "Start funding ›", new_user_session_path, class: "btn", method: :get %>
+</div>
+<%#= image_tag "Paid idea-bro.png" %>
+<div class="main">
+  <div class="content">
+    <h1>You invest</h1>
+    <p>You choose which loan and how much, as little as 10€. Easy and accessible.</p>
+  </div>
+  <div class="content">
+    <h1>You earn</h1>
+    <p>Stop funding banks and start earning, with consistent short term returns.</p>
+  </div>
+  <div class="content">
+    <h1>You connect</h1>
+    <p>NNB directly connects individuals with money to lend and individuals seeking loans.</p>
+  </div>
+</div>
 </div>

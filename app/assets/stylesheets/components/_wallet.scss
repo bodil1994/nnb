@@ -57,6 +57,12 @@
     flex-flow: row;
     gap: 15px;
 
+    & :last-child {
+      .wallet-button {
+        padding-top: 8px;
+      }
+    }
+
     a {
       flex: 1 1 0px;
     }
@@ -69,7 +75,6 @@
       flex-direction: column;
       gap: 5px;
       align-items: center;
-
 
       p {
         font-size: 12px;

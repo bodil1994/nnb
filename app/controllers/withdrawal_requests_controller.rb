@@ -7,6 +7,7 @@ class WithdrawalRequestsController < ApplicationController
   def create
     @withdrawal_request = WithdrawalRequest.new(withdrawal_request_params)
     @withdrawal_request.wallet = current_user.wallet
+    @withdrawal_request.bank_account = BankAccount.first
     @withdrawal_request.status = "Pending"
     if @withdrawal_request.save!
       redirect_to withdrawal_request_path(@withdrawal_request)
@@ -31,6 +32,6 @@ class WithdrawalRequestsController < ApplicationController
   private
 
   def withdrawal_request_params
-    params.require(:withdrawal_request).permit(:amount, :bank_account_id)
+    params.require(:withdrawal_request).permit(:amount)
   end
 end

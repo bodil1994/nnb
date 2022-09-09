@@ -5,6 +5,8 @@ import { Chart, registerables } from 'chart.js';
 export default class extends Controller {
   static values = { still: Number, already: Number };
   connect() {
+
+    console.log("Hello from info js controller")
     Chart.register(...registerables);
 
     const data = {

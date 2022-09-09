@@ -1,9 +1,14 @@
 <%= render "shared/back_navigation", path: loans_path %>
 <h1 class="light"> Loan Description</h1>
 <div class="wrapper-avatar">
-  <%= image_tag "avatar-icon.png", class: "avatar, avatar__large" %>
+  <%= render "shared/avatar_large", user: loan.user %>
   <p>by <%= @loan.user.first_name %> <%= @loan.user.last_name %><br>
   <%= @loan.user.address %></p>
+  <% if @loan.status == "Active" %>
+  <%= link_to chatroom_path(loan.chatroom) do %>
+   <%= image_tag "icon-chat.svg", id: "chat" %>
+  <% end %>
+  <% end %>
 </div>
 <div class="wrapper-main">
   <div class="notice-box notice-box__purple">
@@ -14,7 +19,7 @@
     <% end %>
     <p>You will receive <%= loan.instant_loan ? "an instant loan" : "a manually-approved loan" %>
     of <%=  loan.amount.to_i %> € with <%= number_of_payments %> <%= loan.payment_frequency %>
-    <%= "payment".pluralize(number_of_payments) %> of <%= loan.amount.to_i / number_of_payments %> €. In total you will pay back
+    <%= "payment".pluralize(number_of_payments) %> of <%= (loan.amount * (1 + (loan.interest_rate / 100))) / number_of_payments %> €. In total you will pay back
     <%= number_with_precision((loan.amount * (1 + (loan.interest_rate / 100))), precision: 2, strip_insignificant_zeros: true)%> €.</p>
     <%= image_tag "icon-info.svg", class: "icon icon__info" %>
     </div>
