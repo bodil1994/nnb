@@ -72,23 +72,16 @@ class LoansController < ApplicationController
 
       redirect_to loan_summary_lender_path(@loan)
 
-      if @loan.user.first_name == "Bodil"
-        amount = @loan.amount
-        title = "education loan"
-        description = "new car"
-        loan_category = "Emergency"
-        status = "Pending"
-        user = User.find_by(first_name: "Ben")
-        loan_request = LoanRequest.create(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: @loan)
-
+      # # SEED FOR AUTO REQUEST FOR PITCH
+      # if @loan.user.first_name == "Bodil"
       #   amount = @loan.amount
-      #   title = "business loan"
-      #   description = "I'm starting my own business and need quick money for intial expenses."
+      #   title = "education loan"
+      #   description = "new car"
       #   loan_category = "Emergency"
       #   status = "Pending"
-      #   user = User.find_by(first_name: "Valentina")
-      # loan_request = LoanRequest.create(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: @loan)
-      end
+      #   user = User.find_by(first_name: "Ben")
+      #   loan_request = LoanRequest.create(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: @loan)
+      # end
     else
       render :new
     end

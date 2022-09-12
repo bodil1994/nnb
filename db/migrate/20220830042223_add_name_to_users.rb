@@ -9,3 +9,4 @@ class AddNameToUsers < ActiveRecord::Migration[7.0]
     add_column :users, :id_image, :string
     add_column :users, :id_number, :string
   end
+end
