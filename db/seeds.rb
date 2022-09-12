@@ -1,5 +1,8 @@
 require "open-uri"
 
+
+# DESTROY ALL
+
 Message.destroy_all
 Chatroom.destroy_all
 Transfer.destroy_all
@@ -11,9 +14,13 @@ Deposit.destroy_all
 BankAccount.destroy_all
 Wallet.destroy_all
 User.destroy_all
-
-
 puts "everything destroyed"
+
+puts ""
+
+
+# CREATE LENDERS
+puts "CREATING LENDERS"
 
 first_name = "Sam"
 last_name = "Banana"
@@ -29,6 +36,20 @@ sam.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
 sam.save!
 puts "new user added: #{sam.first_name} #{sam.last_name}"
 
+first_name = "Bodil"
+last_name = "Hundevad"
+profession = "Fullstack Developer"
+email = "bodil@hundevad.de"
+phone = "08899899982"
+address = "Vienna, Austria"
+password ="123123"
+user_type = "Lender"
+bodil = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
+file = URI.open("https://ca.slack-edge.com/T02NE0241-U03NVAPFBGV-cf08ead93701-512")
+bodil.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
+bodil.save!
+puts "new user added: #{bodil.first_name} #{bodil.last_name}"
+
 
 first_name = "Sarah"
 last_name = "Baum"
@@ -43,6 +64,12 @@ file = URI.open("https://i.pinimg.com/736x/7a/d3/1a/7ad31af11e1108ed093eca1b3438
 sarah.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
 sarah.save!
 puts "new user added: #{sarah.first_name} #{sarah.last_name}"
+puts ""
+
+
+# CREATE BORROWERS
+
+puts "CREATING BORROWERS"
 
 first_name = "Valentina"
 last_name = "Begona"
@@ -72,20 +99,6 @@ ben.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
 ben.save!
 puts "new user added: #{ben.first_name} #{ben.last_name}"
 
-first_name = "Bodil"
-last_name = "Hundevad"
-profession = "Fullstack Developer"
-email = "bodil@hundevad.de"
-phone = "08899899982"
-address = "Vienna, Austria"
-password ="123123"
-user_type = "Lender"
-bodil = User.new(first_name: first_name, last_name: last_name, profession: profession, email: email, phone: phone, address: address, password: password, user_type: user_type)
-file = URI.open("https://ca.slack-edge.com/T02NE0241-U03NVAPFBGV-cf08ead93701-512")
-bodil.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
-bodil.save!
-puts "new user added: #{bodil.first_name} #{bodil.last_name}"
-
 first_name = "Franka"
 last_name = "Weiler"
 profession = "Fullstack Developer"
@@ -100,6 +113,11 @@ franka.photo.attach(io: file, filename: "nes.jpg", content_type: "image/jpg")
 franka.save!
 puts "new user added: #{franka.first_name} #{franka.last_name}"
 
+# CREATING WALLETS
+
+puts ""
+puts "CREATING WALLETS"
+
 all_users = User.all
 all_users.each do |user|
 
@@ -108,13 +126,17 @@ all_users.each do |user|
   else
     amount = 1000
   end
-  wallet = Wallet.create!(user: user, amount: amount)
+  Wallet.create!(user: user, amount: amount)
 
   puts "new wallet added for User #{user.email}"
 end
 
+# CREATE LOANS
+puts ""
+puts "CREATING LOANS"
 
 # ---------- Bodil health loan
+puts "Bodil Loans and requests"
 amount = 1000
 interest_rate = 10
 loan_category = "Health"
