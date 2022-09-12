@@ -79,3 +79,6 @@ end
 gem "devise"
 gem "faker"
 gem "cloudinary"
+
+#  Add serviceworker for PWA
+gem "serviceworker-rails"
