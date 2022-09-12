@@ -1,8 +1,8 @@
 {
   "background_color": "white",
-  "description": "No Name Bank makes investing easy and accessible.",
+  "description": "The Airbnb for Loans",
   "display": "fullscreen",
-  "name": "No Name Bank",
+  "name": "NNB",
   "icons": [
     <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
     <% files.each_with_index do |file, index| %>
@@ -13,5 +13,5 @@
         "type": "image/png"
       }<%= "," unless (files.size - 1) == index %>
     <% end %>
-  ]
+ ]
 }
