@@ -38,7 +38,7 @@
               <% end %>
             <div class="wrapper-user-info">
               <p><%= loan_request.user.first_name %> <%= loan_request.user.last_name %><br>
-                <%= loan.user.address %>
+                <%= loan_request.user.address %>
               </p>
             </div>
 
@@ -81,4 +81,3 @@
   <div class="wrapper-main">
     <%= render "loans/show_lender_loan_requests", loan: loan %>
   </div>
-

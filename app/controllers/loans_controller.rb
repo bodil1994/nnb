@@ -67,16 +67,20 @@ class LoansController < ApplicationController
     @user = current_user
 
     if @loan.save!
-      # Chatroom.create(loan: @loan)
+
+      Chatroom.create(loan: @loan)
+
       redirect_to loan_summary_lender_path(@loan)
+
+      # # SEED FOR AUTO REQUEST FOR PITCH
       # if @loan.user.first_name == "Bodil"
       #   amount = @loan.amount
-      #   title = "I need to buy a new iPhone"
-      #   description = "My phone fell in the pool and I need to buy a new one!"
+      #   title = "education loan"
+      #   description = "new car"
       #   loan_category = "Emergency"
-      #   status = "Submitted"
-      #   user = User.find_by(first_name: "Franka")
-      #   loan_request = LoanRequest.create(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan_id: @loan.id)
+      #   status = "Pending"
+      #   user = User.find_by(first_name: "Ben")
+      #   loan_request = LoanRequest.create(amount: amount, title: title, description: description, loan_category: loan_category, status: status, user: user, loan: @loan)
       # end
     else
       render :new

@@ -1,5 +1,6 @@
-.new-loan {
-  height: 100vh;
+.container.new-loan {
+ padding-bottom: 103px !important;
+ position: relative;
   h1 {
     color: $dark-gray;
     font-weight: $font-weight-light !important;
@@ -8,23 +9,22 @@
   .flex {
     display: flex;
     flex-flow: column;
-    justify-content: space-between;
-    flex-grow: 1;
 
     .flex-selectors {
       display: flex;
       flex-wrap: wrap;
-      row-gap: 10px;
-      justify-content: space-between;
+      gap: 10px;
       margin: 20px 0px;
 
       .select-input {
         border-radius: 20px;
         background: $purple-background !important;
+        flex: 2 1 0px;
+        max-width: 100%;
+
       }
 
       .numeric {
-        width: 242px;
         height: 44px;
         border-radius: 20px;
         text-align: center;
@@ -43,11 +43,11 @@
       }
 
       .radio-botton {
-        float: left;
-        margin: 0 5px 0 0;
-        width: 100px;
+        // float: left;
+        min-width: 100px;
         height: 40px;
         position: relative;
+        flex:1 1 0px;
 
         label, input {
           display: block;
@@ -85,9 +85,7 @@
         margin-top: 10px;
 
         .simple_form, .loan_amount {
-          width: 242px !important;
-          height: 44px;
-        }
+          height: 44px;        }
       }
       form {
         .input, .dropdown {
@@ -100,7 +98,6 @@
 
     .simple_form {
       display: flex;
-      flex-grow: 1;
       flex-direction: column;
       justify-content: space-between;
 
@@ -128,7 +125,6 @@
       .form-select, .form-control {
         border: 1px solid $light-gray;
         height: 40px;
-        align-content: center;
         padding-top: 10px;
         padding-left: 10px;
         background-color: transparent !important;
@@ -141,9 +137,13 @@
       color: $dark-gray;
     }
 
-    .button{
-      margin-top: 20px;
-    }
+    .btn{
+        position: absolute;
+        bottom: 0px;
+        height: 43px;
+        width: 100%;
+      }
+
 
     .input {
       .form-label {

@@ -21,11 +21,11 @@
             <%= f.radio_button :amount, 3000, data: {create_loan_target: "botton", action: "change->create-loan#updateAmount"} %>
             <%= f.label :amount, "3000 €", data: {create_loan_target: "label"} %>
           </div>
-          <div class="radio-botton select-button amount-value">
+          <div class="radio-botton select-button">
             <%= f.radio_button :amount, 4000, data: {create_loan_target: "botton", action: "change->create-loan#updateAmount"} %>
             <%= f.label :amount, "4000 €", data: {create_loan_target: "label"} %>
           </div>
-          <div class="select-input purple-background amount-value">
+          <div class="select-input purple-background">
             <%= f.input :amount, placeholder: 'Enter amount', label: false, class: "create-input", input_html: { data: {create_loan_target: "input", action: "focus->create-loan#removeColor"}} %>
           </div>
         </div>
@@ -44,9 +44,7 @@
         <div class="dropdown">
           <%= f.input :instant_loan, label: 'How do you want to approve the loan?', as: :select, :collection => %w[Manual Auto], prompt: 'Select' %>
         </div>
-        <div class="button">
           <%= f.button :submit, 'Next'%>
-        </div>
       <% end %>
   </div>
 </div>
