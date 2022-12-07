@@ -7,6 +7,7 @@ class DepositsController < ApplicationController
   def create
     @deposit = Deposit.new(deposit_params)
     @deposit.wallet = current_user.wallet
+    @deposit.bank_account = BankAccount.first
     @deposit.status = "Pending"
     if @deposit.save!
       redirect_to deposit_path(@deposit)
@@ -39,6 +40,6 @@ class DepositsController < ApplicationController
   private
 
   def deposit_params
-    params.require(:deposit).permit(:amount, :bank_account_id)
+    params.require(:deposit).permit(:amount)
   end
 end

@@ -1,11 +1,29 @@
 .portfolio {
+  html & {
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .header {
+    display: block;
+  }
+
+  .description {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: smaller;
+  }
+
   .margin-t-b {
     margin: 20px 0px;
 
     .border {
-      border-radius: 10px;
-      border: solid 1px $light-gray;
-      padding: 20px;
+      // border-radius: 10px;
+      // border: solid 1px $light-gray;
+      // padding: 20px;
+      // box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+      border-bottom: 3px solid $light-gray;
+      padding-bottom: 40px;
+      padding-top: 20px;
     }
   }
 
@@ -17,4 +35,15 @@
   .margin-b {
     margin-bottom: 40px;
   }
+
+  .margin-t {
+    margin-top: 40px !important;
+  }
+
+  .container-portfolio {
+    margin-left: 20px;
+    margin-right: 20px;
+    display: block;
+  }
+
 }

@@ -1,13 +1,23 @@
 <div class="list-box">
 
   <%# Franka add payment chart here %>
-
+  <div data-controller="info" data-info-still-value="<%= @still %>" data-info-already-value="<%= @already %>" class="margin-b">
+    <canvas id="paymentsChart" data-charts-target="paymentsChart"></canvas>
+  </div>
+    <div class="list-item">
+    <p>Payments made: </p>
+    <p><%= @loan_payments_made.length %></p>
+  </div>
+  <div class="list-item">
+    <p>Payments remaining: </p>
+    <p><%= @loan_payments_remaining.length %></p>
+  </div>
   <div class="list-item">
     <p>Next Payment Due</p>
-    <p><%= @loan_payments_remaining.first.due_date %></p>
+    <p><%= @loan_payments_remaining.length == 0 ? "All payments completed" : @loan_payments_remaining.first.due_date %></p>
   </div>
   <div class="list-item">
     <p>Next Payment Amount</p>
-    <p><%= @loan_payments_remaining.first.amount %> €</p>
+    <p><%= @loan_payments_remaining.length == 0 ? "All payments completed" : "#{@loan_payments_remaining.first.amount} €" %> </p>
   </div>
 </div>

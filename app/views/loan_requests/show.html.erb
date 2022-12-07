@@ -12,9 +12,11 @@
       <% number_of_payments = @loan.payback_time * 4 %>
     <% end %>
     <p>You will receive <%= @loan.instant_loan ? "an instant loan" : "a manually-approved loan" %>
-    of <%= @loan.amount.to_i %> FCFA, with <%= number_of_payments %> <%= @loan.payment_frequency %>
-    payments of <%= @loan.amount.to_i / number_of_payments %> FCFA each, in total you will pay back
-    <%= @loan.amount.to_i * (1 + (@loan.interest_rate.to_i / 100)) %> FCFA.</p>
+
+    of <%= @loan.amount.to_i %> €, with 1 <%= @loan.payment_frequency %>
+    payment of <%= ((@loan.amount.to_i +  @loan.amount.to_i * @loan.interest_rate / 100) / number_of_payments).round(2) %> € each, in total you will pay back
+    <%= (@loan.amount.to_i +  (@loan.amount.to_i * @loan.interest_rate / 100)).round(2) %> €.</p>
+
     <%= image_tag "icon-info.svg", class: "icon icon__info" %>
   </div>
     <!-- Add a wrapper div to encapsulate the list and the button and apply a display css
@@ -31,7 +33,8 @@
     </div>
     <div class="list-item">
       <div>Payment Duration</div>
-      <div><%= @loan.payback_time %> months</div>
+      <% payback_months = (@loan.payback_time / 30).round %>
+      <div><%= payback_months %> months</div>
     </div>
     <div class="list-item">
       <div>Payment Frequency</div>

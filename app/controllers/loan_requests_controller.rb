@@ -27,22 +27,18 @@ class LoanRequestsController < ApplicationController
     # if loan.approval = auto
     if @loan.instant_loan?
     # Add the borrower transaction as a transfer
-      borrower_amount = @loan.amount
+      amount = @loan.amount
       borrower_wallet = current_user.wallet
       loan_id = @loan.id
-
       transfer_status = "Approved"
-
       transfer_type = "Deposit"
-      @borrower_transfer = Transfer.new(amount: borrower_amount, status: transfer_status, transfer_type: transfer_type, wallet: borrower_wallet, loan_id: loan_id)
+      @borrower_transfer = Transfer.new(amount: amount, status: transfer_status, transfer_type: transfer_type, wallet: borrower_wallet, loan_id: loan_id)
 
      # Add the lender transaction as a transfer
-      lender_amount = @loan.amount
       lender_wallet = @loan.user.wallet
-      loan_id = @loan.id
       transfer_status = "Approved"
       transfer_type = "Withdrawal"
-      @lender_transfer = Transfer.new(amount: lender_amount, status: transfer_status, transfer_type: transfer_type, wallet: lender_wallet, loan_id: loan_id)
+      @lender_transfer = Transfer.new(amount: amount, status: transfer_status, transfer_type: transfer_type, wallet: lender_wallet, loan_id: loan_id)
 
       # and change the loan_request.status to Approved
       if @lender_transfer.save! && @borrower_transfer.save!
@@ -88,15 +84,26 @@ class LoanRequestsController < ApplicationController
     if @loan_request.save
       if params[:status] == "Active"
         @loan.update(status: "Active")
-
         decline_all(@loan_request)
       end
       respond_to do |format|
         format.json { render :show, status: :ok, location: @loan_request }
         format.html { redirect_to request.referer }
       end
+      amount = @loan.amount
+      borrower_wallet = @loan_request.user.wallet
+      loan_id = @loan.id
+      transfer_status = "Approved"
+      transfer_type = "Deposit" # CHANGE
+      @borrower_transfer = Transfer.new(amount: amount, status: transfer_status, transfer_type: transfer_type, wallet: borrower_wallet, loan_id: loan_id)
+      lender_wallet = @loan.user.wallet
+      transfer_status = "Approved"
+      transfer_type = "Withdrawal"
+      @lender_transfer = Transfer.new(amount: amount, status: transfer_status, transfer_type: transfer_type, wallet: lender_wallet, loan_id: loan_id)
+      UpdateWalletService.new(borrower_transaction: @borrower_transfer, lender_transaction: @lender_transfer, borrower_wallet: borrower_wallet, lender_wallet: lender_wallet, transaction_type: "Transfer").call
        # create loan payment schedule
-      #  LoanPaymentSchedule.new(loan: @loan).call
+      LoanPaymentSchedule.new(loan: @loan).call
+
     end
   end
 

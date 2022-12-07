@@ -17,10 +17,11 @@
       <input class="form-check-input radio_buttons required category-selector" type="radio" value="<%= bank_account.id %>" name="withdrawal_request[bank_account_id]" id=<%= bank_account.id %> >
       <label class="form-check-label collection_radio_buttons wrapper" for="<%= bank_account.id %>">
         <div class="image">
+
         <% if bank_account.bank_type == "Bank" %>
           <%= image_tag("icon-bank.svg", :alt => "rss feed") %>
         <% else %>
-          <%= image_tag("icon-orange-money.svg", :alt => "rss feed") %>
+          <%= image_tag("Orange-Money-logo.jpg", :alt => "rss feed") %>
         <% end %>
         </div>
         <div class="bank_details">
@@ -30,10 +31,9 @@
       </label>
     </div>
   <% end %>
-
-
-  <div class="button">
+   <%# <div class="button">
     <%= f.button :submit, 'Next'%>
-  </div>
+  <%# </div> %>
+    <button form="new_withdrawal_request" class="button" >Next</button>
   <% end %>
 </div>

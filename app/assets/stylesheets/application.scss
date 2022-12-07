@@ -48,7 +48,7 @@ h1.light {
 
 h2 {
   font-size: 20px;
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight-regular;
   padding-bottom: 12px;
 }
 
@@ -106,4 +106,10 @@ a:link, a:visited, a:active {
 
 .background-darken {
   background-color: $light-gray;
+}
+
+input {
+  &:focus {
+    outline:none
+  }
 }

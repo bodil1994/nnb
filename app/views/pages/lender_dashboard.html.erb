@@ -2,10 +2,9 @@
    <div class="wrapper-head">
     <div class="row" data-controller="avatar-dropdown">
       <h1>Hello <%= current_user.first_name %></h1>
-       <% if current_user.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar avatar__large", data: { action: "click->avatar-dropdown#showMenu" } %>
-      <% else %>
-        <%= image_tag "avatar-icon.png", class: "avatar avatar__large" %>
+      <%= button_to destroy_user_session_path, class: "transparent", method: :delete do %>
+        <% user = current_user %>
+        <%= render "shared/avatar_large", user: user %>
       <% end %>
       <div class="user_popup d-none"
         data-target="avatar-dropdown.popup-menu">
@@ -15,22 +14,23 @@
     <p>Already invested in other people’s future today?</p>
   </div>
 
-  <div class="wallet">
 
+  <div class="wallet">
+  <%= link_to wallet_path(current_user.wallet) do%>
     <div class="wallet-card">
       <h2>Your Wallet</h2>
       <h1><%= @amount.to_i %> €</h1>
       <%= render "shared/wallet_pages" %>
     </div>
-
+  <% end %>
     <div class="wallet-buttons">
-      <%= link_to new_withdrawal_request_path do %>
+      <%= link_to new_deposit_path do %>
         <div class="wallet-button">
           <%= image_tag "icon-deposit.svg" %>
           <p>Deposit</p>
         </div>
       <% end %>
-      <%= link_to new_deposit_path do %>
+      <%= link_to new_withdrawal_request_path do %>
         <div class="wallet-button">
           <%= image_tag "icon-withdraw.svg" %>
           <p>Withdraw</p>
@@ -44,6 +44,7 @@
       <% end %>
     </div>
   </div>
+
 
   <div class="wrapper-main">
     <h2>Get your money working for you</h2>

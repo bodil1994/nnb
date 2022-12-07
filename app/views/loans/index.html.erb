@@ -1,6 +1,6 @@
 <div class="container loan-index" data-controller="search-loans">
   <%= render "shared/back_navigation", path: dashboard_borrower_path %>
-  <h1 class="light">Payment Details</h1>
+  <h1 class="light">Loan Search</h1>
   <p class="padding-bottom">Not sure what you're looking for? See recommendations!</p>
   <%= simple_form_for :loan, url:loans_path, method: "get",
   data: {search_loans_target: "form"} do |f| %>
@@ -43,7 +43,6 @@
   </div>
 </div>
 
-<%# <%= console %>
 
 <script>
   for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {

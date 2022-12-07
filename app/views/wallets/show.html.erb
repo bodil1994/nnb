@@ -1,27 +1,43 @@
-<div class="container">
+<div class="container wallet-show">
     <% if current_user.user_type == "Lender"  %>
-      <%= render "shared/back_navigation", path: dashboard_lender_path(@user)  %>
+      <%= render "shared/back_navigation", path: dashboard_lender_path  %>
       <% else %>
-      <%= render "shared/back_navigation", path: dashboard_borrower_path(@user)  %>
+      <%= render "shared/back_navigation", path: dashboard_borrower_path  %>
     <% end %>
-      <h1 class = "light"> Your wallet</h1>
+      <h1 class = "light">Wallet</h1>
 
   <div class="wallet">
 
     <div class="wallet-card">
-      <h2>Your Wallet</h2>
+      <h2>Current Balance</h2>
       <h1><%= current_user.wallet.amount.to_i %> €</h1>
       <%= render "shared/wallet_pages" %>
     </div>
 
     <div class="wallet-buttons">
-      <%= link_to "Withdraw", new_withdrawal_request_path, class:"btn" %>
-      <%= link_to "Deposit", new_deposit_path, class:"btn"  %>
+      <%= link_to new_deposit_path do %>
+        <div class="wallet-button">
+          <%= image_tag "icon-deposit.svg" %>
+          <p>Deposit</p>
+        </div>
+      <% end %>
+      <%= link_to new_withdrawal_request_path do %>
+        <div class="wallet-button">
+          <%= image_tag "icon-withdraw.svg" %>
+          <p>Withdraw</p>
+        </div>
+      <% end %>
+      <%= link_to transactions_path do %>
+        <div class="wallet-button">
+          <%= image_tag "icon-portfolio.svg" %>
+          <p>Transactions</p>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="title-container align-title">
     <h2>Your transactions</h2>
-    <p><%= link_to "All Transactions", transactions_path %></p>
+    <p><%= link_to "all transactions", transactions_path %></p>
   </div>
   <% @all_transactions.each do |transactions| %>
     <% if transactions.class.name == "WithdrawalRequest"%>
@@ -35,11 +51,11 @@
   if transactions.class.name = "WithdrawalRequest" then color should be red.
   if transactions.class.name = "Deposit" then color should be green. %>
     <%if transactions.status == "Approved" && transactions.class.name == "WithdrawalRequest" %>
-      <h2 class = "red-transaction" ><%= "#{amount} €"%></h2>
+      <h2 class = "red-transaction" ><%= "#{number_with_precision(amount, precision: 2)} €"%></h2>
     <% elsif transactions.status == "Approved" && transactions.class.name == "Deposit" %>
-      <h2 class = "green-transaction" ><%= "#{amount} €"%></h2>
+      <h2 class = "green-transaction" ><%= "#{number_with_precision(amount, precision: 2)} €"%></h2>
     <% elsif %>
-      <h2 class = "pending-transaction" ><%= "#{amount} €"%></h2>
+      <h2 class = "pending-transaction" ><%= "#{number_with_precision(amount, precision: 2)} €"%></h2>
     <% end %>
 
       <p class ="small"><%=transactions.created_at.strftime('%a, %d %b %Y %H:%M:%S')%></p>
@@ -52,7 +68,4 @@
     </div>
   </div>
   <% end %>
-
 </div>
-
-<%= render "shared/navbar" %>
