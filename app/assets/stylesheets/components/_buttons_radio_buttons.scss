@@ -18,6 +18,10 @@ input.category-selector {
   background-color: $light-gray
 }
 
+.image {
+ width: 60px;
+}
+
 .category-selector + label {
   display: block;
   cursor: pointer;
@@ -32,8 +36,14 @@ input.category-selector {
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-  gap: 13px;
-  height: 90px;
+
+  gap: 10px;
+
+ .bank_details {
+  margin-left: 10px;
+ }
+}
+
 
     img {
       width:40px;
