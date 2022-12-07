@@ -16,9 +16,8 @@ This app was coded within two weeks as a final project for the LeWagon Bali Full
 
 ## Demo
 
-Watch the demo of the app here:
-
-[![image](https://i.postimg.cc/k51yk72d/NNB-Demo-Video.png)](https://youtu.be/398uwgl9FXM?t=447)
+<p align="center">Watch the demo of the app here:</p>
+<p align="center"><a href="https://youtu.be/398uwgl9FXM?t=447"><img src="https://i.postimg.cc/k51yk72d/NNB-Demo-Video.png"></a></p>
 
 
 
@@ -36,5 +35,5 @@ Watch the demo of the app here:
 
 ## Work Process
 How was the app developed in two weeks?
-- Mapping user stories, prioritizing, and developing the simplest possible version of each story first. Here's an insight into our work process:![](https://i.postimg.cc/qqYTvNjX/User-Stories-NNB.png)
-- Wireframing and Mockup of the prioritized Stories in Figma ![](https://i.postimg.cc/pdqXtLbk/Wireframing-NNB.png)
+- Mapping user stories, prioritizing, and developing the simplest possible version of each story first. Here's an insight into our work process: <p align="center"> <img src="https://i.postimg.cc/qqYTvNjX/User-Stories-NNB.png" width="600"/> </p>
+- Wireframing and Mockup of the prioritized Stories in Figma <p align="center"> <img src="https://i.postimg.cc/pdqXtLbk/Wireframing-NNB.png" width="600"/> </p>
