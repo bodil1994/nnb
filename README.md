@@ -36,5 +36,5 @@ Watch the demo of the app here:
 
 ## Work Process
 How was the app developed in two weeks?
-- Mapping user stories, prioritizing, and developing the simplest possible version of each story first. Here's an insight into our work in process:![](https://i.postimg.cc/qqYTvNjX/User-Stories-NNB.png)
+- Mapping user stories, prioritizing, and developing the simplest possible version of each story first. Here's an insight into our work process:![](https://i.postimg.cc/qqYTvNjX/User-Stories-NNB.png)
 - Wireframing and Mockup of the prioritized Stories in Figma ![](https://i.postimg.cc/pdqXtLbk/Wireframing-NNB.png)
