@@ -5,7 +5,7 @@ databases:
 
 services:
   - type: web
-    name: nnb
+    name: rails
     env: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
@@ -17,8 +17,3 @@ services:
         fromDatabase:
           name: postgres
           property: connectionString
-  - type: redis
-    name: redis
-    ipAllowList: []
-    plan: free
-    maxmemoryPolicy: noeviction
