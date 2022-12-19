@@ -55,7 +55,6 @@ export default class extends Controller {
 
           // SHOW STATUS AND CURRENT DATE ON CURRENT CARD
           // Find status in it
-<<<<<<< Updated upstream
           document.querySelectorAll('#status').forEach(element => {
             element.classList.remove("d-none")
             element.insertAdjacentHTML("afterbegin", `<p>Declined<br>${today}</p>`)
@@ -64,10 +63,6 @@ export default class extends Controller {
           let status = card.querySelector('#status')
           let declined = status.querySelector("p")
           status.removeChild(declined)
-=======
-          let status = card.querySelector('#status')
-          status.classList.remove("d-none")
->>>>>>> Stashed changes
           status.insertAdjacentHTML("afterbegin", `<p>Accepted<br>${today}</p>`)
 
           // SHOW ALERT
