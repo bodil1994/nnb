@@ -39,11 +39,12 @@ class PagesController < ApplicationController
     @business_loans = Loan.where(user: current_user, loan_category: "Business").sum(:amount)
     @insurance_loans = Loan.where(user: current_user, loan_category: "Insurance").sum(:amount)
     loan = Loan.find_by(user: current_user, status: "Active")
-
     @active_loans = current_user.loans.where(status: "Active").map do |loan|
       { loan.id => { already: loan.loan_payments.where(payment_status: "Completed").sum(:amount), still: loan.amount + loan.amount * loan.interest_rate / 100 - loan.loan_payments.where(payment_status: "Completed").sum(:amount), category: loan.loan_category, amount: loan.amount } }
     end
-
     @payment_profit = LoanPayment.where(loan: loan, payment_status: "Completed").group_by { |payment| payment.payment_date }
+    @already = LoanPayment.where(loan: Loan.where(user: current_user, status: "Active")).sum(:amount)
+    @still = Loan.where(user: current_user, status: "Active").sum(:amount) - LoanPayment.where(loan: Loan.where(user: current_user, status: "Active")).sum(:amount)
+    # @profit(month) = Loan.where(user: current_user, status: "Active").interest_rate * LoanPayment.where(loan: Loan.where(user: current_user, status: "Active")).sum(:amount)
   end
 end
