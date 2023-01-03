@@ -50,7 +50,7 @@ class WalletsController < ApplicationController
             sum_deposit = 0
             sum_deposit += deposit.amount
         end
-        raise
+
         # In the transfer table, grab all the deposit related to the wallet_id
         # Sum all deposit and store the sum in a variable
         total_deposit_transfers = @transfer.where(wallet_id: @user,transfert_type: "Deposit", status:"Approved" )
