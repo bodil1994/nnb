@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  # Creates a new message and broadcasts it to all channels in the chatroom.
   def create
     @chatroom = Chatroom.find(params[:chatroom_id])
     @message = Message.new(message_params)
@@ -18,6 +19,7 @@ class MessagesController < ApplicationController
 
   private
 
+  # The message to send to the user. Returns a Hash of parameters that can be used in a POST
   def message_params
     params.require(:message).permit(:content)
   end
