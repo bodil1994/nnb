@@ -2,7 +2,9 @@
 require "open-uri"
 
 puts ""
+puts ""
 puts "CREATING USERS"
+puts ""
 
 users = [
   {
