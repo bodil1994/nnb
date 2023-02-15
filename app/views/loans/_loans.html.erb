@@ -1,38 +1,38 @@
 
 <div class="cards-container">
-      <% loans.each do |loan| %>
-        <%= link_to loan_path(loan) do %>
-          <div class = "card-loan-search">
-            <div class= "wrapper">
-              <h1><span class="purple-text"><%= loan.amount.to_i %> € Loan</span> for <%= loan.loan_category %></h1>
+  <% loans.each do |loan| %>
+    <%= link_to loan_path(loan) do %>
+      <div class = "card-loan-search">
+        <div class= "wrapper">
+          <h1><span class="purple-text"><%= loan.amount.to_i %> € Loan</span> for <%= loan.loan_category %></h1>
 
-              <div class= "wrapper-content">
-                <% payback_months = (loan.payback_time / 30).round %>
+          <div class= "wrapper-content">
+            <% payback_months = (loan.payback_time / 30).round %>
 
-                <div class="wrapper-info">
-                  <p>Interest rate<p>
-                  <p class="gray-text"><%= loan.interest_rate %> %</p>
-                </div>
-
-                <div class="wrapper-info">
-                  <p>Duration<p>
-                  <p class="gray-text"><%= payback_months %> months</p>
-                </div>
-
-                <div class="wrapper-info">
-                  <p>Payback<p>
-                  <p class="gray-text"><%= loan.payment_frequency %></p>
-                </div>
-              </div>
-
+            <div class="wrapper-info">
+              <p>Interest rate<p>
+              <p class="gray-text"><%= loan.interest_rate %> %</p>
             </div>
 
-            <div>
-              <% user = loan.user %>
-              <%= render "shared/avatar", user: user %>
+            <div class="wrapper-info">
+              <p>Duration<p>
+              <p class="gray-text"><%= payback_months %> months</p>
             </div>
 
+            <div class="wrapper-info">
+              <p>Payback<p>
+              <p class="gray-text"><%= loan.payment_frequency %></p>
+            </div>
           </div>
-        <% end %>
-      <% end %>
-    </div>
+
+        </div>
+
+        <div>
+          <% user = loan.user %>
+          <%= render "shared/avatar", user: user %>
+        </div>
+
+      </div>
+    <% end %>
+  <% end %>
+</div>

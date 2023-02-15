@@ -17,7 +17,7 @@ puts "everything destroyed"
 
 puts ""
 
-# Load seed files
+# Load seed files and sort
 
 Dir[Rails.root.join('db', 'seeds', '*.rb')].sort.each do |seed|
   load seed

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  # devise_for :users
-  devise_for :users,
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  devise_for :users, # Routes for authentication
            :controllers => { :registrations => 'users/registrations' },
            :path => 'user',
            :path_names => { :sign_in => 'login',
@@ -8,16 +9,16 @@ Rails.application.routes.draw do
                             :sign_out => 'logout',
                             :password => 'password',
                             :confirmation => 'confirmation' }
-  root to: "pages#home"
-  get "/dashboard-lender", to: "pages#lender_dashboard"
-  get "/dashboard-borrower", to: "pages#borrower_dashboard"
-  get "/loan-summary-lender", to: "pages#lender_loan_summary"
-  get "/transactions", to: "pages#transactions"
-  get "/portfolio", to: "pages#portfolio"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+
+  root to: "pages#home"  # Root route to the home page
+
+  get "/dashboard-lender", to: "pages#lender_dashboard" # Route to lender dashboard
+  get "/dashboard-borrower", to: "pages#borrower_dashboard" # Route to borrower dashboard
+  get "/loan-summary-lender", to: "pages#lender_loan_summary" # Route to loan summary page during loan creation
+  get "/transactions", to: "pages#transactions" # Route to transactions page
+  get "/portfolio", to: "pages#portfolio" # Route to portfolio page
+
   resources :loans, only: [:new, :create, :index, :show] do
     resources :loan_requests, only: [:new, :create, :update]
   end
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
   resources :deposits, only: [:new, :create, :show, :update] do
     patch "/accept", to: "deposit#accept"
   end
+
   resources :chatrooms, only: [:show] do
     resources :messages, only: :create
   end
