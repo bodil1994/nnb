@@ -14,7 +14,6 @@ BankAccount.destroy_all
 Wallet.destroy_all
 User.destroy_all
 puts "everything destroyed"
-
 puts ""
 
 # Load seed files and sort

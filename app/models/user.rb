@@ -12,7 +12,6 @@ class User < ApplicationRecord
   has_many :withdrawal_requests, through: :wallet
   has_one_attached :photo
 
-
   USER_TYPES = ["Lender", "Borrower"]
   validates :first_name, presence: true
   validates :last_name, presence: true
