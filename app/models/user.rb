@@ -16,4 +16,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :user_type, inclusion: { in: USER_TYPES }
+
+  after_create do |user|
+    user.create_wallet(amount: 0)
+  end
 end
