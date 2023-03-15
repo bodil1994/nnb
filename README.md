@@ -36,4 +36,4 @@ This app was coded within two weeks as a final project for the LeWagon Bali Full
 ## Work Process
 How was the app developed in two weeks?
 - Mapping user stories, prioritizing, and developing the simplest possible version of each story first. Here's an insight into our work process: <p align="center"> <img src="https://i.postimg.cc/qqYTvNjX/User-Stories-NNB.png" width="600"/> </p>
-- Wireframing and Mockup of the prioritized Stories in Figma <p align="center"> <img src="https://i.postimg.cc/pdqXtLbk/Wireframing-NNB.png" width="600"/> </p>
+- Wireframing and mockup of the prioritized stories in Figma <p align="center"> <img src="https://i.postimg.cc/pdqXtLbk/Wireframing-NNB.png" width="600"/> </p>
