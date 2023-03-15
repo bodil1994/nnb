@@ -10,7 +10,7 @@ With this app YOU become the bank and start earning passive income by funding pe
 
 ## Background
 
-This app was coded within two weeks as a final project for the LeWagon Bali Full Stack Developer Bootcamp Sep 22 by: [@bodilhundevad](https://www.github.com/bodilhundevad), [@Ral225](https://www.github.com/Ral225), [@ericw1111](https://www.github.com/ericw1111), [@frankaisabell](https://www.github.com/frankaisabell)
+This app was coded within two weeks as a final project for the LeWagon Bali Full Stack Developer Bootcamp Sep' 22 by: [@bodilhundevad](https://www.github.com/bodilhundevad), [@Ral225](https://www.github.com/Ral225), [@ericw1111](https://www.github.com/ericw1111), [@frankaisabell](https://www.github.com/frankaisabell)
 
 
 
@@ -18,7 +18,6 @@ This app was coded within two weeks as a final project for the LeWagon Bali Full
 
 <p align="center">Watch the demo of the app here:</p>
 <p align="center"><a href="https://youtu.be/398uwgl9FXM?t=447"><img src="https://i.postimg.cc/k51yk72d/NNB-Demo-Video.png"></a></p>
-
 
 
 ## Features
@@ -32,6 +31,29 @@ This app was coded within two weeks as a final project for the LeWagon Bali Full
 - View repayment schedule
 - Personal profile
 - Comprehensive portfolio statistics
+
+## Technologies
+
+- Ruby version: 3.1.2
+- Ruby on Rails version: 7.0.3.1
+- Web Server: Puma (v5.0)
+- Database: PostgreSQL (v1.1)
+- Asset Pipeline: Sprockets (via sprockets-rails gem)
+- JavaScript bundling: jsbundling-rails gem
+- Client-side framework: Stimulus (via stimulus-rails gem)
+- Server-side rendering: Turbo (via turbo-rails gem)
+- JSON rendering: Jbuilder gem
+- WebSocket library: Action Cable (using Redis adapter via redis gem)
+- Charting library: Chartkick gem
+- Font library: Font Awesome Sass (v6.2)
+- Form library: Simple Form (via GitHub repository)
+- Debugging tools: Debug gem (for development and test environments)
+- Environment variables management: Dotenv gem (for development and test environments)
+- Testing frameworks: Capybara, Selenium Webdriver, and Webdrivers gems (for test environment)
+- Authentication: Devise gem
+- Fake data generator: Faker gem
+- Cloud image management: Cloudinary gem
+- Service worker: ServiceWorker-Rails gem (for PWA support)
 
 ## Work Process
 How was the app developed in two weeks?
